@@ -3,7 +3,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { problems } from '@/lib/problems';
+import { useProblems } from '@/hooks/use-problems';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface ProblemListProps {
   onSelectProblem: (problemId: number) => void;
@@ -12,6 +13,7 @@ interface ProblemListProps {
 }
 
 export function ProblemList({ onSelectProblem, onOpenExecutor, solvedProblems }: ProblemListProps) {
+  const { problems, isLoading, error } = useProblems();
   const difficultyColor = {
     Easy: 'bg-success text-success-foreground hover:bg-success/90',
     Medium: 'bg-yellow-500 text-white hover:bg-yellow-500/90',
@@ -23,22 +25,29 @@ export function ProblemList({ onSelectProblem, onOpenExecutor, solvedProblems }:
       <header className="border-b border-border bg-card px-6 py-4">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Problem List</h1>
+            <h1 className="text-2xl font-bold tracking-tight">试题</h1>
             <p className="text-sm text-muted-foreground mt-1">
-              Select a problem to start coding
+              选择一个试题开始编写与运行
             </p>
           </div>
           <Button onClick={onOpenExecutor} variant="outline" className="gap-2">
             <Terminal size={20} weight="bold" />
-            Code Executor
+            自由代码执行
           </Button>
         </div>
       </header>
 
       <ScrollArea className="flex-1">
         <div className="container mx-auto px-6 py-6 max-w-5xl">
-          <div className="space-y-3">
-            {problems.map((problem) => {
+          {isLoading ? (
+            <div className="text-sm text-muted-foreground">正在加载题目...</div>
+          ) : error ? (
+            <Alert variant="destructive">
+              <AlertDescription>题目加载失败：{error}</AlertDescription>
+            </Alert>
+          ) : (
+            <div className="space-y-3">
+              {problems.map((problem) => {
               const isSolved = solvedProblems.has(problem.id);
               
               return (
@@ -76,8 +85,9 @@ export function ProblemList({ onSelectProblem, onOpenExecutor, solvedProblems }:
                   </div>
                 </Card>
               );
-            })}
-          </div>
+              })}
+            </div>
+          )}
         </div>
       </ScrollArea>
     </div>

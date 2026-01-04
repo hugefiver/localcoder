@@ -1,46 +1,19 @@
-import { useState } from 'react';
-import { ProblemList } from '@/components/ProblemList';
-import { EditorView } from '@/components/EditorView';
-import { ExecutorView } from '@/components/ExecutorView';
-import { useKV } from '@github/spark/hooks';
-
-type View = 'list' | 'editor' | 'executor';
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "@/pages/HomePage";
+import { ProblemsPage } from "@/pages/ProblemsPage";
+import { ProblemEditorPage } from "@/pages/ProblemEditorPage";
+import { ExecutorPage } from "@/pages/ExecutorPage";
+import { NotFoundPage } from "@/pages/NotFoundPage";
 
 function App() {
-  const [currentView, setCurrentView] = useState<View>('list');
-  const [selectedProblemId, setSelectedProblemId] = useState<number | null>(null);
-  const [solvedProblems, setSolvedProblems] = useKV<number[]>('solved-problems', []);
-
-  const handleSelectProblem = (problemId: number) => {
-    setSelectedProblemId(problemId);
-    setCurrentView('editor');
-  };
-
-  const handleBackToList = () => {
-    setCurrentView('list');
-    setSelectedProblemId(null);
-  };
-
-  const handleOpenExecutor = () => {
-    setCurrentView('executor');
-  };
-
-  const solvedSet = new Set(solvedProblems || []);
-
   return (
-    <>
-      {currentView === 'list' ? (
-        <ProblemList 
-          onSelectProblem={handleSelectProblem} 
-          onOpenExecutor={handleOpenExecutor}
-          solvedProblems={solvedSet} 
-        />
-      ) : currentView === 'executor' ? (
-        <ExecutorView onBack={handleBackToList} />
-      ) : selectedProblemId !== null ? (
-        <EditorView problemId={selectedProblemId} onBack={handleBackToList} />
-      ) : null}
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/executor" element={<ExecutorPage />} />
+      <Route path="/problems" element={<ProblemsPage />} />
+      <Route path="/problems/:id" element={<ProblemEditorPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 

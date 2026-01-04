@@ -1,8 +1,16 @@
 let isReady = false;
 
 self.onmessage = async (e) => {
-  const { code, testCases, executorMode } = e.data;
+  const { type, requestId, code, testCases, executorMode } = e.data;
   
+  if (type === 'preload') {
+    if (!isReady) {
+      isReady = true;
+    }
+    self.postMessage({ type: 'ready', requestId });
+    return;
+  }
+
   if (!isReady) {
     isReady = true;
     self.postMessage({ type: 'ready' });
@@ -22,6 +30,7 @@ self.onmessage = async (e) => {
         logs: output,
         result: null,
         executionTime,
+        requestId,
       });
     } else {
       const results = [];
@@ -64,6 +73,7 @@ ${code}
         success: true,
         results,
         executionTime,
+        requestId,
       });
     }
   } catch (error) {
@@ -71,6 +81,7 @@ ${code}
       success: false,
       error: error.message,
       stack: error.stack,
+      requestId,
     });
   }
 };

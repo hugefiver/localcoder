@@ -1,8 +1,16 @@
 let isReady = false;
 
 self.onmessage = async (e) => {
-  const { code, language, testCases, executorMode } = e.data;
+  const { type, requestId, code, language, testCases, executorMode } = e.data;
   
+  if (type === 'preload') {
+    if (!isReady) {
+      isReady = true;
+    }
+    self.postMessage({ type: 'ready', requestId });
+    return;
+  }
+
   if (!isReady) {
     isReady = true;
     self.postMessage({ type: 'ready' });
@@ -34,6 +42,7 @@ self.onmessage = async (e) => {
         logs,
         result,
         executionTime,
+        requestId,
       });
     } else {
       if (language === 'javascript') {
@@ -50,6 +59,7 @@ self.onmessage = async (e) => {
         results,
         executionTime,
         output: '',
+        requestId,
       });
     }
   } catch (error) {
@@ -57,6 +67,7 @@ self.onmessage = async (e) => {
       success: false,
       error: error.message,
       stack: error.stack,
+      requestId,
     });
   }
 };

@@ -1,4 +1,4 @@
-# CodeRunner - LeetCode-Style Coding Platform
+# LocalCoder
 
 A browser-based code execution platform that mimics LeetCode's interface, allowing users to browse coding problems, write solutions in multiple languages, and test their code entirely in the browser.
 
@@ -11,21 +11,22 @@ A browser-based code execution platform that mimics LeetCode's interface, allowi
 - **Code Persistence**: Automatically saves your code per problem and language
 - **Pure Frontend**: All code execution happens in browser workers - no backend required
 
-## Setup
+## 安装
 
 After installing dependencies, run the setup script to copy Pyodide files to the public directory:
 
 ```bash
-npm install
-npm run setup
+pnpm install
+pnpm run setup
 ```
 
-The `npm run setup` command copies the Pyodide Python interpreter from `node_modules` to `public/pyodide/` so it can be loaded by the Python worker. This is automatically run after `npm install` via the postinstall hook.
+`pnpm run setup` 会把 Pyodide 从 `node_modules` 复制到 `public/pyodide/`，供 Python Worker 加载。
+该步骤也会在安装依赖后通过 `postinstall` 自动执行。
 
 ## Development
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## How It Works
@@ -33,11 +34,12 @@ npm run dev
 - **Workers**: Each language runs in a dedicated Web Worker for sandboxed execution
 - **Pyodide**: Python support via WebAssembly-based CPython interpreter (loaded locally, not from CDN)
 - **CodeMirror**: Provides syntax highlighting, autocomplete, and a professional editing experience
-- **Persistent Storage**: Uses Spark's KV API to save code per problem and language combination
+- **题库**：从 `src/problems/*.md` 自动加载，每个 Markdown 文件对应一个试题
+- **持久化**：使用浏览器 `localStorage` 保存每个语言/试题下的代码与自定义用例
 
 ## Project Structure
 
-```
+```text
 ├── public/
 │   ├── pyodide/          # Pyodide files (copied from node_modules)
 │   ├── js-worker.js      # JavaScript/TypeScript execution worker
@@ -48,9 +50,10 @@ npm run dev
 ├── src/
 │   ├── components/       # React components
 │   ├── hooks/           # Custom React hooks
+│   ├── problems/         # Markdown 题库（每个 .md 一个试题）
 │   └── App.tsx          # Main application component
 ```
 
 ## License
 
-The Spark Template files and resources from GitHub are licensed under the terms of the MIT license, Copyright GitHub, Inc.
+MIT

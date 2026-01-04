@@ -11,8 +11,9 @@ import { ProblemDescription } from '@/components/ProblemDescription';
 import { TestCaseManager } from '@/components/TestCaseManager';
 import { useCodeExecution, type Language } from '@/hooks/use-code-execution';
 import { useWorkerLoader } from '@/hooks/use-worker-loader';
-import { problems, codeTemplates, languageInfo } from '@/lib/problems';
-import { useKV } from '@github/spark/hooks';
+import { languageInfo } from '@/lib/problems';
+import { useProblems } from '@/hooks/use-problems';
+import { useLocalStorageState, localStorageGet, localStorageSet } from '@/hooks/use-local-storage';
 import { toast } from 'sonner';
 
 interface EditorViewProps {
@@ -26,11 +27,12 @@ interface CustomTestCase {
 }
 
 export function EditorView({ problemId, onBack }: EditorViewProps) {
+  const { problems, isLoading: isProblemsLoading } = useProblems();
   const problem = problems.find((p) => p.id === problemId);
-  const [selectedLanguage, setSelectedLanguage] = useKV<Language>(`problem-${problemId}-language`, 'javascript');
+  const [selectedLanguage, setSelectedLanguage] = useLocalStorageState<Language>(`problem-${problemId}-language`, 'javascript');
   const [activeTab, setActiveTab] = useState<'description'>('description');
   const [testTab, setTestTab] = useState<'testcases' | 'results'>('testcases');
-  const [customTestCases, setCustomTestCases] = useKV<CustomTestCase[]>(`problem-${problemId}-custom-tests`, []);
+  const [customTestCases, setCustomTestCases] = useLocalStorageState<CustomTestCase[]>(`problem-${problemId}-custom-tests`, []);
   const { executeCode, isRunning, result } = useCodeExecution();
   const { preloadWorker, isWorkerReady, isWorkerLoading } = useWorkerLoader();
 
@@ -39,29 +41,33 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
   const [codeLoaded, setCodeLoaded] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadCodeForLanguage = async () => {
-      const savedCode = await window.spark.kv.get<string>(`problem-${problemId}-code-${language}`);
-      
+      const savedCode = await localStorageGet<string>(`problem-${problemId}-code-${language}`);
+
+      if (cancelled) return;
+
       if (savedCode) {
         setCode(savedCode);
       } else if (problem) {
-        const template = codeTemplates[problemId.toString()]?.[language] || `// Write your ${language} code here`;
+        const template = problem.templates?.[language] || `// Write your ${language} code here`;
         setCode(template);
       }
       setCodeLoaded(true);
     };
 
     setCodeLoaded(false);
-    loadCodeForLanguage();
+    void loadCodeForLanguage();
+
+    return () => {
+      cancelled = true;
+    };
   }, [problemId, language, problem]);
 
   useEffect(() => {
-    if (codeLoaded && code) {
-      const saveCode = async () => {
-        await window.spark.kv.set(`problem-${problemId}-code-${language}`, code);
-      };
-      saveCode();
-    }
+    if (!codeLoaded) return;
+    void localStorageSet(`problem-${problemId}-code-${language}`, code);
   }, [code, language, problemId, codeLoaded]);
 
   const handleLanguageChange = (lang: Language) => {
@@ -114,9 +120,13 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
   if (!problem) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <Alert variant="destructive">
-          <AlertDescription>Problem not found</AlertDescription>
-        </Alert>
+        {isProblemsLoading ? (
+          <div className="text-sm text-muted-foreground">正在加载题目...</div>
+        ) : (
+          <Alert variant="destructive">
+            <AlertDescription>Problem not found</AlertDescription>
+          </Alert>
+        )}
       </div>
     );
   }
@@ -132,7 +142,7 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
             </Button>
             <div className="h-6 w-px bg-border" />
             <Code size={24} weight="bold" className="text-primary" />
-            <span className="font-semibold">CodeRunner</span>
+            <span className="font-semibold">LocalCoder</span>
           </div>
 
           <div className="flex items-center gap-3">

@@ -1,17 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-
-interface Problem {
-  title: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  description: string;
-  examples: Array<{
-    input: string;
-    output: string;
-    explanation?: string;
-  }>;
-  constraints?: string[];
-}
+import type { Problem } from '@/lib/problems';
 
 interface ProblemDescriptionProps {
   problem: Problem;
@@ -32,7 +21,14 @@ export function ProblemDescription({ problem }: ProblemDescriptionProps) {
             <h2 className="text-xl font-bold">{problem.title}</h2>
             <Badge className={difficultyColor[problem.difficulty]}>{problem.difficulty}</Badge>
           </div>
-          <p className="text-sm text-foreground/90 leading-relaxed">{problem.description}</p>
+          {problem.html ? (
+            <div
+              className="text-sm leading-relaxed text-foreground/90 space-y-3 [&_h1]:text-lg [&_h1]:font-bold [&_h2]:text-base [&_h2]:font-semibold [&_h3]:text-sm [&_h3]:font-semibold [&_pre]:mt-2 [&_pre]:p-3 [&_pre]:rounded-md [&_pre]:bg-muted/60 [&_pre]:border [&_pre]:border-border/50 [&_pre]:overflow-x-auto [&_code]:font-mono [&_code]:text-xs [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_a]:text-primary [&_a]:underline"
+              dangerouslySetInnerHTML={{ __html: problem.html }}
+            />
+          ) : (
+            <p className="text-sm text-foreground/90 leading-relaxed">{problem.description}</p>
+          )}
         </div>
 
         <div className="space-y-4">

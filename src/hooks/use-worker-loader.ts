@@ -1,6 +1,11 @@
-import { useState, useCallback, useRef, useEffect } from 'react';
-import { toast } from 'sonner';
-import { type Language } from './use-code-execution';
+import { useCallback, useEffect, useRef, useSyncExternalStore } from "react";
+import { toast } from "sonner";
+import type { Language } from "./use-code-execution";
+import {
+  getAllRuntimeStates,
+  preloadRuntime,
+  subscribeRuntimeState,
+} from "@/lib/runtime/worker-manager";
 
 interface WorkerState {
   isLoading: boolean;
@@ -8,133 +13,96 @@ interface WorkerState {
   error: string | null;
 }
 
-const getWorkerURL = (filename: string): string => {
-  const base = import.meta.env.BASE_URL || '/';
-  return `${base}${filename}`.replace(/\/+/g, '/');
-};
-
-const workerFilenameMap: Record<Language, string> = {
-  javascript: 'js-worker.js',
-  typescript: 'js-worker.js',
-  python: 'python-worker.js',
-  racket: 'racket-worker.js',
-};
-
 const languageDisplayNames: Record<Language, string> = {
-  javascript: 'JavaScript',
-  typescript: 'TypeScript',
-  python: 'Python',
-  racket: 'Racket',
+  javascript: "JavaScript",
+  typescript: "TypeScript",
+  python: "Python",
+  racket: "Racket",
 };
 
 export function useWorkerLoader() {
-  const [workerStates, setWorkerStates] = useState<Record<string, WorkerState>>({});
-  const loadingToastsRef = useRef<Record<string, string | number>>({});
-  const workerTestsRef = useRef<Record<string, Worker>>({});
+  const runtimeStates = useSyncExternalStore(
+    subscribeRuntimeState,
+    getAllRuntimeStates,
+    getAllRuntimeStates,
+  );
 
-  const isWorkerReady = useCallback((language: Language): boolean => {
-    return workerStates[language]?.isReady === true;
-  }, [workerStates]);
+  const loadingToastsRef = useRef<Record<Language, string | number>>({} as Record<Language, string | number>);
+  const prevStatusRef = useRef<Record<Language, string>>({} as Record<Language, string>);
 
-  const isWorkerLoading = useCallback((language: Language): boolean => {
-    return workerStates[language]?.isLoading === true;
-  }, [workerStates]);
+  // Convert RuntimeState -> legacy WorkerState shape used by UI
+  const workerStates: Record<string, WorkerState> = Object.fromEntries(
+    (Object.keys(runtimeStates) as Language[]).map((lang) => {
+      const s = runtimeStates[lang];
+      return [
+        lang,
+        {
+          isLoading: s.status === "loading",
+          isReady: s.status === "ready",
+          error: s.error,
+        },
+      ];
+    }),
+  );
+
+  const isWorkerReady = useCallback(
+    (language: Language): boolean => workerStates[language]?.isReady === true,
+    [workerStates],
+  );
+
+  const isWorkerLoading = useCallback(
+    (language: Language): boolean => workerStates[language]?.isLoading === true,
+    [workerStates],
+  );
 
   const preloadWorker = useCallback((language: Language) => {
-    if (workerStates[language]?.isReady || workerStates[language]?.isLoading) {
-      return;
-    }
-
-    const workerFilename = workerFilenameMap[language];
-    const workerPath = getWorkerURL(workerFilename);
     const displayName = languageDisplayNames[language];
 
-    setWorkerStates(prev => ({
-      ...prev,
-      [language]: { isLoading: true, isReady: false, error: null }
-    }));
+    // Start toast immediately; preloadRuntime will update state asynchronously.
+    if (!loadingToastsRef.current[language]) {
+      loadingToastsRef.current[language] = toast.loading(`正在加载 ${displayName} 运行时...`, {
+        duration: Infinity,
+      });
+    }
 
-    const toastId = toast.loading(`Loading ${displayName} runtime...`, {
-      duration: Infinity,
+    void preloadRuntime(language).catch((err) => {
+      const id = loadingToastsRef.current[language];
+      if (id) {
+        toast.dismiss(id);
+        delete loadingToastsRef.current[language];
+      }
+      toast.error(`加载 ${displayName} 失败：${err?.message ?? String(err)}`);
     });
-    loadingToastsRef.current[language] = toastId;
-
-    const testWorker = new Worker(workerPath);
-    workerTestsRef.current[language] = testWorker;
-
-    const timeout = setTimeout(() => {
-      testWorker.terminate();
-      delete workerTestsRef.current[language];
-      
-      setWorkerStates(prev => ({
-        ...prev,
-        [language]: { isLoading: false, isReady: false, error: 'Loading timeout' }
-      }));
-
-      if (loadingToastsRef.current[language]) {
-        toast.dismiss(loadingToastsRef.current[language]);
-        delete loadingToastsRef.current[language];
-      }
-      
-      toast.error(`${displayName} runtime loading timeout`);
-    }, 60000);
-
-    testWorker.onmessage = (e: MessageEvent) => {
-      clearTimeout(timeout);
-      const data = e.data;
-
-      if (data.type === 'ready' || data.type === 'status') {
-        testWorker.terminate();
-        delete workerTestsRef.current[language];
-
-        setWorkerStates(prev => ({
-          ...prev,
-          [language]: { isLoading: false, isReady: true, error: null }
-        }));
-
-        if (loadingToastsRef.current[language]) {
-          toast.dismiss(loadingToastsRef.current[language]);
-          delete loadingToastsRef.current[language];
-        }
-
-        toast.success(`${displayName} runtime ready`);
-      }
-    };
-
-    testWorker.onerror = (error) => {
-      clearTimeout(timeout);
-      testWorker.terminate();
-      delete workerTestsRef.current[language];
-
-      setWorkerStates(prev => ({
-        ...prev,
-        [language]: { isLoading: false, isReady: false, error: error.message }
-      }));
-
-      if (loadingToastsRef.current[language]) {
-        toast.dismiss(loadingToastsRef.current[language]);
-        delete loadingToastsRef.current[language];
-      }
-
-      toast.error(`${displayName} runtime failed to load`);
-    };
-
-    testWorker.postMessage({ code: '', language, testCases: [] });
-  }, [workerStates]);
+  }, []);
 
   useEffect(() => {
-    return () => {
-      Object.values(workerTestsRef.current).forEach(worker => {
-        worker.terminate();
-      });
-      workerTestsRef.current = {};
-      
-      Object.values(loadingToastsRef.current).forEach(toastId => {
-        toast.dismiss(toastId);
-      });
-      loadingToastsRef.current = {};
-    };
-  }, []);
+    for (const lang of Object.keys(runtimeStates) as Language[]) {
+      const status = runtimeStates[lang].status;
+      const prev = prevStatusRef.current[lang];
+      if (prev === status) continue;
+
+      prevStatusRef.current[lang] = status;
+      const displayName = languageDisplayNames[lang];
+
+      if (status === "ready") {
+        const id = loadingToastsRef.current[lang];
+        if (id) {
+          toast.dismiss(id);
+          delete loadingToastsRef.current[lang];
+        }
+        toast.success(`${displayName} 运行时已就绪`);
+      }
+
+      if (status === "error") {
+        const id = loadingToastsRef.current[lang];
+        if (id) {
+          toast.dismiss(id);
+          delete loadingToastsRef.current[lang];
+        }
+        toast.error(`${displayName} 运行时加载失败`);
+      }
+    }
+  }, [runtimeStates]);
 
   return {
     preloadWorker,

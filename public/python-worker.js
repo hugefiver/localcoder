@@ -4,7 +4,7 @@ let pyodide = null;
 let isInitializing = false;
 let initError = null;
 
-async function initPyodide() {
+async function initPyodide(readyRequestId) {
   if (pyodide) {
     return pyodide;
   }
@@ -30,7 +30,8 @@ async function initPyodide() {
       isInitializing = false;
       self.postMessage({
         type: 'ready',
-        message: 'Python environment ready'
+        message: 'Python environment ready',
+        requestId: readyRequestId,
       });
       
       return pyodide;
@@ -57,7 +58,22 @@ async function initPyodide() {
 }
 
 self.onmessage = async (e) => {
-  const { code, testCases, executorMode } = e.data;
+  const { type, requestId, code, testCases, executorMode } = e.data;
+
+  if (type === 'preload') {
+    try {
+      await initPyodide(requestId);
+    } catch (error) {
+      self.postMessage({
+        success: false,
+        error: error.message,
+        stack: error.stack,
+        requestId,
+      });
+    }
+    return;
+  }
+
   const startTime = performance.now();
 
   try {
@@ -91,6 +107,7 @@ json.dumps({"logs": output_logs})
         logs: parsed.logs,
         result: null,
         executionTime,
+        requestId,
       });
     } else {
       const results = [];
@@ -148,6 +165,7 @@ json.dumps({"result": result, "logs": output_logs})
         success: true,
         results,
         executionTime,
+        requestId,
       });
     }
   } catch (error) {
@@ -155,6 +173,7 @@ json.dumps({"result": result, "logs": output_logs})
       success: false,
       error: error.message,
       stack: error.stack,
+      requestId,
     });
   }
 };

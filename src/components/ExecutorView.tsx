@@ -6,10 +6,11 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@/components/ui/resizable';
 import { CodeEditor } from '@/components/CodeEditor';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useKV } from '@github/spark/hooks';
 import { toast } from 'sonner';
 import { type Language } from '@/hooks/use-code-execution';
 import { useWorkerLoader } from '@/hooks/use-worker-loader';
+import { useCodeExecution } from '@/hooks/use-code-execution';
+import { useLocalStorageState, localStorageGet, localStorageSet } from '@/hooks/use-local-storage';
 
 interface ExecutorViewProps {
   onBack: () => void;
@@ -19,11 +20,6 @@ interface ExecutionOutput {
   type: 'stdout' | 'stderr' | 'result' | 'error';
   content: string;
 }
-
-const getWorkerURL = (filename: string): string => {
-  const base = import.meta.env.BASE_URL || '/';
-  return `${base}${filename}`.replace(/\/+/g, '/');
-};
 
 const defaultCode: Record<Language, string> = {
   javascript: `// JavaScript Executor
@@ -84,20 +80,25 @@ print("Fibonacci(10):", fibonacci(10))`,
 };
 
 export function ExecutorView({ onBack }: ExecutorViewProps) {
-  const [selectedLanguage, setSelectedLanguage] = useKV<Language>('executor-language', 'javascript');
+  const [selectedLanguage, setSelectedLanguage] = useLocalStorageState<Language>('executor-language', 'javascript');
   const [code, setCode] = useState<string>('');
   const [codeLoaded, setCodeLoaded] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [outputs, setOutputs] = useState<ExecutionOutput[]>([]);
   const [executionTime, setExecutionTime] = useState<number | null>(null);
   const { preloadWorker, isWorkerReady, isWorkerLoading } = useWorkerLoader();
+  const { executeCode } = useCodeExecution();
 
   const language = selectedLanguage || 'javascript';
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadCodeForLanguage = async () => {
-      const savedCode = await window.spark.kv.get<string>(`executor-code-${language}`);
-      
+      const savedCode = await localStorageGet<string>(`executor-code-${language}`);
+
+      if (cancelled) return;
+
       if (savedCode) {
         setCode(savedCode);
       } else {
@@ -107,16 +108,16 @@ export function ExecutorView({ onBack }: ExecutorViewProps) {
     };
 
     setCodeLoaded(false);
-    loadCodeForLanguage();
+    void loadCodeForLanguage();
+
+    return () => {
+      cancelled = true;
+    };
   }, [language]);
 
   useEffect(() => {
-    if (codeLoaded && code) {
-      const saveCode = async () => {
-        await window.spark.kv.set(`executor-code-${language}`, code);
-      };
-      saveCode();
-    }
+    if (!codeLoaded) return;
+    void localStorageSet(`executor-code-${language}`, code);
   }, [code, language, codeLoaded]);
 
   const handleLanguageChange = (lang: Language) => {
@@ -148,92 +149,50 @@ export function ExecutorView({ onBack }: ExecutorViewProps) {
     setOutputs([]);
     setExecutionTime(null);
     
-    toast.info('Executing code...');
-
-    const workerFilename = {
-      javascript: 'js-worker.js',
-      typescript: 'js-worker.js',
-      python: 'python-worker.js',
-      racket: 'racket-worker.js',
-    }[language];
-
-    const workerPath = getWorkerURL(workerFilename);
-    const worker = new Worker(workerPath);
     const startTime = performance.now();
 
-    const timeout = setTimeout(() => {
-      worker.terminate();
-      setOutputs([{ type: 'error', content: 'Execution timeout (30 seconds)' }]);
-      setIsRunning(false);
-      toast.error('Execution timeout');
-    }, 30000);
+    toast.info('Executing code...');
 
-    worker.onmessage = (e: MessageEvent) => {
-      const data = e.data;
-      
-      if (data.type === 'status') {
-        toast.info(data.message);
-        return;
-      }
-      
-      clearTimeout(timeout);
-      const endTime = performance.now();
-      setExecutionTime(endTime - startTime);
+    const data = await executeCode(code, language, [], { executorMode: true });
 
-      const newOutputs: ExecutionOutput[] = [];
+    const endTime = performance.now();
+    setExecutionTime(endTime - startTime);
 
-      if (data.success) {
-        if (data.logs) {
-          newOutputs.push({ type: 'stdout', content: data.logs });
-        }
-        
-        if (data.result !== undefined && data.result !== null) {
-          newOutputs.push({ 
-            type: 'result', 
-            content: typeof data.result === 'object' 
-              ? JSON.stringify(data.result, null, 2) 
-              : String(data.result) 
-          });
-        }
+    const newOutputs: ExecutionOutput[] = [];
 
-        if (newOutputs.length === 0) {
-          newOutputs.push({ type: 'stdout', content: '(No output)' });
-        }
-        
-        toast.success('Execution completed');
-      } else {
-        if (data.logs) {
-          newOutputs.push({ type: 'stdout', content: data.logs });
-        }
-        
-        newOutputs.push({ type: 'error', content: data.error || 'Unknown error' });
-        
-        if (data.stack) {
-          newOutputs.push({ type: 'stderr', content: data.stack });
-        }
-        
-        toast.error('Execution failed');
+    if (data.success) {
+      if (data.logs) {
+        newOutputs.push({ type: 'stdout', content: data.logs });
       }
 
-      setOutputs(newOutputs);
-      setIsRunning(false);
-      worker.terminate();
-    };
+      if ((data as any).result !== undefined && (data as any).result !== null) {
+        const r = (data as any).result;
+        newOutputs.push({
+          type: 'result',
+          content: typeof r === 'object' ? JSON.stringify(r, null, 2) : String(r),
+        });
+      }
 
-    worker.onerror = (error) => {
-      clearTimeout(timeout);
-      setOutputs([{ type: 'error', content: error.message }]);
-      setIsRunning(false);
-      worker.terminate();
-      toast.error('Execution error');
-    };
+      if (newOutputs.length === 0) {
+        newOutputs.push({ type: 'stdout', content: '(No output)' });
+      }
+      toast.success('Execution completed');
+    } else {
+      if (data.logs) {
+        newOutputs.push({ type: 'stdout', content: data.logs });
+      }
 
-    worker.postMessage({ 
-      code, 
-      language, 
-      testCases: [],
-      executorMode: true
-    });
+      newOutputs.push({ type: 'error', content: data.error || 'Unknown error' });
+
+      if (data.stack) {
+        newOutputs.push({ type: 'stderr', content: data.stack });
+      }
+
+      toast.error('Execution failed');
+    }
+
+    setOutputs(newOutputs);
+    setIsRunning(false);
   };
 
   const handleClearOutput = () => {
@@ -252,7 +211,7 @@ export function ExecutorView({ onBack }: ExecutorViewProps) {
             </Button>
             <div className="h-6 w-px bg-border" />
             <Terminal size={24} weight="bold" className="text-primary" />
-            <span className="font-semibold">Code Executor</span>
+            <span className="font-semibold">自由代码执行</span>
           </div>
 
           <div className="flex items-center gap-3">
