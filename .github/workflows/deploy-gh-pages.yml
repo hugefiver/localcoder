@@ -44,7 +44,6 @@ jobs:
       - name: Build
         env:
           GITHUB_PAGES: "true"
-          VITE_BASE: /${{ github.event.repository.name }}/
         run: pnpm build
 
       - name: Deploy to GitHub Pages
