@@ -1,41 +1,54 @@
-import { ComponentProps } from "react"
-import GripVerticalIcon from "lucide-react/dist/esm/icons/grip-vertical"
-import * as ResizablePrimitive from "react-resizable-panels"
+import { ComponentProps, createContext, useContext } from "react"
+import { GripVertical } from "lucide-react"
+import { Group, Panel, Separator } from "react-resizable-panels"
 
 import { cn } from "@/lib/utils"
+
+type Direction = "horizontal" | "vertical"
+const ResizableDirectionContext = createContext<Direction>("horizontal")
 
 function ResizablePanelGroup({
   className,
   ...props
-}: ComponentProps<typeof ResizablePrimitive.PanelGroup>) {
+}: Omit<ComponentProps<typeof Group>, "orientation"> & { direction: Direction }) {
+  const { direction, ...rest } = props
   return (
-    <ResizablePrimitive.PanelGroup
+    <ResizableDirectionContext.Provider value={direction}>
+    <Group
       data-slot="resizable-panel-group"
       className={cn(
-        "flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
+        "flex h-full w-full",
         className
       )}
-      {...props}
+      // react-resizable-panels v4 uses `orientation`
+      orientation={direction}
+      // custom attribute used by our Tailwind variants
+      data-panel-group-direction={direction}
+      {...rest}
     />
+    </ResizableDirectionContext.Provider>
   )
 }
 
 function ResizablePanel({
   ...props
-}: ComponentProps<typeof ResizablePrimitive.Panel>) {
-  return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
+}: ComponentProps<typeof Panel>) {
+  return <Panel data-slot="resizable-panel" {...props} />
 }
 
 function ResizableHandle({
   withHandle,
   className,
   ...props
-}: ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
+}: ComponentProps<typeof Separator> & {
   withHandle?: boolean
 }) {
+  const direction = useContext(ResizableDirectionContext)
   return (
-    <ResizablePrimitive.PanelResizeHandle
+    <Separator
       data-slot="resizable-handle"
+      // Keep compatibility with existing Tailwind styles.
+      data-panel-group-direction={direction}
       className={cn(
         "bg-border focus-visible:ring-ring relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:outline-hidden data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90",
         className
@@ -44,10 +57,10 @@ function ResizableHandle({
     >
       {withHandle && (
         <div className="bg-border z-10 flex h-4 w-3 items-center justify-center rounded-xs border">
-          <GripVerticalIcon className="size-2.5" />
+          <GripVertical className="size-2.5" />
         </div>
       )}
-    </ResizablePrimitive.PanelResizeHandle>
+    </Separator>
   )
 }
 

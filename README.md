@@ -10,6 +10,7 @@ A browser-based code execution platform that mimics LeetCode's interface, allowi
 - **Test Cases**: Default and custom test cases with instant feedback
 - **Code Persistence**: Automatically saves your code per problem and language
 - **Pure Frontend**: All code execution happens in browser workers - no backend required
+- **Theme**: Light/Dark mode toggle (top-right)
 
 ## 安装
 
@@ -28,6 +29,18 @@ pnpm run setup
 ```bash
 pnpm run dev
 ```
+
+## Deploy (GitHub Pages)
+
+This repo includes a GitHub Actions workflow that:
+
+- Automatically deploys when pushing to `master`
+- Supports manual deployment from any branch/tag/SHA via `workflow_dispatch`
+
+Notes:
+
+- For SPA routing on GitHub Pages, `dist/404.html` is generated from `dist/index.html`.
+- The Vite `base` is set to `/<repo>/` during Pages builds.
 
 ## How It Works
 
@@ -56,4 +69,4 @@ pnpm run dev
 
 ## License
 
-MIT
+MIT. See `LICENSE`.
