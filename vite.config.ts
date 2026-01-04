@@ -6,7 +6,15 @@ import { resolve } from 'path'
 const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(() => {
+  // For GitHub Pages, the site is usually served from /<repo>/.
+  // You can override by setting VITE_BASE (e.g. "/browser-code-runner/").
+  const repoName = process.env.GITHUB_REPOSITORY?.split("/")?.[1];
+  const base = process.env.VITE_BASE
+    ?? (process.env.GITHUB_PAGES === "true" && repoName ? `/${repoName}/` : "/");
+
+  return {
+  base,
   plugins: [
     react(),
     tailwindcss(),
@@ -43,4 +51,5 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
   publicDir: 'public',
+  };
 });
