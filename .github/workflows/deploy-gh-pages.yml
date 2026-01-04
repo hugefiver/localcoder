@@ -41,14 +41,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Get lowercase repo name
-        id: repo
-        run: echo "name=$(echo '${{ github.event.repository.name }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
-
       - name: Build
         env:
           GITHUB_PAGES: "true"
-          VITE_BASE: /${{ steps.repo.outputs.name }}/
+          VITE_BASE: /${{ github.event.repository.name }}/
         run: pnpm build
 
       - name: Deploy to GitHub Pages
