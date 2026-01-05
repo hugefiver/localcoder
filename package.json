@@ -11,6 +11,8 @@
         "optimize": "vite optimize",
         "preview": "vite preview",
         "smoke": "node scripts/smoke-check.mjs",
+        "test": "node scripts/racket-worker.test.mjs",
+        "test:racket": "node scripts/racket-worker.test.mjs",
         "postinstall": "node scripts/setup-pyodide.js",
         "setup": "node scripts/setup-pyodide.js"
     },

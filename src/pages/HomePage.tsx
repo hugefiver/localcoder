@@ -46,6 +46,36 @@ export function HomePage() {
             </Card>
           </Link>
         </div>
+
+        <div className="mt-10">
+          <Card className="p-6">
+            <div className="text-sm font-semibold">项目链接</div>
+            <div className="mt-2 text-sm text-muted-foreground">
+              <div>
+                GitHub：{" "}
+                <a
+                  className="underline underline-offset-4 hover:text-foreground"
+                  href="https://github.com/hugefiver/LocalCoder"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  hugefiver/LocalCoder
+                </a>
+              </div>
+              <div className="mt-1">
+                Issues：{" "}
+                <a
+                  className="underline underline-offset-4 hover:text-foreground"
+                  href="https://github.com/hugefiver/LocalCoder/issues"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  报告问题 / 提需求
+                </a>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
     </div>
   );

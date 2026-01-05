@@ -1,5 +1,9 @@
 # LocalCoder
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/hugefiver/LocalCoder/deploy-gh-pages.yml?branch=master)](https://github.com/hugefiver/LocalCoder/actions/workflows/deploy-gh-pages.yml)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-blue)](https://hugefiver.github.io/LocalCoder/)
+
 A browser-based code execution platform that mimics LeetCode's interface, allowing users to browse coding problems, write solutions in multiple languages, and test their code entirely in the browser.
 
 ## Features
@@ -30,6 +34,18 @@ pnpm run setup
 pnpm run dev
 ```
 
+## 模式配置（只开启一种模式）
+
+通过 Vite 环境变量 `VITE_APP_MODE` 可以只开启「自由执行」或「题库」其中一种模式，并让首页直接进入该模式。
+
+- `VITE_APP_MODE=all`（默认）：首页展示入口卡片（自由执行/题库）
+- `VITE_APP_MODE=executor`：`/` 直接进入自由执行（并隐藏题库入口）
+- `VITE_APP_MODE=problems`：`/` 直接进入题库列表（并隐藏自由执行入口）
+
+例如（仅示例，具体写法按你的运行方式配置 env）：
+
+- `VITE_APP_MODE=executor`
+
 ## Deploy (GitHub Pages)
 
 This repo includes a GitHub Actions workflow that:
@@ -57,7 +73,7 @@ Notes:
 │   ├── pyodide/          # Pyodide files (copied from node_modules)
 │   ├── js-worker.js      # JavaScript/TypeScript execution worker
 │   ├── python-worker.js  # Python execution worker
-│   └── racket-worker.js  # Racket execution worker (placeholder)
+│   └── racket-worker.js  # Racket execution worker
 ├── scripts/
 │   └── setup-pyodide.js  # Setup script to copy Pyodide files
 ├── src/
@@ -69,4 +85,4 @@ Notes:
 
 ## License
 
-MIT. See `LICENSE`.
+MIT License. See `LICENSE`.
