@@ -52,6 +52,8 @@ const getLanguageExtension = (language: string) => {
       return javascript({ typescript: true });
     case 'python':
       return python();
+    case 'rustpython':
+      return python();
     case 'racket':
       return racketSupport();
     case 'haskell':

@@ -43,6 +43,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip1
+
+      - name: Build WASI runtimes (RustPython + Haskell)
+        run: pnpm build:runtimes
+
       - name: Build
         env:
           GITHUB_PAGES: "true"

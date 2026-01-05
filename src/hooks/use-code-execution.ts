@@ -8,7 +8,7 @@ import { executeWorkerRequest } from '@/lib/runtime/worker-manager';
 // - UI language dropdowns (EditorView / ExecutorView)
 // - public/*-worker.js
 
-export type Language = 'javascript' | 'typescript' | 'python' | 'racket' | 'haskell';
+export type Language = 'javascript' | 'typescript' | 'python' | 'racket' | 'haskell' | 'rustpython';
 
 interface TestCase {
   input: any;

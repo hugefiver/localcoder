@@ -24,6 +24,7 @@ function main() {
     // Dev assets
     "public/js-worker.js",
     "public/python-worker.js",
+    "public/rustpython-worker.js",
     "public/racket-worker.js",
     "public/haskell-worker.js",
     "public/pyodide/pyodide.js",
@@ -32,6 +33,7 @@ function main() {
     "dist/index.html",
     "dist/js-worker.js",
     "dist/python-worker.js",
+    "dist/rustpython-worker.js",
     "dist/racket-worker.js",
     "dist/haskell-worker.js",
     "dist/pyodide/pyodide.js",

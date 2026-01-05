@@ -63,6 +63,20 @@ def fibonacci(n):
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 print("Fibonacci(10):", fibonacci(10))`,
+
+  rustpython: `# RustPython Executor (WASI)
+print("Hello, World!")
+
+# Try some examples:
+numbers = [1, 2, 3, 4, 5]
+print("Sum:", sum(numbers))
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print("Fibonacci(10):", fibonacci(10))`,
   
   racket: `; Racket Executor
 (displayln "Hello, World!")
@@ -247,6 +261,7 @@ export function ExecutorView({ onBack }: ExecutorViewProps) {
                 <SelectItem value="javascript">JavaScript</SelectItem>
                 <SelectItem value="typescript">TypeScript</SelectItem>
                 <SelectItem value="python">Python</SelectItem>
+                <SelectItem value="rustpython">RustPython</SelectItem>
                 <SelectItem value="racket">Racket</SelectItem>
                 <SelectItem value="haskell">Haskell</SelectItem>
               </SelectContent>

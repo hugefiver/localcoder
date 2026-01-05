@@ -120,6 +120,10 @@ export const languageInfo = {
     name: 'Python',
     description: 'CPython via Pyodide WebAssembly',
   },
+  rustpython: {
+    name: 'RustPython',
+    description: 'Python via RustPython (WASI WebAssembly)',
+  },
   racket: {
     name: 'Racket',
     description: 'Racket Scheme (simulated)',

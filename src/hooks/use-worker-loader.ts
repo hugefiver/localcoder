@@ -19,6 +19,7 @@ const languageDisplayNames: Record<Language, string> = {
   python: "Python",
   racket: "Racket",
   haskell: "Haskell",
+  rustpython: "RustPython",
 };
 
 export function useWorkerLoader() {

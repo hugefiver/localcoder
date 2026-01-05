@@ -60,6 +60,20 @@ Runtime 需要把结果以 **一段 JSON** 打到 stdout：
 
 这样前端 Worker 不需要懂 Haskell 语法/类型/编译细节，只负责传入 code 和 input。
 
+### （可选）启用 RustPython（WASM）
+
+RustPython 是另一个 Python 运行时（非 Pyodide），通过 WASI WebAssembly 运行。
+
+- Runtime 文件：`public/rustpython/runner.wasm`
+- Worker：`public/rustpython-worker.js`
+
+本仓库在 **发布（GitHub Pages）** 时会自动编译 WASI runtimes（RustPython + Haskell stub）。
+本地如果你也想编译：
+
+- `pnpm run build:runtimes`
+
+> 需要本机安装 Rust，并具备 `wasm32-wasip1`（或 `wasm32-wasi`）target。
+
 ## Development
 
 ```bash
