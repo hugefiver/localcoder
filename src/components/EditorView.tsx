@@ -82,10 +82,10 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
   }, [language, preloadWorker]);
 
   useEffect(() => {
-    if (!PROBLEM_LANGUAGES.includes(selectedLanguage)) {
-      setSelectedLanguage('javascript');
+    if (selectedLanguage !== language) {
+      setSelectedLanguage(language);
     }
-  }, [selectedLanguage, setSelectedLanguage]);
+  }, [language, selectedLanguage, setSelectedLanguage]);
 
   const handleRunCode = async () => {
     if (!problem) return;

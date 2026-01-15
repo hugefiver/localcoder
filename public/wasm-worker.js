@@ -249,7 +249,7 @@ function makeWasi({ args = [], env = {}, stdinText = '' }) {
         ns = BigInt(Math.floor(ms * 1000000));
       }
       const precisionType = typeof precision;
-      if (precisionType === 'number' && Number.isFinite(precision) && precision > 0) {
+      if (precisionType === 'number' && Number.isFinite(precision)) {
         const p = BigInt(Math.floor(precision));
         if (p > 0n) {
           ns -= ns % p;
