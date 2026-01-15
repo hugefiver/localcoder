@@ -27,7 +27,7 @@
         "@codemirror/lint": "^6.9.2",
         "@codemirror/search": "^6.5.11",
         "@codemirror/state": "^6.5.3",
-        "@codemirror/view": "^6.39.8",
+        "@codemirror/view": "^6.39.11",
         "@heroicons/react": "^2.2.0",
         "@hookform/resolvers": "^5.2.2",
         "@lezer/highlight": "^1.2.3",
