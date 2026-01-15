@@ -81,11 +81,6 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
     preloadWorker(language);
   }, [language, preloadWorker]);
 
-  useEffect(() => {
-    if (selectedLanguage !== language) {
-      setSelectedLanguage(language);
-    }
-  }, [language, selectedLanguage, setSelectedLanguage]);
 
   const handleRunCode = async () => {
     if (!problem) return;

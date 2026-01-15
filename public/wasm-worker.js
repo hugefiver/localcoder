@@ -351,7 +351,7 @@ async function runPlainWasmModule(wasmBytes, entryName, args) {
     instance.exports.main;
 
   if (typeof entry !== 'function') {
-    throw new Error('WASM module missing entry export');
+    throw new Error("WASM module missing entry export. Set 'entry' to a valid export (e.g. '_start').");
   }
 
   const result = entry(...args);
@@ -433,7 +433,8 @@ function resolveWasiRuntime(config) {
 
     const samePath = runtimePath && modulePath && runtimePath === modulePath;
     const sameBase64 = runtimeBase && moduleBase && runtimeBase === moduleBase;
-    if (!samePath && !sameBase64) {
+    const hasConflict = !samePath && !sameBase64;
+    if (hasConflict) {
       throw new Error(
         "WASI config error: specify either 'runtime'/'runtimeBase64' (preferred) or legacy 'module'/'moduleBase64', but not both."
       );
