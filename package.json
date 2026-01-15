@@ -78,7 +78,7 @@
         "marked": "^17.0.1",
         "next-themes": "^0.4.6",
         "octokit": "^5.0.5",
-        "pyodide": "^0.29.0",
+        "pyodide": "^0.29.1",
         "react": "^19.2.3",
         "react-day-picker": "^9.13.0",
         "react-dom": "^19.2.3",
