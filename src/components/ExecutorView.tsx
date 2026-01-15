@@ -104,7 +104,7 @@ print("Fibonacci(10):", fibonacci(10))`,
 main :: IO ()
 main = putStrLn "Hello from Haskell (runtime-dependent)!"`,
   wasm: `{
-  "_comment": "WASM module config. Provide moduleBase64 or module path.",
+  "_comment": "WASM module config. This example exports add(a, b). Provide moduleBase64 or module path.",
   "moduleBase64": "AGFzbQEAAAABBwFgAn9/AX8DAgEABwcBA2FkZAAACgkBBwAgACABags=",
   "entry": "add",
   "args": [1, 2]

@@ -26,6 +26,8 @@ interface CustomTestCase {
   expected: any;
 }
 
+const PROBLEM_LANGUAGES: Language[] = ['javascript', 'typescript', 'python', 'rustpython', 'racket', 'haskell'];
+
 export function EditorView({ problemId, onBack }: EditorViewProps) {
   const { problems, isLoading: isProblemsLoading } = useProblems();
   const problem = problems.find((p) => p.id === problemId);
@@ -36,7 +38,7 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
   const { executeCode, cancel, isRunning, result } = useCodeExecution();
   const { preloadWorker, isWorkerReady, isWorkerLoading } = useWorkerLoader();
 
-  const language = selectedLanguage || 'javascript';
+  const language = PROBLEM_LANGUAGES.includes(selectedLanguage) ? selectedLanguage : 'javascript';
   const [code, setCode] = useState<string>('');
   const [codeLoaded, setCodeLoaded] = useState(false);
 
@@ -78,6 +80,12 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
   useEffect(() => {
     preloadWorker(language);
   }, [language, preloadWorker]);
+
+  useEffect(() => {
+    if (!PROBLEM_LANGUAGES.includes(selectedLanguage)) {
+      setSelectedLanguage('javascript');
+    }
+  }, [selectedLanguage, setSelectedLanguage]);
 
   const handleRunCode = async () => {
     if (!problem) return;
@@ -167,8 +175,6 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
                 <SelectItem value="rustpython">RustPython</SelectItem>
                 <SelectItem value="racket">Racket</SelectItem>
                 <SelectItem value="haskell">Haskell</SelectItem>
-                <SelectItem value="wasm">WASM</SelectItem>
-                <SelectItem value="wasi">WASI</SelectItem>
               </SelectContent>
             </Select>
 
