@@ -15,6 +15,7 @@ class WasiExit extends Error {
   }
 }
 
+// Stable JSON stringification for deterministic equality checks.
 function stableStringify(value) {
   return JSON.stringify(value, (_k, v) => {
     if (v && typeof v === 'object' && !Array.isArray(v)) {
@@ -69,6 +70,13 @@ async function loadBytes({ cacheKey, moduleBase64, modulePath }) {
 
   runtimeCache.set(cacheKey, bytes);
   return bytes;
+}
+
+function makeCacheKey({ moduleBase64, modulePath }) {
+  if (moduleBase64) {
+    return `base64:${moduleBase64.length}:${moduleBase64.slice(0, 64)}`;
+  }
+  return `path:${modulePath ?? ''}`;
 }
 
 function textEncode(s) {
@@ -355,7 +363,7 @@ function normalizeWasmArgs(input) {
   return arr.map((value) => {
     if (typeof value === 'number') {
       if (!Number.isFinite(value)) {
-        throw new Error('WASM input must be a finite number');
+        throw new Error(`WASM input must be a finite number, got: ${value}`);
       }
       return value;
     }
@@ -399,9 +407,7 @@ async function handleWasiExecution({ code, testCases, executorMode }) {
   const runtime = config.runtime || config.module;
   const runtimeBase64 = config.runtimeBase64 || config.moduleBase64;
 
-  const cacheKey = runtimeBase64
-    ? `base64:${runtimeBase64.length}:${runtimeBase64.slice(0, 64)}`
-    : `path:${runtime ?? ''}`;
+  const cacheKey = makeCacheKey({ moduleBase64: runtimeBase64, modulePath: runtime });
   const wasmBytes = await loadBytes({
     cacheKey,
     moduleBase64: runtimeBase64,
@@ -449,9 +455,7 @@ async function handleWasmExecution({ code, testCases, executorMode }) {
   const moduleBase64 = config.moduleBase64 || config.runtimeBase64;
   const entry = typeof config.entry === 'string' ? config.entry : null;
 
-  const cacheKey = moduleBase64
-    ? `base64:${moduleBase64.length}:${moduleBase64.slice(0, 64)}`
-    : `path:${modulePath ?? ''}`;
+  const cacheKey = makeCacheKey({ moduleBase64, modulePath });
   const wasmBytes = await loadBytes({
     cacheKey,
     moduleBase64,

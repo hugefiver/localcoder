@@ -11,7 +11,10 @@ const root = path.resolve(__dirname, "..");
 const crypto = globalThis.crypto ?? webcrypto;
 const atob = globalThis.atob ?? ((data) => Buffer.from(data, "base64").toString("binary"));
 
+// Simple WASM module exporting add(a, b) -> a + b.
 const WASM_ADD_BASE64 = "AGFzbQEAAAABBwFgAn9/AX8DAgEABwcBA2FkZAAACgkBBwAgACABags=";
+
+// Minimal WASI module that immediately exits with code 0.
 const WASI_STUB_BASE64 =
   "AGFzbQEAAAABCAJgAX8AYAAAAiQBFndhc2lfc25hcHNob3RfcHJldmlldzEJcHJvY19leGl0AAADAgEBBQMBAAEHEwIGbWVtb3J5AgAGX3N0YXJ0AAEKCAEGAEEAEAAL";
 
