@@ -248,11 +248,12 @@ function makeWasi({ args = [], env = {}, stdinText = '' }) {
             : Date.now();
         ns = BigInt(Math.floor(ms * 1000000));
       }
-      if (precision) {
-        const p = BigInt(precision);
-        if (p > 0n) {
-          ns -= ns % p;
-        }
+      const precisionType = typeof precision;
+      if (precisionType === 'number' && Number.isFinite(precision) && precision > 0) {
+        const p = BigInt(Math.floor(precision));
+        ns -= ns % p;
+      } else if (precisionType === 'bigint' && precision > 0n) {
+        ns -= ns % precision;
       }
       writeU64(timePtr, ns);
       return ESUCCESS;
@@ -424,9 +425,18 @@ async function handleWasiExecution({ code, testCases, executorMode }) {
   const hasModuleBase64 = typeof config.moduleBase64 === 'string' && config.moduleBase64.trim() !== '';
 
   if ((hasRuntimePath || hasRuntimeBase64) && (hasModulePath || hasModuleBase64)) {
-    throw new Error(
-      "WASI config error: specify either 'runtime'/'runtimeBase64' (preferred) or legacy 'module'/'moduleBase64', but not both."
-    );
+    const runtimePath = hasRuntimePath ? config.runtime.trim() : null;
+    const modulePath = hasModulePath ? config.module.trim() : null;
+    const runtimeBase = hasRuntimeBase64 ? config.runtimeBase64.trim() : null;
+    const moduleBase = hasModuleBase64 ? config.moduleBase64.trim() : null;
+
+    const samePath = runtimePath && modulePath && runtimePath === modulePath;
+    const sameBase64 = runtimeBase && moduleBase && runtimeBase === moduleBase;
+    if (!samePath && !sameBase64) {
+      throw new Error(
+        "WASI config error: specify either 'runtime'/'runtimeBase64' (preferred) or legacy 'module'/'moduleBase64', but not both."
+      );
+    }
   }
 
   const runtime = config.runtime || config.module;

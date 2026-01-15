@@ -82,7 +82,7 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
   }, [language, preloadWorker]);
 
   useEffect(() => {
-    if (!PROBLEM_LANGUAGES.includes(selectedLanguage)) {
+    if (!PROBLEM_LANGUAGES.includes(selectedLanguage) && selectedLanguage !== 'javascript') {
       setSelectedLanguage('javascript');
     }
   }, [selectedLanguage, setSelectedLanguage]);
