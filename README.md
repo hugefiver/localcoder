@@ -8,7 +8,7 @@ A browser-based code execution platform that mimics LeetCode's interface, allowi
 
 ## Features
 
-- **Multiple Language Support**: JavaScript, TypeScript, Python (via Pyodide), RustPython (WASI), Racket, Haskell, plus WASM/WASI modules
+- **Multiple Language Support**: JavaScript, TypeScript, Python (via Pyodide), RustPython, Racket, Haskell (via WASI), and generic WASM/WASI modules
 - **Syntax Highlighting & Autocomplete**: Professional code editing experience with CodeMirror
 - **Resizable Panels**: LeetCode-style layout with problem description, code editor, and test results
 - **Test Cases**: Default and custom test cases with instant feedback

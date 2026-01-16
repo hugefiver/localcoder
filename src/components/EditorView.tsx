@@ -81,7 +81,6 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
     preloadWorker(language);
   }, [language, preloadWorker]);
 
-
   const handleRunCode = async () => {
     if (!problem) return;
     

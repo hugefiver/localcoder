@@ -29,6 +29,13 @@ function loadWorker() {
       postMessage: (m) => messages.push(m),
       location: { origin: "http://localhost", pathname: "/wasm-worker.js" },
     },
+    importScripts: (...scripts) => {
+      for (const script of scripts) {
+        const scriptPath = path.resolve(root, "public", script);
+        const scriptCode = fs.readFileSync(scriptPath, "utf8");
+        vm.runInContext(scriptCode, sandbox, { filename: script });
+      }
+    },
     performance: {
       now: () => 0,
     },

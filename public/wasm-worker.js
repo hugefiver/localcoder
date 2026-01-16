@@ -4,6 +4,8 @@
 // - language: "wasm" -> run a plain WebAssembly module export (no WASI).
 // - language: "wasi" -> run a WASI module with stdin/stdout JSON contract.
 
+importScripts('./worker-utils.js');
+
 let isReady = false;
 const runtimeCache = new Map();
 const CLOCK_REALTIME = 0;
@@ -14,21 +16,6 @@ class WasiExit extends Error {
     this.name = 'WasiExit';
     this.code = code;
   }
-}
-
-// Stable JSON stringification for deterministic equality checks.
-function stableStringify(value) {
-  return JSON.stringify(value, (_k, v) => {
-    if (v && typeof v === 'object' && !Array.isArray(v)) {
-      return Object.keys(v)
-        .sort()
-        .reduce((acc, key) => {
-          acc[key] = v[key];
-          return acc;
-        }, {});
-    }
-    return v;
-  });
 }
 
 function getBaseURL() {
