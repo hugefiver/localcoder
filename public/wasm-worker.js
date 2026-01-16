@@ -40,6 +40,7 @@ function base64ToBytes(base64) {
 
 // Lightweight FNV-1a hash for deterministic cache keys.
 function hashString(value) {
+  // 2166136261 = FNV-1a 32-bit offset basis, 16777619 = FNV prime.
   let hash = 2166136261;
   for (let i = 0; i < value.length; i++) {
     hash ^= value.charCodeAt(i);
