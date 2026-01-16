@@ -38,6 +38,15 @@ function base64ToBytes(base64) {
   return out;
 }
 
+function hashString(value) {
+  let hash = 2166136261;
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(16);
+}
+
 async function loadBytes({ cacheKey, moduleBase64, modulePath }) {
   if (runtimeCache.has(cacheKey)) return runtimeCache.get(cacheKey);
 
@@ -62,8 +71,7 @@ async function loadBytes({ cacheKey, moduleBase64, modulePath }) {
 
 function makeCacheKey({ moduleBase64, modulePath }) {
   if (moduleBase64) {
-    // Use the full base64 string to avoid collisions between different modules.
-    return `base64:${moduleBase64}`;
+    return `base64:${moduleBase64.length}:${hashString(moduleBase64)}`;
   }
   return `path:${modulePath ?? ''}`;
 }
