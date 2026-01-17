@@ -451,8 +451,8 @@ function resolveWasiRuntime(config) {
   const hasModule = hasModulePath || hasModuleBase64;
 
   if (hasRuntime && hasModule) {
-    const runtimeValue = hasRuntimeBase64 ? config.runtimeBase64.trim() : config.runtime.trim();
-    const moduleValue = hasModuleBase64 ? config.moduleBase64.trim() : config.module.trim();
+    const runtimeValue = hasRuntimeBase64 ? runtimeBase64Value : runtimePath;
+    const moduleValue = hasModuleBase64 ? moduleBase64Value : modulePath;
     if (runtimeValue && moduleValue && runtimeValue !== moduleValue) {
       throw new Error(
         "WASI config error: specify either 'runtime'/'runtimeBase64' (preferred) or legacy 'module'/'moduleBase64', but not both."
