@@ -438,12 +438,11 @@ function buildWasiStdin(config, executorMode, input) {
 // for consistency with other WASM configuration options and to support both naming styles.
 function resolveWasiRuntime(config) {
   // Normalize and trim values so that returned values are consistent with validation.
-  const runtimePath = typeof config.runtime === 'string' ? config.runtime.trim() : config.runtime;
-  const modulePath = typeof config.module === 'string' ? config.module.trim() : config.module;
-  const runtimeBase64Value =
-    typeof config.runtimeBase64 === 'string' ? config.runtimeBase64.trim() : config.runtimeBase64;
-  const moduleBase64Value =
-    typeof config.moduleBase64 === 'string' ? config.moduleBase64.trim() : config.moduleBase64;
+  const trimValue = (value) => (typeof value === 'string' ? value.trim() : value);
+  const runtimePath = trimValue(config.runtime);
+  const modulePath = trimValue(config.module);
+  const runtimeBase64Value = trimValue(config.runtimeBase64);
+  const moduleBase64Value = trimValue(config.moduleBase64);
   const hasRuntimePath = typeof runtimePath === 'string' && runtimePath !== '';
   const hasModulePath = typeof modulePath === 'string' && modulePath !== '';
   const hasRuntimeBase64 = typeof runtimeBase64Value === 'string' && runtimeBase64Value !== '';
