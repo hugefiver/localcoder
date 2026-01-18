@@ -47,7 +47,7 @@ function findWasmArtifact(crateDir, target) {
   throw new Error(`Cannot find wasm artifact under ${crateDir}/target/${target}/release`);
 }
 
-function cargoBuild(crateDir) {
+function cargoBuild(crateDir, { throwOnFail = true } = {}) {
   // Prefer the new target name; fallback to wasm32-wasi.
   const targets = ["wasm32-wasip1", "wasm32-wasi"];
   for (const target of targets) {
@@ -58,21 +58,10 @@ function cargoBuild(crateDir) {
       // try next
     }
   }
-  throw new Error(
-    "Failed to build runtime. Ensure Rust toolchain is installed and wasm32-wasip1 (or wasm32-wasi) target is available.",
-  );
-}
-
-function tryCargoBuild(crateDir) {
-  // Returns target name on success, null on failure
-  const targets = ["wasm32-wasip1", "wasm32-wasi"];
-  for (const target of targets) {
-    try {
-      exec("cargo", ["build", "--release", "--target", target], { cwd: crateDir });
-      return target;
-    } catch {
-      // try next
-    }
+  if (throwOnFail) {
+    throw new Error(
+      "Failed to build runtime. Ensure Rust toolchain is installed and wasm32-wasip1 (or wasm32-wasi) target is available.",
+    );
   }
   return null;
 }
@@ -101,7 +90,7 @@ function main() {
   console.log("Building RustPython runtime...");
   console.log("  ℹ Note: RustPython WASI compilation is experimental and may fail.");
   try {
-    const rustTarget = tryCargoBuild(rustpythonDir);
+    const rustTarget = cargoBuild(rustpythonDir, { throwOnFail: false });
     if (rustTarget) {
       const rustWasm = findWasmArtifact(rustpythonDir, rustTarget);
       copyFile(rustWasm, path.join(root, "public", "rustpython", "runner.wasm"));

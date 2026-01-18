@@ -1,5 +1,5 @@
 // Shared WASI utility functions for workers
-// 
+//
 // This module provides a minimal WASI preview1 implementation sufficient for
 // simple stdin/stdout programs. Used by rustpython-worker.js and haskell-worker.js.
 
