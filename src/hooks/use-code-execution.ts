@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { executeWorkerRequest } from '@/lib/runtime/worker-manager';
+import { executeWorkerRequest, isAbortError } from '@/lib/runtime/worker-manager';
 
 // NOTE: When adding a new language, also update:
 // - src/lib/runtime/worker-manager.ts (workerFilenameMap + runtime snapshot)
@@ -72,14 +72,10 @@ export function useCodeExecution() {
       setResult(data);
       setIsRunning(false);
       return data;
-    } catch (err: any) {
-      const isAbort =
-        (err instanceof DOMException && err.name === 'AbortError') ||
-        (typeof err === 'object' && err != null && err.name === 'AbortError');
-
+    } catch (err: unknown) {
       const errorResult: ExecutionResult = {
         success: false,
-        error: isAbort ? 'Execution cancelled' : (err?.message ?? String(err)),
+        error: isAbortError(err) ? 'Execution cancelled' : ((err as Error)?.message ?? String(err)),
       };
       setResult(errorResult);
       setIsRunning(false);

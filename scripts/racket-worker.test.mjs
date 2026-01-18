@@ -46,7 +46,7 @@ async function testExecutorModeBasic() {
     type: "execute",
     requestId: "t1",
     executorMode: true,
-    code: `#lang racket\n(displayln \"hi\")\n(+ 1 2)`,
+    code: `#lang racket\n(displayln "hi")\n(+ 1 2)`,
   });
 
   if (!res.success) {

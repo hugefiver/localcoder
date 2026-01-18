@@ -35,3 +35,10 @@ pids
 
 # Generated Pyodide files
 public/pyodide/
+
+# Generated WASM runtime files (build artifacts)
+public/haskell/runner.wasm
+public/rustpython/runner.wasm
+
+# Rust build artifacts
+runtimes/*/target/

@@ -49,7 +49,7 @@ interface RuntimeEntry {
 const entries = new Map<Language, RuntimeEntry>();
 const listeners = new Set<Listener>();
 
-function isAbortError(err: unknown): boolean {
+export function isAbortError(err: unknown): boolean {
   return (
     (err instanceof DOMException && err.name === "AbortError") ||
     (typeof err === "object" && err != null && (err as any).name === "AbortError")
