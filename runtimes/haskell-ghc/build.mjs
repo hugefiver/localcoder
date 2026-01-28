@@ -45,7 +45,13 @@ for (const candidate of libdirCandidates) {
 }
 
 if (!found) {
-  throw new Error(
-    "Missing GHC/GHCi WASM artifact. Place ghc.wasm/ghci.wasm into runtimes/haskell-ghc/dist, or set GHC_WASM/GHCI_WASM.",
-  );
+  const strict = process.env.HASKELL_WASM_STRICT === "1";
+  const msg =
+    "Missing GHC/GHCi WASM artifact. Place ghc.wasm/ghci.wasm into runtimes/haskell-ghc/dist, or set GHC_WASM/GHCI_WASM.";
+  if (strict) {
+    throw new Error(msg);
+  } else {
+    console.warn("Warning:", msg);
+    process.exit(0);
+  }
 }
