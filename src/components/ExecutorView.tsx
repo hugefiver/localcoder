@@ -78,31 +78,32 @@ def fibonacci(n):
 
 print("Fibonacci(10):", fibonacci(10))`,
   
-  racket: `; Racket Executor
-(displayln "Hello, World!")
+  racket: `; Racket Executor (Official interpreter via WASM)
+ (displayln "Hello, World!")
 
-; Try some examples:
-(define numbers '(1 2 3 4 5))
-(displayln (string-append "Sum: " (number->string (apply + numbers))))
+ ; Try some examples:
+ (define numbers '(1 2 3 4 5))
+ (displayln (string-append "Sum: " (number->string (apply + numbers))))
 
-(define (fibonacci n)
-  (if (<= n 1)
-      n
-      (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))
+ (define (fibonacci n)
+   (if (<= n 1)
+       n
+       (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))
 
-(displayln (string-append "Fibonacci(10): " (number->string (fibonacci 10))))`,
+ (displayln (string-append "Fibonacci(10): " (number->string (fibonacci 10))))`,
 
-  haskell: `-- Haskell Executor (WASM)
---
--- Notes:
--- - Haskell execution is powered by a WebAssembly runtime (WASI).
--- - The runtime must be present at public/haskell/runner.wasm.
---
--- Your code will be sent to the runtime as text. What it can run depends on
--- the runner you bundle (see README).
-
-main :: IO ()
-main = putStrLn "Hello from Haskell (runtime-dependent)!"`
+  haskell: `-- Haskell Executor (GHC/GHCi WASM)
+ --
+ -- Notes:
+ -- - This runner feeds GHCi commands via stdin.
+ -- - For problem mode, solution should accept a JSON string input.
+ --
+ -- Example:
+ -- solution :: String -> String
+ -- solution inputJson = inputJson
+ 
+ solution :: String -> String
+ solution inputJson = inputJson`
 };
 
 export function ExecutorView({ onBack }: ExecutorViewProps) {

@@ -295,11 +295,15 @@ function makeWasi({ args = [], env = {}, stdinText = '' }) {
  * @param {string} stdinText - Text to provide on stdin
  * @param {Object} options - Additional options
  * @param {string} options.runtimeName - Name of the runtime for error messages
+ * @param {string[]} options.args - Command line arguments for the WASI program
+ * @param {Object} options.env - Environment variables for the WASI program
  * @returns {Promise<{stdout: string, stderr: string}>}
  */
 async function runWasiModule(wasmBytes, stdinText, options = {}) {
   const runtimeName = options.runtimeName || 'WASI';
-  const wasi = makeWasi({ args: ['runner.wasm'], env: {}, stdinText });
+  const args = Array.isArray(options.args) ? options.args : ['runner.wasm'];
+  const env = options.env && typeof options.env === 'object' ? options.env : {};
+  const wasi = makeWasi({ args, env, stdinText });
 
   const mod = await WebAssembly.compile(wasmBytes);
   const instance = await WebAssembly.instantiate(mod, wasi.imports);

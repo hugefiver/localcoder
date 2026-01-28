@@ -39,6 +39,17 @@ public/pyodide/
 # Generated WASM runtime files (build artifacts)
 public/haskell/runner.wasm
 public/rustpython/runner.wasm
+public/rustpython/runner.wasm.gz
+public/racket/racket.js
+public/racket/racket.wasm
+public/haskell/wasi-shim.js
+public/haskell/ghc.wasm
+public/haskell/ghci.wasm
+public/haskell/libdir.tar
+public/haskell/ghc.wasm.gz
+public/haskell/ghci.wasm.gz
+public/haskell/libdir.tar.gz
+public/runtime-manifest.json
 
 # Rust build artifacts
 runtimes/*/target/

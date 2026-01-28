@@ -18,6 +18,17 @@ const workerFilenameMap: Record<Language, string> = {
   rustpython: "rustpython-worker.js",
 };
 
+const workerTypeMap: Partial<Record<Language, WorkerType>> = {
+  haskell: "module",
+};
+
+const preloadTimeoutMap: Partial<Record<Language, number>> = {
+  haskell: 5 * 60_000,
+  python: 90_000,
+  rustpython: 90_000,
+  racket: 90_000,
+};
+
 function getWorkerURL(filename: string): string {
   const base = import.meta.env.BASE_URL || "/";
   // base is a path, not a full URL. Avoid collapsing "https://".
@@ -35,6 +46,7 @@ interface RuntimeEntry {
   pending: Map<
     string,
     {
+      kind: "preload" | "execute";
       resolve: (value: any) => void;
       reject: (reason: any) => void;
       timeoutId: number;
@@ -96,7 +108,8 @@ function ensureEntry(language: Language): RuntimeEntry {
   if (existing) return existing;
 
   const workerPath = getWorkerURL(workerFilenameMap[language]);
-  const worker = new Worker(workerPath);
+  const workerType = workerTypeMap[language];
+  const worker = new Worker(workerPath, workerType ? { type: workerType } : undefined);
 
   let readyResolve!: () => void;
   let readyReject!: (err: Error) => void;
@@ -132,6 +145,13 @@ function ensureEntry(language: Language): RuntimeEntry {
           window.clearTimeout(pending.timeoutId);
           entry.pending.delete(maybeRequestId);
         }
+      } else {
+        // If ready arrives without requestId, clear any preload markers.
+        for (const [pendingId, pending] of entry.pending.entries()) {
+          if (pending.kind !== "preload") continue;
+          window.clearTimeout(pending.timeoutId);
+          entry.pending.delete(pendingId);
+        }
       }
 
       entry.state = { status: "ready", error: null };
@@ -147,12 +167,31 @@ function ensureEntry(language: Language): RuntimeEntry {
 
     const requestId: string | undefined = data?.requestId;
     if (!requestId) {
-      // unknown/legacy message
+      if (data?.success === false) {
+        const errMsg = data?.error ?? "Runtime error";
+        entry.state = { status: "error", error: errMsg };
+        entry.readyReject(new Error(errMsg));
+        notify();
+      }
       return;
     }
 
     const pending = entry.pending.get(requestId);
     if (!pending) return;
+
+    if (pending.kind === "preload" && data?.success === false) {
+      const errMsg = data?.error ?? "Runtime failed to load";
+      if (entry.loadTimeoutId != null) {
+        window.clearTimeout(entry.loadTimeoutId);
+        entry.loadTimeoutId = null;
+      }
+      window.clearTimeout(pending.timeoutId);
+      entry.pending.delete(requestId);
+      entry.state = { status: "error", error: errMsg };
+      entry.readyReject(new Error(errMsg));
+      notify();
+      return;
+    }
 
     window.clearTimeout(pending.timeoutId);
     entry.pending.delete(requestId);
@@ -237,18 +276,20 @@ export async function preloadRuntime(language: Language): Promise<void> {
   // Ask worker to warm up runtime (especially Pyodide)
   const requestId = makeRequestId();
 
+  const loadTimeoutMs = preloadTimeoutMap[language] ?? 60_000;
   entry.loadTimeoutId = window.setTimeout(() => {
     entry.state = { status: "error", error: "Runtime loading timeout" };
     entry.readyReject(new Error("Runtime loading timeout"));
     notify();
-  }, 60000);
+  }, loadTimeoutMs);
 
   // Keep a pending entry so we can correlate/cleanup if the worker echoes requestId.
   const noopTimeoutId = window.setTimeout(() => {}, 0);
   window.clearTimeout(noopTimeoutId);
   entry.pending.set(requestId, {
+    kind: "preload",
     resolve: () => {},
-    reject: () => {},
+    reject: (err) => entry.readyReject(err instanceof Error ? err : new Error(String(err))),
     timeoutId: entry.loadTimeoutId,
   });
 
@@ -305,6 +346,7 @@ export async function executeWorkerRequest<T>(
     }
 
     entry.pending.set(requestId, {
+      kind: "execute",
       resolve: (data) => {
         if (opts?.signal) opts.signal.removeEventListener("abort", onAbort);
         if (aborted) return;

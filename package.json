@@ -102,6 +102,8 @@
         "@types/react": "^19.2.8",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react-swc": "^4.2.2",
+        "@bjorn3/browser_wasi_shim": "^0.4.2",
+        "esbuild": "^0.25.4",
         "eslint": "^9.39.2",
         "eslint-plugin-react-hooks": "^7.0.1",
         "eslint-plugin-react-refresh": "^0.4.26",

@@ -1,6 +1,9 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { createGzip } from "node:zlib";
+import { pipeline } from "node:stream/promises";
+import { buildSync } from "esbuild";
 
 const root = path.resolve(new URL("..", import.meta.url).pathname);
 
@@ -14,6 +17,17 @@ function exec(cmd, args, opts = {}) {
   if (res.status !== 0) {
     throw new Error(`${cmd} ${args.join(" ")} failed (exit ${res.status})`);
   }
+}
+
+async function gzipFile(src, dest) {
+  ensureDir(path.dirname(dest));
+  await pipeline(fs.createReadStream(src), createGzip({ level: 9 }), fs.createWriteStream(dest));
+}
+
+async function gzipIfExists(src, dest) {
+  if (!fs.existsSync(src)) return false;
+  await gzipFile(src, dest);
+  return true;
 }
 
 function ensureDir(p) {
@@ -66,24 +80,129 @@ function cargoBuild(crateDir, { throwOnFail = true } = {}) {
   return null;
 }
 
-function main() {
+function buildHaskellGhciRunner(haskellDir) {
+  const buildScript = path.join(haskellDir, "build.mjs");
+  if (fs.existsSync(buildScript)) {
+    exec("node", [buildScript], { cwd: haskellDir });
+  }
+
+  const distDir = path.join(haskellDir, "dist");
+  const ghcWasm = path.join(distDir, "ghc.wasm");
+  const ghciWasm = path.join(distDir, "ghci.wasm");
+  const libdirTar = path.join(distDir, "libdir.tar");
+  const metaPath = path.join(haskellDir, "runner.meta.json");
+
+  return {
+    ghcWasm: fs.existsSync(ghcWasm) ? ghcWasm : null,
+    ghciWasm: fs.existsSync(ghciWasm) ? ghciWasm : null,
+    libdirTar: fs.existsSync(libdirTar) ? libdirTar : null,
+    metaPath: fs.existsSync(metaPath) ? metaPath : null,
+  };
+}
+
+function buildWasiShim(outPath) {
+  ensureDir(path.dirname(outPath));
+  buildSync({
+    entryPoints: ["@bjorn3/browser_wasi_shim"],
+    bundle: true,
+    format: "esm",
+    platform: "browser",
+    target: "es2020",
+    outfile: outPath,
+  });
+}
+
+function buildRacketRuntime(racketDir) {
+  const buildScript = path.join(racketDir, "build.mjs");
+  if (fs.existsSync(buildScript)) {
+    exec("node", [buildScript], { cwd: racketDir });
+  }
+
+  const distDir = path.join(racketDir, "dist");
+  const jsPath = path.join(distDir, "racket.js");
+  const wasmPath = path.join(distDir, "racket.wasm");
+  if (!fs.existsSync(jsPath) || !fs.existsSync(wasmPath)) {
+    throw new Error("Cannot find Racket runtime artifacts (dist/racket.js, dist/racket.wasm)");
+  }
+
+  return { jsPath, wasmPath };
+}
+
+async function main() {
   const rustpythonDir = path.join(root, "runtimes", "rustpython-runner");
-  const haskellStubDir = path.join(root, "runtimes", "haskell-runner-stub");
+  const haskellGhciDir = path.join(root, "runtimes", "haskell-ghc");
+  const racketDir = path.join(root, "runtimes", "racket-runtime");
 
   let rustpythonBuilt = false;
   let haskellBuilt = false;
+  let racketBuilt = false;
 
-  // Build Haskell stub runtime first (simpler, more likely to succeed)
-  console.log("Building Haskell stub runtime...");
+  console.log("Building Haskell runtime (GHC/GHCi WASM)...");
   try {
-    const hsTarget = cargoBuild(haskellStubDir);
-    const hsWasm = findWasmArtifact(haskellStubDir, hsTarget);
-    copyFile(hsWasm, path.join(root, "public", "haskell", "runner.wasm"));
-    haskellBuilt = true;
-    console.log("  ✓ public/haskell/runner.wasm");
+    const hsArtifacts = buildHaskellGhciRunner(haskellGhciDir);
+    const publicHaskellDir = path.join(root, "public", "haskell");
+    if (hsArtifacts.ghcWasm) {
+      copyFile(hsArtifacts.ghcWasm, path.join(publicHaskellDir, "ghc.wasm"));
+    }
+    if (hsArtifacts.ghciWasm) {
+      copyFile(hsArtifacts.ghciWasm, path.join(publicHaskellDir, "ghci.wasm"));
+    }
+    if (hsArtifacts.libdirTar) {
+      copyFile(hsArtifacts.libdirTar, path.join(publicHaskellDir, "libdir.tar"));
+    } else {
+      throw new Error("Missing libdir.tar in runtimes/haskell-ghc/dist (required for GHC/GHCi)");
+    }
+    if (hsArtifacts.metaPath) {
+      const meta = JSON.parse(fs.readFileSync(hsArtifacts.metaPath, "utf8"));
+      const metaOut = { ...meta };
+      const ghcGz = path.join(publicHaskellDir, "ghc.wasm.gz");
+      const ghciGz = path.join(publicHaskellDir, "ghci.wasm.gz");
+      const libdirGz = path.join(publicHaskellDir, "libdir.tar.gz");
+
+      if (await gzipIfExists(path.join(publicHaskellDir, "ghc.wasm"), ghcGz)) {
+        metaOut.ghcWasm = "haskell/ghc.wasm.gz";
+      }
+      if (await gzipIfExists(path.join(publicHaskellDir, "ghci.wasm"), ghciGz)) {
+        metaOut.ghciWasm = "haskell/ghci.wasm.gz";
+      }
+      if (await gzipIfExists(path.join(publicHaskellDir, "libdir.tar"), libdirGz)) {
+        metaOut.libdirTar = "haskell/libdir.tar.gz";
+      }
+
+      fs.writeFileSync(
+        path.join(publicHaskellDir, "runner.meta.json"),
+        JSON.stringify(metaOut, null, 2),
+      );
+    }
+    const wasiShimPath = path.join(root, "public", "haskell", "wasi-shim.js");
+    buildWasiShim(wasiShimPath);
+    haskellBuilt = Boolean(hsArtifacts.ghcWasm || hsArtifacts.ghciWasm);
+    if (hsArtifacts.ghcWasm) console.log("  ✓ public/haskell/ghc.wasm(.gz)");
+    if (hsArtifacts.ghciWasm) console.log("  ✓ public/haskell/ghci.wasm(.gz)");
+    if (hsArtifacts.libdirTar) console.log("  ✓ public/haskell/libdir.tar(.gz)");
+    console.log("  ✓ public/haskell/wasi-shim.js");
+    if (!haskellBuilt) {
+      throw new Error("Missing ghc.wasm or ghci.wasm in runtimes/haskell-ghc/dist");
+    }
   } catch (err) {
-    console.error("  ✗ Failed to build Haskell stub:", err.message);
-    console.log("  ℹ The embedded WASI stub in haskell-worker.js will be used instead.");
+    console.error("  ✗ Failed to build GHC/GHCi runtime:", err.message);
+    throw err;
+  }
+
+  // Build Racket runtime (official interpreter via Emscripten)
+  console.log("Building Racket runtime...");
+  try {
+    const { jsPath, wasmPath } = buildRacketRuntime(racketDir);
+    copyFile(jsPath, path.join(root, "public", "racket", "racket.js"));
+    copyFile(wasmPath, path.join(root, "public", "racket", "racket.wasm"));
+    racketBuilt = true;
+    console.log("  ✓ public/racket/racket.js");
+    console.log("  ✓ public/racket/racket.wasm");
+  } catch (err) {
+    const strict = process.env.RACKET_WASM_STRICT === "1";
+    console.error("  ✗ Failed to build Racket runtime:", err.message);
+    if (strict) throw err;
+    console.log("  ℹ Racket runtime missing; worker will fail until artifacts are available.");
   }
 
   // Build RustPython runtime (complex, may fail on some platforms)
@@ -94,8 +213,12 @@ function main() {
     if (rustTarget) {
       const rustWasm = findWasmArtifact(rustpythonDir, rustTarget);
       copyFile(rustWasm, path.join(root, "public", "rustpython", "runner.wasm"));
+      await gzipIfExists(
+        path.join(root, "public", "rustpython", "runner.wasm"),
+        path.join(root, "public", "rustpython", "runner.wasm.gz"),
+      );
       rustpythonBuilt = true;
-      console.log("  ✓ public/rustpython/runner.wasm");
+      console.log("  ✓ public/rustpython/runner.wasm(.gz)");
     } else {
       throw new Error("cargo build failed for all targets");
     }
@@ -105,14 +228,63 @@ function main() {
     console.log("  ℹ The 'rustpython' language will show an error until the runtime is available.");
   }
 
+  const manifest = {
+    haskell: {
+      source: "official",
+      format: "wasi",
+      shim: "bjorn3",
+      available: haskellBuilt,
+      assets: {
+        ghc: "haskell/ghc.wasm(.gz)",
+        ghci: "haskell/ghci.wasm(.gz)",
+        libdir: "haskell/libdir.tar(.gz)",
+        wasiShim: "haskell/wasi-shim.js",
+        meta: "haskell/runner.meta.json",
+      },
+    },
+    rustpython: {
+      source: "custom",
+      format: "wasi",
+      shim: "minimal",
+      available: rustpythonBuilt,
+      assets: {
+        wasm: "rustpython/runner.wasm(.gz)",
+      },
+    },
+    racket: {
+      source: "custom",
+      format: "emscripten",
+      available: racketBuilt,
+      assets: {
+        js: "racket/racket.js",
+        wasm: "racket/racket.wasm",
+      },
+    },
+    python: {
+      source: "official",
+      format: "pyodide",
+      available: fs.existsSync(path.join(root, "public", "pyodide")),
+      assets: {
+        base: "pyodide/",
+      },
+    },
+  };
+
+  ensureDir(path.join(root, "public"));
+  fs.writeFileSync(path.join(root, "public", "runtime-manifest.json"), JSON.stringify(manifest, null, 2));
+
   console.log("\nRuntime build summary:");
-  console.log(`  Haskell stub: ${haskellBuilt ? "✓ built" : "✗ not built (using embedded stub)"}`);
+  console.log(`  Haskell runtime: ${haskellBuilt ? "✓ built" : "✗ not built"}`);
+  console.log(`  Racket runtime:  ${racketBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  RustPython:   ${rustpythonBuilt ? "✓ built" : "✗ not built"}`);
 
-  if (!haskellBuilt && !rustpythonBuilt) {
+  if (!haskellBuilt && !rustpythonBuilt && !racketBuilt) {
     console.error("\nNo runtimes were built. Check the errors above.");
     process.exit(1);
   }
 }
 
-main();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

@@ -8,7 +8,7 @@ A browser-based code execution platform that mimics LeetCode's interface, allowi
 
 ## Features
 
-- **Multiple Language Support**: JavaScript, TypeScript, Python (via Pyodide), Racket, and Haskell (via WASM/WASI runtime)
+- **Multiple Language Support**: JavaScript, TypeScript, Python (via Pyodide), Racket (official interpreter WASM), and Haskell (GHC/GHCi WASM)
 - **Syntax Highlighting & Autocomplete**: Professional code editing experience with CodeMirror
 - **Resizable Panels**: LeetCode-style layout with problem description, code editor, and test results
 - **Test Cases**: Default and custom test cases with instant feedback
@@ -28,37 +28,52 @@ pnpm run setup
 `pnpm run setup` 会把 Pyodide 从 `node_modules` 复制到 `public/pyodide/`，供 Python Worker 加载。
 该步骤也会在安装依赖后通过 `postinstall` 自动执行。
 
-### （可选）启用 Haskell（WASM）
+### （可选）启用 Haskell（GHC/GHCi WASM）
 
-Haskell 的执行由 `public/haskell-worker.js` 驱动，它会加载一个 **WASI 兼容** 的 WebAssembly 模块：
+Haskell 的执行由 `public/haskell-worker.js` 驱动，它会加载 **GHC/GHCi WASM** 运行时：
 
-- 将 `runner.wasm` 放到：`public/haskell/runner.wasm`
+- 元信息：`public/haskell/runner.meta.json`
 
-> 默认已内置一个**轻量 stub runtime**（用于保证 Haskell “可用且可运行”，并输出提示信息）。
-> 如果你想真正执行/编译 Haskell 源码，请用你自己的 `runner.wasm` 覆盖它。
+推荐产物（由 `build:runtimes` 从 `runtimes/haskell-ghc/dist` 复制）：
 
-#### Haskell runtime 协议（非常重要）
+- `public/haskell/ghc.wasm`
+- `public/haskell/ghci.wasm`
+- `public/haskell/libdir.tar`（uncompressed tar）
+- `public/haskell/wasi-shim.js`
 
-Worker 会通过 stdin 传入一段 JSON：
+可通过环境变量指定路径：
 
-- 自由执行模式：`{ "mode": "executor", "code": "..." }`
-- 题目测试模式：`{ "mode": "test", "code": "...", "input": <any> }`
+```
+GHC_WASM=/abs/path/to/ghc.wasm
+GHCI_WASM=/abs/path/to/ghci.wasm
+GHC_LIBDIR_TAR=/abs/path/to/libdir.tar
+```
 
-Runtime 需要把结果以 **一段 JSON** 打到 stdout：
+**压缩建议**：
 
-`{ "logs": "...", "result": <any> }`
+- `build:runtimes` 会生成 `*.wasm.gz` 与 `libdir.tar.gz`
+- Worker 会优先加载 `.gz`，若不支持再回退到未压缩版本
 
-如果 stdout 不是 JSON，平台会把它当作纯日志输出。
+本仓库提供了 `runtimes/haskell-ghc/` 目录，用于分发 GHC/GHCi wasm 产物与 libdir。
 
-#### 推荐实现方式（示例思路）
+#### GHCi 模式协议（重要）
 
-你可以把 `runner.wasm` 做成一个小的 WASI 程序：
+当 `runner.meta.json` 指定 `protocol: "ghci"` 时：
 
-- 从 stdin 读取 JSON
-- 根据 `mode` 选择：执行/测试
-- 把 `{logs,result}` 写回 stdout
+- Worker 会通过 stdin 发送 **GHCi 命令**
+- 测试模式下，默认假设 `solution :: String -> a`，输入为 **JSON 字符串**
+- stdout 被当作日志；若输出可解析为 JSON，会尝试作为结果
 
-这样前端 Worker 不需要懂 Haskell 语法/类型/编译细节，只负责传入 code 和 input。
+GHC/GHCi 运行时为必需产物，缺失会导致 Haskell 运行失败。
+
+#### GHC 模式（ghc -e / compile-run）
+
+`runner.meta.json` 可以设置：
+
+- `executorMode: "ghc-e"`
+- `testMode: "ghc-compile"`
+
+`ghc-compile` 会在浏览器内编译生成 wasm 再运行；需要 `libdir.tar` 支持。
 
 ### （可选）启用 RustPython（WASM）
 
@@ -67,12 +82,42 @@ RustPython 是另一个 Python 运行时（非 Pyodide），通过 WASI WebAssem
 - Runtime 文件：`public/rustpython/runner.wasm`
 - Worker：`public/rustpython-worker.js`
 
-本仓库在 **发布（GitHub Pages）** 时会自动编译 WASI runtimes（RustPython + Haskell stub）。
+`build:runtimes` 会生成 `runner.wasm.gz`（优先加载）。
+
+### （可选）启用 Racket（官方解释器 WASM）
+
+Racket 运行时通过 **Emscripten** 编译官方解释器生成：
+
+- 产物：`public/racket/racket.js` + `public/racket/racket.wasm`
+- 构建脚本：`runtimes/racket-runtime/build.mjs`
+
+运行：
+
+```
+pnpm run build:runtimes
+```
+
+如需严格要求 Racket 产物，设置：`RACKET_WASM_STRICT=1`。
+
+本仓库在 **发布（GitHub Pages）** 时会自动编译 WASI runtimes（RustPython + Haskell）。
 本地如果你也想编译：
 
 - `pnpm run build:runtimes`
 
 > 需要本机安装 Rust，并具备 `wasm32-wasip1`（或 `wasm32-wasi`）target。
+> Haskell 需要 GHC WASM backend（`wasm32-wasi-ghc`）。
+> Racket 需要 Emscripten SDK（`emcc`, `emmake`）。
+
+### Runtime Manifest
+
+`build:runtimes` 会输出 `public/runtime-manifest.json`，统一描述各运行时来源与格式（官方/自建、WASI/非 WASI）。
+
+### WASI Shim 选项（对比）
+
+- **@bjorn3/browser_wasi_shim**：WASI Preview1，GHC/GHCi wasm 官方推荐，支持 FS/preopen/poll_oneoff。
+- **@bytecodealliance/preview2-shim（JCO）**：WASI Preview2（组件模型），**不兼容**当前的 `wasm32-wasi` 运行时。
+
+若未来将运行时 **组件化（component model）**，可以考虑引入 preview2-shim；当前项目默认使用 bjorn3。
 
 ## Development
 
@@ -119,9 +164,10 @@ Notes:
 │   ├── pyodide/          # Pyodide files (copied from node_modules)
 │   ├── js-worker.js      # JavaScript/TypeScript execution worker
 │   ├── python-worker.js  # Python execution worker
-│   ├── racket-worker.js   # Racket execution worker
-│   ├── haskell-worker.js  # Haskell execution worker (WASM/WASI)
-│   └── haskell/           # Place runner.wasm here
+│   ├── racket-worker.js   # Racket execution worker (official WASM)
+│   ├── haskell-worker.js  # Haskell execution worker (GHC/GHCi WASM)
+│   ├── racket/            # Racket runtime artifacts
+│   └── haskell/           # ghc/ghci wasm + libdir tar
 ├── scripts/
 │   └── setup-pyodide.js  # Setup script to copy Pyodide files
 ├── src/

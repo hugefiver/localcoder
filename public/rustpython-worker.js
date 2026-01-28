@@ -5,6 +5,14 @@
 
 importScripts('./wasi-utils.js');
 
+async function maybeDecompressGzip(buffer) {
+  if (typeof DecompressionStream === 'undefined') {
+    throw new Error('DecompressionStream not available; cannot load .gz assets');
+  }
+  const stream = new Response(buffer).body.pipeThrough(new DecompressionStream('gzip'));
+  return await new Response(stream).arrayBuffer();
+}
+
 let runtimeBytes = null;
 let isReady = false;
 
@@ -12,16 +20,31 @@ async function loadRuntimeWasm() {
   if (runtimeBytes) return runtimeBytes;
 
   const baseURL = getBaseURL();
-  const wasmUrl = baseURL + 'rustpython/runner.wasm';
-  const res = await fetch(wasmUrl);
-  if (!res.ok) {
-    throw new Error(
-      `RustPython runtime not found (${res.status}). Expected: ${wasmUrl}. ` +
-        `Run: pnpm run build:runtimes`,
-    );
+  const wasmCandidates = [
+    baseURL + 'rustpython/runner.wasm.gz',
+    baseURL + 'rustpython/runner.wasm',
+  ];
+
+  let lastErr = null;
+  for (const url of wasmCandidates) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        lastErr = new Error(`HTTP ${res.status} for ${url}`);
+        continue;
+      }
+      const buffer = await res.arrayBuffer();
+      runtimeBytes = url.endsWith('.gz') ? await maybeDecompressGzip(buffer) : buffer;
+      return runtimeBytes;
+    } catch (err) {
+      lastErr = err;
+    }
   }
-  runtimeBytes = await res.arrayBuffer();
-  return runtimeBytes;
+
+  throw new Error(
+    `RustPython runtime not found. Expected: ${wasmCandidates.join(', ')}. Run: pnpm run build:runtimes` +
+      (lastErr ? ` (${lastErr.message ?? String(lastErr)})` : ''),
+  );
 }
 
 self.onmessage = async (e) => {

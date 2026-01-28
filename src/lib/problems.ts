@@ -126,10 +126,10 @@ export const languageInfo = {
   },
   racket: {
     name: 'Racket',
-    description: 'Racket Scheme (simulated)',
+    description: 'Racket Scheme via official interpreter (WASM)',
   },
   haskell: {
     name: 'Haskell',
-    description: 'Haskell via WebAssembly runtime (WASI)',
+    description: 'Haskell via GHC/GHCi WebAssembly runtime',
   },
 };

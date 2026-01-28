@@ -39,6 +39,13 @@ export function useCodeExecution() {
   const [result, setResult] = useState<ExecutionResult | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
+  const getTimeoutMs = useCallback((language: Language, executorMode: boolean) => {
+    if (language === 'haskell') return executorMode ? 120_000 : 180_000;
+    if (language === 'python' || language === 'rustpython') return 90_000;
+    if (language === 'racket') return 60_000;
+    return 30_000;
+  }, []);
+
   const executeCode = useCallback(async (
     code: string,
     language: Language,
@@ -59,6 +66,7 @@ export function useCodeExecution() {
     abortRef.current = controller;
 
     try {
+      const timeoutMs = getTimeoutMs(language, options?.executorMode === true);
       const data = await executeWorkerRequest<ExecutionResult>(
         language,
         {
@@ -66,7 +74,7 @@ export function useCodeExecution() {
           testCases,
           executorMode: options?.executorMode === true,
         },
-        { timeoutMs: 30000, signal: controller.signal, terminateOnAbort: true },
+        { timeoutMs, signal: controller.signal, terminateOnAbort: true },
       );
 
       setResult(data);

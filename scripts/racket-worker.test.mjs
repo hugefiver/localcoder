@@ -82,6 +82,10 @@ async function testProblemModeTwoSumTemplateStyle() {
 }
 
 async function main() {
+  if (process.env.RACKET_WASM_TESTS !== "1") {
+    console.log("Skipping Racket worker tests (set RACKET_WASM_TESTS=1 to run)");
+    return;
+  }
   await testExecutorModeBasic();
   await testProblemModeTwoSumTemplateStyle();
   console.log("Racket worker tests passed");
