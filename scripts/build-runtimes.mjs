@@ -278,18 +278,16 @@ async function main() {
     },
   };
 
-  const pyodideAvailable = fs.existsSync(path.join(root, "public", "pyodide"));
-
   ensureDir(path.join(root, "public"));
   fs.writeFileSync(path.join(root, "public", "runtime-manifest.json"), JSON.stringify(manifest, null, 2));
 
   console.log("\nRuntime build summary:");
-  console.log(`  Python (Pyodide): ${pyodideAvailable ? "✓ available" : "✗ not available"}`);
+  console.log(`  Python (Pyodide): ${manifest.python.available ? "✓ available" : "✗ not available"}`);
   console.log(`  Haskell runtime: ${haskellBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  Racket runtime:  ${racketBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  RustPython:   ${rustpythonBuilt ? "✓ built" : "✗ not built"}`);
 
-  if (!pyodideAvailable && !haskellBuilt && !rustpythonBuilt && !racketBuilt) {
+  if (!manifest.python.available && !haskellBuilt && !rustpythonBuilt && !racketBuilt) {
     console.error("\nNo runtimes were built. Check the errors above.");
     process.exit(1);
   }

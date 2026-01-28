@@ -1,0 +1,11 @@
+{
+  "protocol": "ghc-e",
+  "executorMode": "ghc-e",
+  "testMode": "ghc-compile",
+  "ghcWasm": "haskell/ghc.wasm.gz",
+  "ghciWasm": "haskell/ghci.wasm.gz",
+  "libdirTar": "haskell/libdir.tar.gz",
+  "libdirPath": "/ghc",
+  "workDir": "/work",
+  "wasiShim": "bjorn3"
+}
