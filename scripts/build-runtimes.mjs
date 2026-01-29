@@ -152,7 +152,7 @@ async function main() {
     }
     if (hsArtifacts.libdirTar) {
       copyFile(hsArtifacts.libdirTar, path.join(publicHaskellDir, "libdir.tar"));
-    } else {
+    } else if (hsArtifacts.ghcWasm || hsArtifacts.ghciWasm) {
       throw new Error("Missing libdir.tar in runtimes/haskell-ghc/dist (required for GHC/GHCi)");
     }
     if (hsArtifacts.metaPath) {
@@ -177,19 +177,20 @@ async function main() {
         JSON.stringify(metaOut, null, 2),
       );
     }
-    const wasiShimPath = path.join(root, "public", "haskell", "wasi-shim.js");
-    buildWasiShim(wasiShimPath);
     haskellBuilt = Boolean(hsArtifacts.ghcWasm || hsArtifacts.ghciWasm);
-    if (hsArtifacts.ghcWasm) console.log("  ✓ public/haskell/ghc.wasm(.gz)");
-    if (hsArtifacts.ghciWasm) console.log("  ✓ public/haskell/ghci.wasm(.gz)");
-    if (hsArtifacts.libdirTar) console.log("  ✓ public/haskell/libdir.tar(.gz)");
-    console.log("  ✓ public/haskell/wasi-shim.js");
-    if (!haskellBuilt) {
-      throw new Error("Missing ghc.wasm or ghci.wasm in runtimes/haskell-ghc/dist");
+    if (haskellBuilt) {
+      const wasiShimPath = path.join(root, "public", "haskell", "wasi-shim.js");
+      buildWasiShim(wasiShimPath);
+      if (hsArtifacts.ghcWasm) console.log("  ✓ public/haskell/ghc.wasm(.gz)");
+      if (hsArtifacts.ghciWasm) console.log("  ✓ public/haskell/ghci.wasm(.gz)");
+      if (hsArtifacts.libdirTar) console.log("  ✓ public/haskell/libdir.tar(.gz)");
+      console.log("  ✓ public/haskell/wasi-shim.js");
     }
   } catch (err) {
+    const strict = process.env.HASKELL_WASM_STRICT === "1";
     console.error("  ✗ Failed to build GHC/GHCi runtime:", err.message);
-    throw err;
+    if (strict) throw err;
+    console.log("  ℹ Haskell runtime missing; worker will fail until artifacts are available.");
   }
 
   // Build Racket runtime (official interpreter via Emscripten)
@@ -281,11 +282,12 @@ async function main() {
   fs.writeFileSync(path.join(root, "public", "runtime-manifest.json"), JSON.stringify(manifest, null, 2));
 
   console.log("\nRuntime build summary:");
+  console.log(`  Python (Pyodide): ${manifest.python.available ? "✓ available" : "✗ not available"}`);
   console.log(`  Haskell runtime: ${haskellBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  Racket runtime:  ${racketBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  RustPython:   ${rustpythonBuilt ? "✓ built" : "✗ not built"}`);
 
-  if (!haskellBuilt && !rustpythonBuilt && !racketBuilt) {
+  if (!manifest.python.available && !haskellBuilt && !rustpythonBuilt && !racketBuilt) {
     console.error("\nNo runtimes were built. Check the errors above.");
     process.exit(1);
   }
