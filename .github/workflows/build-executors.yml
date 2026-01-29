@@ -48,6 +48,8 @@ jobs:
           path: |
             public/haskell
             runtimes/haskell-ghc/dist
+            ~/.ghcup
+            ~/.cabal
           key: ${{ runner.os }}-haskell-${{ hashFiles('runtimes/haskell-ghc/**', 'scripts/build-runtimes.mjs') }}
 
       - name: Restore Racket cache
@@ -70,6 +72,30 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
           key: ${{ runner.os }}-rustpython-${{ hashFiles('runtimes/rustpython-runner/**', 'scripts/build-runtimes.mjs') }}
+
+      - name: Setup GHCup
+        if: ${{ matrix.runtime == 'haskell' }}
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: "9.14.1"
+          cabal-version: "3.16.1.0"
+          enable-stack: false
+
+      - name: Install GHC WASM toolchain
+        if: ${{ matrix.runtime == 'haskell' }}
+        run: |
+          ghcup update
+          ghcup install ghc --target wasm32-wasi 9.14.1
+          echo "WASM_GHC_BIN=$(ghcup where ghc --target wasm32-wasi 9.14.1)/bin" >> $GITHUB_ENV
+          echo "WASM_GHC_LIB=$(wasm32-wasi-ghc --print-libdir)" >> $GITHUB_ENV
+
+      - name: Stage GHC WASM artifacts
+        if: ${{ matrix.runtime == 'haskell' }}
+        run: |
+          mkdir -p runtimes/haskell-ghc/dist
+          cp "$WASM_GHC_BIN/ghc.wasm" runtimes/haskell-ghc/dist/
+          cp "$WASM_GHC_BIN/ghci.wasm" runtimes/haskell-ghc/dist/
+          tar -cf runtimes/haskell-ghc/dist/libdir.tar -C "$WASM_GHC_LIB" .
 
       - name: Fetch Racket source (official)
         if: ${{ matrix.runtime == 'racket' }}
