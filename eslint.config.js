@@ -18,7 +18,7 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   // Node scripts (build/setup helpers)
   {
-    files: ["scripts/**/*.{js,cjs,mjs}"],
+    files: ["scripts/**/*.{js,cjs,mjs}", "runtimes/**/*.{js,cjs,mjs}"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
