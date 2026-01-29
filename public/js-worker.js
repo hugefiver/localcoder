@@ -189,5 +189,6 @@ function stripTypeScript(code) {
     .replace(/interface\s+\w+\s*{[^}]*}/gs, '')
     .replace(/type\s+\w+\s*=\s*[^;]+;/gs, '')
     .replace(/enum\s+\w+\s*{[^}]*}/gs, '')
+    .replace(/(\b(?:let|const|var)\s+\w+)\s*:\s*\w+(\[\])?\s*;/g, '$1 = [];')
     .replace(/:\s*\w+(\[\])?/g, '');
 }

@@ -84,7 +84,8 @@ jobs:
       - name: Install GHC WASM toolchain
         if: ${{ matrix.runtime == 'haskell' }}
         run: |
-          ghcup update
+          ghcup config add-release-channel cross
+          ghcup list
           ghcup install ghc --target wasm32-wasi 9.14.1
           echo "WASM_GHC_BIN=$(ghcup where ghc --target wasm32-wasi 9.14.1)/bin" >> $GITHUB_ENV
           echo "WASM_GHC_LIB=$(wasm32-wasi-ghc --print-libdir)" >> $GITHUB_ENV
