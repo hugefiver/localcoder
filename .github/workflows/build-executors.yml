@@ -93,16 +93,16 @@ jobs:
           ghcup config add-release-channel https://gitlab.haskell.org/haskell-wasm/ghc-wasm-meta/-/raw/master/ghcup-wasm-0.0.9.yaml
           ghcup list
           ghcup install ghc "$WASM_GHC_VERSION" -- $CONFIGURE_ARGS
-          GHC_WASM_ROOT=$(ghcup whereis ghc "${WASM_GHC_VERSION}")
-          echo "WASM_GHC_BIN=${GHC_WASM_ROOT}/bin" >> $GITHUB_ENV
-          echo "WASM_GHC_LIB=$(${GHC_WASM_ROOT}/bin/wasm32-wasi-ghc --print-libdir)" >> $GITHUB_ENV
+          GHC_WASM_BIN=$(ghcup whereis ghc "${WASM_GHC_VERSION}")
+          echo "WASM_GHC_BIN=${GHC_WASM_BIN}" >> $GITHUB_ENV
+          echo "WASM_GHC_LIB=$(${GHC_WASM_BIN}/wasm32-wasi-ghc --print-libdir)" >> $GITHUB_ENV
 
       - name: Stage GHC WASM artifacts
         if: ${{ matrix.runtime == 'haskell' }}
         run: |
           mkdir -p runtimes/haskell-ghc/dist
-          cp "$WASM_GHC_BIN/ghc.wasm" runtimes/haskell-ghc/dist/
-          cp "$WASM_GHC_BIN/ghci.wasm" runtimes/haskell-ghc/dist/
+          cp "$WASM_GHC_LIB/ghc.wasm" runtimes/haskell-ghc/dist/
+          cp "$WASM_GHC_LIB/ghci.wasm" runtimes/haskell-ghc/dist/
           tar -cf runtimes/haskell-ghc/dist/libdir.tar -C "$WASM_GHC_LIB" .
 
       - name: Fetch Racket source (official)
