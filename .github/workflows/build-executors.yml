@@ -93,14 +93,18 @@ jobs:
           ghcup config add-release-channel https://gitlab.haskell.org/haskell-wasm/ghc-wasm-meta/-/raw/master/ghcup-wasm-0.0.9.yaml
           ghcup list
           ghcup install ghc "$WASM_GHC_VERSION" -- $CONFIGURE_ARGS
-          GHC_WASM_BIN=$(ghcup whereis ghc "${WASM_GHC_VERSION}")
-          echo "WASM_GHC_BIN=${GHC_WASM_BIN}" >> $GITHUB_ENV
-          echo "WASM_GHC_LIB=$(${GHC_WASM_BIN}/wasm32-wasi-ghc --print-libdir)" >> $GITHUB_ENV
+          WASM_GHC_EXE=$(ghcup whereis ghc "${WASM_GHC_VERSION}")
+          WASM_GHC_BIN=$(dirname "${WASM_GHC_EXE}")
+          echo "WASM_GHC_BIN=${WASM_GHC_BIN}" >> $GITHUB_ENV
+          echo "WASM_GHC_LIB=$(${WASM_GHC_EXE} --print-libdir)" >> $GITHUB_ENV
 
       - name: Stage GHC WASM artifacts
         if: ${{ matrix.runtime == 'haskell' }}
         run: |
           mkdir -p runtimes/haskell-ghc/dist
+          echo "WASM_GHC_BIN=$WASM_GHC_BIN"
+          echo "WASM_GHC_LIB=$WASM_GHC_LIB"
+          find "$WASM_GHC_LIB" -maxdepth 3 \( -name 'ghc.wasm' -o -name 'ghci.wasm' \)
           cp "$WASM_GHC_LIB/ghc.wasm" runtimes/haskell-ghc/dist/
           cp "$WASM_GHC_LIB/ghci.wasm" runtimes/haskell-ghc/dist/
           tar -cf runtimes/haskell-ghc/dist/libdir.tar -C "$WASM_GHC_LIB" .
