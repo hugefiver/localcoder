@@ -104,9 +104,23 @@ jobs:
           mkdir -p runtimes/haskell-ghc/dist
           echo "WASM_GHC_BIN=$WASM_GHC_BIN"
           echo "WASM_GHC_LIB=$WASM_GHC_LIB"
-          find "$WASM_GHC_LIB" -maxdepth 3 \( -name 'ghc.wasm' -o -name 'ghci.wasm' \)
-          cp "$WASM_GHC_LIB/ghc.wasm" runtimes/haskell-ghc/dist/
-          cp "$WASM_GHC_LIB/ghci.wasm" runtimes/haskell-ghc/dist/
+          WASM_GHC_PREFIX=$(dirname "$WASM_GHC_BIN")
+          find "$WASM_GHC_LIB" -maxdepth 6 \( -name 'ghc.wasm' -o -name 'ghci.wasm' \)
+          find "$WASM_GHC_PREFIX" -maxdepth 6 \( -name 'ghc.wasm' -o -name 'ghci.wasm' \)
+          GHC_WASM=$(find "$WASM_GHC_LIB" -name 'ghc.wasm' -print -quit)
+          if [ -z "$GHC_WASM" ]; then
+            GHC_WASM=$(find "$WASM_GHC_PREFIX" -name 'ghc.wasm' -print -quit)
+          fi
+          GHCI_WASM=$(find "$WASM_GHC_LIB" -name 'ghci.wasm' -print -quit)
+          if [ -z "$GHCI_WASM" ]; then
+            GHCI_WASM=$(find "$WASM_GHC_PREFIX" -name 'ghci.wasm' -print -quit)
+          fi
+          if [ -z "$GHC_WASM" ] || [ -z "$GHCI_WASM" ]; then
+            echo "Failed to locate ghc.wasm/ghci.wasm under $WASM_GHC_LIB or $WASM_GHC_PREFIX"
+            exit 1
+          fi
+          cp "$GHC_WASM" runtimes/haskell-ghc/dist/ghc.wasm
+          cp "$GHCI_WASM" runtimes/haskell-ghc/dist/ghci.wasm
           tar -cf runtimes/haskell-ghc/dist/libdir.tar -C "$WASM_GHC_LIB" .
 
       - name: Fetch Racket source (official)
