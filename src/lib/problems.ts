@@ -114,7 +114,7 @@ export const languageInfo = {
   },
   typescript: {
     name: 'TypeScript',
-    description: 'TypeScript with basic type stripping',
+    description: 'TypeScript transpiled in-browser using the official compiler (no type checking)',
   },
   python: {
     name: 'Python',

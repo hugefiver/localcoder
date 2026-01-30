@@ -35,6 +35,8 @@ pids
 
 # Generated Pyodide files
 public/pyodide/
+# Generated TypeScript compiler asset
+public/typescript/
 
 # Generated WASM runtime files (build artifacts)
 public/haskell/runner.wasm

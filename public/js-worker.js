@@ -121,11 +121,49 @@ async function runJavaScript(code, testCases) {
   return results;
 }
 
-async function runTypeScript(code, testCases) {
-  const jsCode = stripTypeScript(code);
+let tsReady = false;
 
+function ensureTypeScriptLoaded() {
+  if (tsReady) return;
+  if (typeof self.ts === 'undefined') {
+    try {
+      importScripts('./typescript/typescript.js');
+    } catch (e) {
+      throw new Error('TypeScript compiler not found: public/typescript/typescript.js is missing. Please run setup.');
+    }
+    if (typeof self.ts === 'undefined') {
+      throw new Error('TypeScript compiler failed to load. Check public/typescript/typescript.js.');
+    }
+  }
+  tsReady = true;
+}
+
+async function runTypeScript(code, testCases) {
+  ensureTypeScriptLoaded();
+  const transpileResult = self.ts.transpileModule(code, {
+    compilerOptions: {
+      module: self.ts.ModuleKind.None,
+      target: self.ts.ScriptTarget.ES2020,
+    },
+    reportDiagnostics: false,
+  });
+  const jsCode = transpileResult.outputText;
   return runJavaScript(jsCode, testCases);
 }
+
+async function runTypeScriptExecutor(code) {
+  ensureTypeScriptLoaded();
+  const transpileResult = self.ts.transpileModule(code, {
+    compilerOptions: {
+      module: self.ts.ModuleKind.None,
+      target: self.ts.ScriptTarget.ES2020,
+    },
+    reportDiagnostics: false,
+  });
+  const jsCode = transpileResult.outputText;
+  return runJavaScriptExecutor(jsCode);
+}
+
 
 async function runJavaScriptExecutor(code) {
   const logs = [];
@@ -176,19 +214,4 @@ async function runJavaScriptExecutor(code) {
     console.warn = originalWarn;
     throw error;
   }
-}
-
-async function runTypeScriptExecutor(code) {
-  const jsCode = stripTypeScript(code);
-
-  return runJavaScriptExecutor(jsCode);
-}
-
-function stripTypeScript(code) {
-  return code
-    .replace(/interface\s+\w+\s*{[^}]*}/gs, '')
-    .replace(/type\s+\w+\s*=\s*[^;]+;/gs, '')
-    .replace(/enum\s+\w+\s*{[^}]*}/gs, '')
-    .replace(/(\b(?:let|const|var)\s+\w+)\s*:\s*\w+(\[\])?\s*;/g, '$1 = [];')
-    .replace(/:\s*\w+(\[\])?/g, '');
 }

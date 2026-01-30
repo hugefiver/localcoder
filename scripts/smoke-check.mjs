@@ -28,6 +28,7 @@ function main() {
     "public/racket-worker.js",
     "public/haskell-worker.js",
     "public/pyodide/pyodide.js",
+    "public/typescript/typescript.js",
 
     // Build output
     "dist/index.html",
@@ -37,6 +38,7 @@ function main() {
     "dist/racket-worker.js",
     "dist/haskell-worker.js",
     "dist/pyodide/pyodide.js",
+    "dist/typescript/typescript.js",
   ];
 
   for (const p of checks) assertExists(p);

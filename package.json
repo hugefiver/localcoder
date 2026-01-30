@@ -13,10 +13,10 @@
         "smoke": "node scripts/smoke-check.mjs",
         "test": "node scripts/racket-worker.test.mjs",
         "test:racket": "node scripts/racket-worker.test.mjs",
-    "build:runtimes": "node scripts/build-runtimes.mjs",
-    "pack:runtimes": "node scripts/build-runtimes.mjs",
-        "postinstall": "node scripts/setup-pyodide.js",
-        "setup": "node scripts/setup-pyodide.js"
+        "build:runtimes": "node scripts/build-runtimes.mjs",
+        "pack:runtimes": "node scripts/build-runtimes.mjs",
+        "postinstall": "node scripts/setup-pyodide.js && node scripts/copy-typescript-asset.mjs",
+        "setup": "node scripts/setup-pyodide.js && node scripts/copy-typescript-asset.mjs"
     },
     "dependencies": {
         "@codemirror/autocomplete": "^6.20.0",
