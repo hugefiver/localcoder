@@ -102,7 +102,7 @@ jobs:
           pushd "$GHC_WASM_SRC"
           ./boot
           ./configure $CONFIGURE_ARGS
-          ./hadrian/build -j --flavour=quick --docs=no-sphinx --docs=no-haddock --build-root=_build_wasm --target=wasm32-wasi
+          ./hadrian/build -j --flavour=quick --docs=none --build-root=_build_wasm
           popd
           echo "GHC_WASM_SRC=${GHC_WASM_SRC}" >> $GITHUB_ENV
 
