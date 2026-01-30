@@ -90,9 +90,12 @@ jobs:
           GHC_WASM_SRC=runtimes/haskell-ghc/ghc-src
           sudo apt-get update
           sudo apt-get install -y zstd jq unzip git python3 perl autoconf automake libtool pkg-config libgmp-dev libtinfo-dev libncurses-dev
+          cabal update
+          cabal install happy-1.20.1.1 alex-3.2.7.3 --installdir=$HOME/.local/bin --overwrite-policy=always
           curl https://gitlab.haskell.org/haskell-wasm/ghc-wasm-meta/-/raw/master/bootstrap.sh | SKIP_GHC=1 sh
           source ~/.ghc-wasm/env
           ~/.ghc-wasm/add_to_github_path.sh
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
           ghcup config add-release-channel https://gitlab.haskell.org/haskell-wasm/ghc-wasm-meta/-/raw/master/ghcup-wasm-0.0.9.yaml
           ghcup install ghc "$WASM_GHC_VERSION" -- $CONFIGURE_ARGS
           git clone --depth 1 --recurse-submodules --shallow-submodules --branch "$GHC_WASM_BRANCH" https://gitlab.haskell.org/haskell-wasm/ghc.git "$GHC_WASM_SRC"
