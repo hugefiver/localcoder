@@ -62,6 +62,9 @@ GHC_LIBDIR_TAR=/abs/path/to/libdir.tar
 - `pnpm run build:ghc-wasm`
 - `pnpm run build:runtimes`
 
+**注意版本匹配**：`GHC_WASM_SRC` 的源码版本需与 `wasm32-wasi-ghc --numeric-version` 一致，否则会编译失败。
+如确需跳过检查，可设置 `GHC_WASM_SKIP_VERSION_CHECK=1`。
+
 **压缩建议**：
 
 - `build:runtimes` 会生成 `*.wasm.gz` 与 `libdir.tar.gz`

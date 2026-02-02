@@ -38,6 +38,9 @@ GHC_WASM_SRC=/absolute/path/to/ghc
 pnpm run build:ghc-wasm
 ```
 
+**Version note**: the GHC source version must match `wasm32-wasi-ghc --numeric-version`.
+To bypass the check, set `GHC_WASM_SKIP_VERSION_CHECK=1`.
+
 This will generate:
 
 - `runtimes/haskell-ghc/dist/ghc.wasm`

@@ -75,6 +75,77 @@ function getLibdir(wasmGhcExe) {
   return out.length > 0 ? out : null;
 }
 
+function readFileIfExists(p) {
+  try {
+    return fs.existsSync(p) ? fs.readFileSync(p, "utf8") : null;
+  } catch {
+    return null;
+  }
+}
+
+function parseVersionFromConfigureAc(text) {
+  if (!text) return null;
+  const m = text.match(/AC_INIT\(\[[^\]]+\],\s*\[([^\]]+)\]/);
+  return m?.[1] ?? null;
+}
+
+function parseVersionFromCabal(text) {
+  if (!text) return null;
+  const m = text.match(/^Version:\s*([0-9][^\s]*)/m);
+  if (!m) return null;
+  const v = m[1].trim();
+  return v.includes("@") ? null : v;
+}
+
+function getSourceVersion(ghcSrc) {
+  const configureAc = readFileIfExists(path.join(ghcSrc, "configure.ac"));
+  const fromConfigure = parseVersionFromConfigureAc(configureAc);
+  if (fromConfigure) return fromConfigure;
+
+  const cabalPath = path.join(ghcSrc, "ghc", "ghc-bin.cabal");
+  const cabalInPath = path.join(ghcSrc, "ghc", "ghc-bin.cabal.in");
+  return (
+    parseVersionFromCabal(readFileIfExists(cabalPath)) ||
+    parseVersionFromCabal(readFileIfExists(cabalInPath))
+  );
+}
+
+function getCompilerNumericVersion(wasmGhcExe) {
+  const res = spawnSync(wasmGhcExe, ["--numeric-version"], {
+    encoding: "utf8",
+    env: process.env,
+    shell: process.platform === "win32",
+  });
+  if (res.status !== 0 || !res.stdout) return null;
+  const out = res.stdout.trim();
+  return out.length > 0 ? out : null;
+}
+
+function parseMajorMinor(version) {
+  if (!version) return null;
+  const parts = version.split(".");
+  if (parts.length < 2) return null;
+  return `${parts[0]}.${parts[1]}`;
+}
+
+function ensureVersionCompatible(ghcSrc, wasmGhcExe) {
+  if (process.env.GHC_WASM_SKIP_VERSION_CHECK === "1") return;
+  const sourceVersion = getSourceVersion(ghcSrc);
+  const compilerVersion = getCompilerNumericVersion(wasmGhcExe);
+  if (!sourceVersion || !compilerVersion) return;
+
+  const srcMM = parseMajorMinor(sourceVersion);
+  const compMM = parseMajorMinor(compilerVersion);
+  if (srcMM && compMM && srcMM !== compMM) {
+    throw new Error(
+      `GHC source (${sourceVersion}) does not match wasm32-wasi-ghc (${compilerVersion}). ` +
+        `Use a matching GHC source checkout (e.g. tag ghc-${compilerVersion}) ` +
+        `or set GHC_WASM_SRC to that version. ` +
+        `Set GHC_WASM_SKIP_VERSION_CHECK=1 to bypass.`,
+    );
+  }
+}
+
 function main() {
   const ghcSrc = findGhcSourceRoot();
   if (!ghcSrc) {
@@ -103,6 +174,8 @@ function main() {
       "wasm32-wasi-ghc not found. Install the GHC wasm backend via ghc-wasm-meta and ensure it is on PATH.",
     );
   }
+
+  ensureVersionCompatible(ghcSrc, wasmGhcExe);
 
   const libdir = getLibdir(wasmGhcExe);
   if (!libdir || !fs.existsSync(libdir)) {
