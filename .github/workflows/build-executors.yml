@@ -179,12 +179,17 @@ jobs:
         with:
           node-version: 20
 
-      - name: Download runtime artifacts
+      - name: Download Racket runtime
         uses: actions/download-artifact@v4
         with:
-          pattern: executor-*
-          path: .
-          merge-multiple: true
+          name: executor-racket
+          path: public/racket
+
+      - name: Download RustPython runtime
+        uses: actions/download-artifact@v4
+        with:
+          name: executor-rustpython
+          path: public/rustpython
 
       - name: Generate runtime manifest
         run: node scripts/generate-runtime-manifest.mjs
