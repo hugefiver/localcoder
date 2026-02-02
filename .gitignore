@@ -50,11 +50,11 @@ public/haskell/wasi-shim.js
 public/haskell/ghc.wasm
 public/haskell/ghci.wasm
 public/haskell/libdir.tar
-runtimes/haskell-ghc/dist/libdir.tar
 public/haskell/ghc.wasm.gz
 public/haskell/ghci.wasm.gz
 public/haskell/libdir.tar.gz
 public/runtime-manifest.json
+runtimes/haskell-ghc/dist/libdir.tar
 
 # Allow committing Haskell GHC/GHCi WASM runtime artifacts
 !runtimes/haskell-ghc/dist/
