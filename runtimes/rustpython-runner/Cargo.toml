@@ -8,4 +8,6 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 # RustPython VM (note: compile time can be heavy)
 # freeze-stdlib embeds the Python stdlib into the binary
-rustpython-vm = { version = "0.4", default-features = false, features = ["freeze-stdlib"] }
+rustpython-vm = { git = "https://github.com/RustPython/RustPython", rev = "2f034130b78957f58d0a04ea1cb963f550e95d3d", default-features = false, features = ["compiler", "encodings"] }
+rustpython-stdlib = { git = "https://github.com/RustPython/RustPython", rev = "2f034130b78957f58d0a04ea1cb963f550e95d3d", default-features = false, features = ["compiler"] }
+rustpython-pylib = { git = "https://github.com/RustPython/RustPython", rev = "2f034130b78957f58d0a04ea1cb963f550e95d3d", features = ["freeze-stdlib"] }

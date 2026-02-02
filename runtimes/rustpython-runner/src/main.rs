@@ -1,6 +1,8 @@
 use std::io::{self, Read};
 
 use serde::Deserialize;
+use rustpython_vm::{AsObject, Interpreter, Settings};
+use rustpython_vm::common::rc::PyRc;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -144,14 +146,26 @@ fn main() {
     };
 
     // Run with RustPython
-    // NOTE: The exact API surface may vary across RustPython versions.
-    // We keep it minimal and rely on stdlib modules where possible.
-    let interpreter = rustpython_vm::Interpreter::default();
+    // NOTE: Embed stdlib (frozen) so imports like json/collections work under WASI.
+    let mut builder = Interpreter::builder(Settings::default());
+    let stdlib_defs = rustpython_stdlib::stdlib_module_defs(&builder.ctx);
+    builder = builder
+        .add_native_modules(&stdlib_defs)
+        .add_frozen_modules(rustpython_pylib::FROZEN_STDLIB)
+        .init_hook(|vm| {
+            let state = PyRc::get_mut(&mut vm.state).unwrap();
+            state.config.paths.stdlib_dir = Some(rustpython_pylib::LIB_PATH.to_owned());
+        });
+    let interpreter = builder.build();
     interpreter.enter(|vm| {
         let scope = vm.new_scope_with_builtins();
-        let res = vm.run_code_string(scope, program, "<localcoder>".to_owned());
+        let res = vm.run_string(scope, &program, "<localcoder>".to_owned());
         if let Err(err) = res {
-            let msg = err.to_string();
+            let msg = err
+                .as_object()
+                .str(vm)
+                .map(|s| s.as_str().to_owned())
+                .unwrap_or_else(|_| "Python error".to_owned());
             let out = serde_json::json!({
                 "logs": "",
                 "result": serde_json::Value::Null,

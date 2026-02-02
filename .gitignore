@@ -57,3 +57,4 @@ public/runtime-manifest.json
 
 # Rust build artifacts
 runtimes/*/target/
+runtimes/racket-runtime/racket-src

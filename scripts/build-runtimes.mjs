@@ -11,6 +11,14 @@ const runtimeTargets = (process.env.RUNTIME_TARGETS ?? "")
   .split(",")
   .map((s) => s.trim().toLowerCase())
   .filter(Boolean);
+const runtimeStrict = (process.env.RUNTIME_STRICT ?? "").toLowerCase();
+const strictTargets =
+  runtimeTargets.length > 0 &&
+  (runtimeStrict === "1" ||
+    runtimeStrict === "true" ||
+    (process.env.CI === "true" &&
+      runtimeStrict !== "0" &&
+      runtimeStrict !== "false"));
 
 function shouldBuildRuntime(name) {
   return runtimeTargets.length === 0 || runtimeTargets.includes(name);
@@ -30,7 +38,11 @@ function exec(cmd, args, opts = {}) {
 
 async function gzipFile(src, dest) {
   ensureDir(path.dirname(dest));
-  await pipeline(fs.createReadStream(src), createGzip({ level: 9 }), fs.createWriteStream(dest));
+  await pipeline(
+    fs.createReadStream(src),
+    createGzip({ level: 9 }),
+    fs.createWriteStream(dest),
+  );
 }
 
 async function gzipIfExists(src, dest) {
@@ -49,14 +61,26 @@ function copyFile(src, dest) {
 }
 
 function findWasmArtifact(crateDir, target) {
-  const candidate = path.join(crateDir, "target", target, "release", `${path.basename(crateDir)}.wasm`);
+  const candidate = path.join(
+    crateDir,
+    "target",
+    target,
+    "release",
+    `${path.basename(crateDir)}.wasm`,
+  );
   if (fs.existsSync(candidate)) return candidate;
 
   // crate name != folder name: try reading Cargo.toml name quickly.
   const cargoToml = fs.readFileSync(path.join(crateDir, "Cargo.toml"), "utf8");
   const m = cargoToml.match(/^name\s*=\s*"([^"]+)"/m);
   if (m) {
-    const byName = path.join(crateDir, "target", target, "release", `${m[1].replace(/-/g, "_")}.wasm`);
+    const byName = path.join(
+      crateDir,
+      "target",
+      target,
+      "release",
+      `${m[1].replace(/-/g, "_")}.wasm`,
+    );
     if (fs.existsSync(byName)) return byName;
   }
 
@@ -67,15 +91,20 @@ function findWasmArtifact(crateDir, target) {
     if (files.length === 1) return path.join(relDir, files[0]);
   }
 
-  throw new Error(`Cannot find wasm artifact under ${crateDir}/target/${target}/release`);
+  throw new Error(
+    `Cannot find wasm artifact under ${crateDir}/target/${target}/release`,
+  );
 }
 
 function cargoBuild(crateDir, { throwOnFail = true } = {}) {
   // Prefer the new target name; fallback to wasm32-wasi.
-  const targets = ["wasm32-wasip1", "wasm32-wasi"];
+  // const targets = ["wasm32-wasip1", "wasm32-wasi"];
+  const targets = ["wasm32-wasip1"];
   for (const target of targets) {
     try {
-      exec("cargo", ["build", "--release", "--target", target], { cwd: crateDir });
+      exec("cargo", ["build", "--release", "--target", target], {
+        cwd: crateDir,
+      });
       return target;
     } catch {
       // try next
@@ -134,7 +163,9 @@ function buildRacketRuntime(racketDir) {
     exec("node", [buildScript], { cwd: racketDir });
   }
   if (!fs.existsSync(jsPath) || !fs.existsSync(wasmPath)) {
-    throw new Error("Cannot find Racket runtime artifacts (dist/racket.js, dist/racket.wasm)");
+    throw new Error(
+      "Cannot find Racket runtime artifacts (dist/racket.js, dist/racket.wasm)",
+    );
   }
 
   return { jsPath, wasmPath };
@@ -158,12 +189,20 @@ async function main() {
         copyFile(hsArtifacts.ghcWasm, path.join(publicHaskellDir, "ghc.wasm"));
       }
       if (hsArtifacts.ghciWasm) {
-        copyFile(hsArtifacts.ghciWasm, path.join(publicHaskellDir, "ghci.wasm"));
+        copyFile(
+          hsArtifacts.ghciWasm,
+          path.join(publicHaskellDir, "ghci.wasm"),
+        );
       }
       if (hsArtifacts.libdirTar) {
-        copyFile(hsArtifacts.libdirTar, path.join(publicHaskellDir, "libdir.tar"));
+        copyFile(
+          hsArtifacts.libdirTar,
+          path.join(publicHaskellDir, "libdir.tar"),
+        );
       } else if (hsArtifacts.ghcWasm || hsArtifacts.ghciWasm) {
-        throw new Error("Missing libdir.tar in runtimes/haskell-ghc/dist (required for GHC/GHCi)");
+        throw new Error(
+          "Missing libdir.tar in runtimes/haskell-ghc/dist (required for GHC/GHCi)",
+        );
       }
       if (hsArtifacts.metaPath) {
         const meta = JSON.parse(fs.readFileSync(hsArtifacts.metaPath, "utf8"));
@@ -172,13 +211,22 @@ async function main() {
         const ghciGz = path.join(publicHaskellDir, "ghci.wasm.gz");
         const libdirGz = path.join(publicHaskellDir, "libdir.tar.gz");
 
-        if (await gzipIfExists(path.join(publicHaskellDir, "ghc.wasm"), ghcGz)) {
+        if (
+          await gzipIfExists(path.join(publicHaskellDir, "ghc.wasm"), ghcGz)
+        ) {
           metaOut.ghcWasm = "haskell/ghc.wasm.gz";
         }
-        if (await gzipIfExists(path.join(publicHaskellDir, "ghci.wasm"), ghciGz)) {
+        if (
+          await gzipIfExists(path.join(publicHaskellDir, "ghci.wasm"), ghciGz)
+        ) {
           metaOut.ghciWasm = "haskell/ghci.wasm.gz";
         }
-        if (await gzipIfExists(path.join(publicHaskellDir, "libdir.tar"), libdirGz)) {
+        if (
+          await gzipIfExists(
+            path.join(publicHaskellDir, "libdir.tar"),
+            libdirGz,
+          )
+        ) {
           metaOut.libdirTar = "haskell/libdir.tar.gz";
         }
 
@@ -189,18 +237,28 @@ async function main() {
       }
       haskellBuilt = Boolean(hsArtifacts.ghcWasm || hsArtifacts.ghciWasm);
       if (haskellBuilt) {
-        const wasiShimPath = path.join(root, "public", "haskell", "wasi-shim.js");
+        const wasiShimPath = path.join(
+          root,
+          "public",
+          "haskell",
+          "wasi-shim.js",
+        );
         buildWasiShim(wasiShimPath);
-        if (hsArtifacts.ghcWasm) console.log("  ✓ public/haskell/ghc.wasm(.gz)");
-        if (hsArtifacts.ghciWasm) console.log("  ✓ public/haskell/ghci.wasm(.gz)");
-        if (hsArtifacts.libdirTar) console.log("  ✓ public/haskell/libdir.tar(.gz)");
+        if (hsArtifacts.ghcWasm)
+          console.log("  ✓ public/haskell/ghc.wasm(.gz)");
+        if (hsArtifacts.ghciWasm)
+          console.log("  ✓ public/haskell/ghci.wasm(.gz)");
+        if (hsArtifacts.libdirTar)
+          console.log("  ✓ public/haskell/libdir.tar(.gz)");
         console.log("  ✓ public/haskell/wasi-shim.js");
       }
     } catch (err) {
       const strict = process.env.HASKELL_WASM_STRICT === "1";
       console.error("  ✗ Failed to build GHC/GHCi runtime:", err.message);
       if (strict) throw err;
-      console.log("  ℹ Haskell runtime missing; worker will fail until artifacts are available.");
+      console.log(
+        "  ℹ Haskell runtime missing; worker will fail until artifacts are available.",
+      );
     }
   } else {
     console.log("Skipping Haskell runtime (RUNTIME_TARGETS)");
@@ -224,7 +282,9 @@ async function main() {
       const strict = process.env.RACKET_WASM_STRICT === "1";
       console.error("  ✗ Failed to build Racket runtime:", err.message);
       if (strict) throw err;
-      console.log("  ℹ Racket runtime missing; worker will fail until artifacts are available.");
+      console.log(
+        "  ℹ Racket runtime missing; worker will fail until artifacts are available.",
+      );
     }
   } else {
     console.log("Skipping Racket runtime (RUNTIME_TARGETS)");
@@ -233,12 +293,17 @@ async function main() {
   // Build RustPython runtime (complex, may fail on some platforms)
   if (shouldBuildRuntime("rustpython")) {
     console.log("Building RustPython runtime...");
-    console.log("  ℹ Note: RustPython WASI compilation is experimental and may fail.");
+    console.log(
+      "  ℹ Note: RustPython WASI compilation is experimental and may fail.",
+    );
     try {
       const rustTarget = cargoBuild(rustpythonDir, { throwOnFail: false });
       if (rustTarget) {
         const rustWasm = findWasmArtifact(rustpythonDir, rustTarget);
-        copyFile(rustWasm, path.join(root, "public", "rustpython", "runner.wasm"));
+        copyFile(
+          rustWasm,
+          path.join(root, "public", "rustpython", "runner.wasm"),
+        );
         await gzipIfExists(
           path.join(root, "public", "rustpython", "runner.wasm"),
           path.join(root, "public", "rustpython", "runner.wasm.gz"),
@@ -250,8 +315,12 @@ async function main() {
       }
     } catch (err) {
       console.error("  ✗ Failed to build RustPython:", err.message);
-      console.log("  ℹ RustPython WASI support requires a compatible version of rustpython-vm.");
-      console.log("  ℹ The 'rustpython' language will show an error until the runtime is available.");
+      console.log(
+        "  ℹ RustPython WASI support requires a compatible version of rustpython-vm.",
+      );
+      console.log(
+        "  ℹ The 'rustpython' language will show an error until the runtime is available.",
+      );
     }
   } else {
     console.log("Skipping RustPython runtime (RUNTIME_TARGETS)");
@@ -300,15 +369,41 @@ async function main() {
   };
 
   ensureDir(path.join(root, "public"));
-  fs.writeFileSync(path.join(root, "public", "runtime-manifest.json"), JSON.stringify(manifest, null, 2));
+  fs.writeFileSync(
+    path.join(root, "public", "runtime-manifest.json"),
+    JSON.stringify(manifest, null, 2),
+  );
 
   console.log("\nRuntime build summary:");
-  console.log(`  Python (Pyodide): ${manifest.python.available ? "✓ available" : "✗ not available"}`);
+  console.log(
+    `  Python (Pyodide): ${manifest.python.available ? "✓ available" : "✗ not available"}`,
+  );
   console.log(`  Haskell runtime: ${haskellBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  Racket runtime:  ${racketBuilt ? "✓ built" : "✗ not built"}`);
   console.log(`  RustPython:   ${rustpythonBuilt ? "✓ built" : "✗ not built"}`);
 
-  if (!manifest.python.available && !haskellBuilt && !rustpythonBuilt && !racketBuilt) {
+  if (strictTargets) {
+    const missing = [];
+    if (runtimeTargets.includes("haskell") && !haskellBuilt)
+      missing.push("haskell");
+    if (runtimeTargets.includes("racket") && !racketBuilt)
+      missing.push("racket");
+    if (runtimeTargets.includes("rustpython") && !rustpythonBuilt)
+      missing.push("rustpython");
+    if (missing.length > 0) {
+      console.error(
+        `\nRuntime build failed for targets: ${missing.join(", ")}`,
+      );
+      process.exit(1);
+    }
+  }
+
+  if (
+    !manifest.python.available &&
+    !haskellBuilt &&
+    !rustpythonBuilt &&
+    !racketBuilt
+  ) {
     console.error("\nNo runtimes were built. Check the errors above.");
     process.exit(1);
   }

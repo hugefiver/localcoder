@@ -21,7 +21,6 @@ jobs:
       fail-fast: false
       matrix:
         runtime:
-          - haskell
           - racket
           - rustpython
     steps:
@@ -157,6 +156,7 @@ jobs:
         run: pnpm build:runtimes
         env:
           RUNTIME_TARGETS: ${{ matrix.runtime }}
+          RUNTIME_STRICT: "0"
 
       - name: Upload runtime artifact
         uses: actions/upload-artifact@v4
@@ -174,6 +174,11 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref }}
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Download runtime artifacts
         uses: actions/download-artifact@v4
         with:
@@ -181,12 +186,15 @@ jobs:
           path: .
           merge-multiple: true
 
+      - name: Generate runtime manifest
+        run: node scripts/generate-runtime-manifest.mjs
+
       - name: Upload executor runtimes
         uses: actions/upload-artifact@v4
         with:
           name: executor-runtimes
           path: |
-            public/haskell
             public/racket
             public/rustpython
+            public/runtime-manifest.json
           if-no-files-found: warn

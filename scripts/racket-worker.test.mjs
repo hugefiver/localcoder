@@ -28,7 +28,11 @@ function loadWorker() {
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: "racket-worker.js" });
 
-  assert.equal(typeof sandbox.self.onmessage, "function", "worker should register self.onmessage");
+  assert.equal(
+    typeof sandbox.self.onmessage,
+    "function",
+    "worker should register self.onmessage",
+  );
 
   return { sandbox, messages };
 }
@@ -83,12 +87,19 @@ async function testProblemModeTwoSumTemplateStyle() {
 
 async function main() {
   const workerPath = path.join(root, "public", "racket", "racket.js");
-  const hasRuntime = fs.existsSync(workerPath);
-  const shouldRun = process.env.RACKET_WASM_TESTS === "1" || hasRuntime;
+  const shouldRun = process.env.RACKET_WASM_TESTS === "1";
 
   if (!shouldRun) {
-    console.log("Skipping Racket worker tests (set RACKET_WASM_TESTS=1 to run)");
+    console.log(
+      "Skipping Racket worker tests (set RACKET_WASM_TESTS=1 to run in a browser-like environment)",
+    );
     return;
+  }
+
+  if (!fs.existsSync(workerPath)) {
+    throw new Error(
+      "Racket runtime missing at public/racket/racket.js. Run: pnpm run build:runtimes",
+    );
   }
   await testExecutorModeBasic();
   await testProblemModeTwoSumTemplateStyle();

@@ -166,7 +166,6 @@ export function EditorView({ problemId, onBack }: EditorViewProps) {
                 <SelectItem value="python">Python</SelectItem>
                 <SelectItem value="rustpython">RustPython</SelectItem>
                 <SelectItem value="racket">Racket</SelectItem>
-                <SelectItem value="haskell">Haskell</SelectItem>
               </SelectContent>
             </Select>
 

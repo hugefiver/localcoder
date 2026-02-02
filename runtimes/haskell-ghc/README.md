@@ -23,6 +23,9 @@ Alternatively, set environment variables:
 GHC_WASM=/absolute/path/to/ghc.wasm
 GHCI_WASM=/absolute/path/to/ghci.wasm
 GHC_LIBDIR_TAR=/absolute/path/to/libdir.tar
+GHC_WASM_SRC=/absolute/path/to/ghc-src
+GHC_LIBDIR=/absolute/path/to/ghc/libdir
+WASM_GHC_EXE=/absolute/path/to/wasm32-wasi-ghc
 ```
 
 Then run:
