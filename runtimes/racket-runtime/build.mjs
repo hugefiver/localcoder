@@ -22,39 +22,53 @@ const platformDefines = `-DSCHEME_OS=\\"emscripten\\" -DSCHEME_ARCH=\\"wasm32\\"
 const hostEnv = {
   CC_FOR_BUILD: process.env.CC_FOR_BUILD ?? "cc",
 };
-const requiredEmccFlags = [
-  "-sFORCE_FILESYSTEM=1",
-  "-sEXPORTED_FUNCTIONS=['_main']",
+const baseEmccFlags = ["-sFORCE_FILESYSTEM=1", "-sALLOW_MEMORY_GROWTH=1"];
+
+const runtimeEmccFlags = [
+  "-sEXPORTED_FUNCTIONS=['_main','___main_argc_argv']",
   "-sEXPORTED_RUNTIME_METHODS=['FS','callMain']",
-  "-sALLOW_MEMORY_GROWTH=1",
+  "-sERROR_ON_UNDEFINED_SYMBOLS=0",
 ];
 
-const requiredEmccFlagsStr = requiredEmccFlags.join(" ");
+const baseEmccFlagsStr = baseEmccFlags.join(" ");
 const extraEmccFlags = process.env.RACKET_EMCC_FLAGS;
-const combinedEmccFlags = [requiredEmccFlagsStr, extraEmccFlags]
+const configureEmccFlags = [
+  baseEmccFlagsStr,
+  process.env.RACKET_EMCC_CONFIGURE_FLAGS,
+]
+  .filter(Boolean)
+  .join(" ")
+  .trim();
+const buildEmccFlags = [
+  baseEmccFlagsStr,
+  runtimeEmccFlags.join(" "),
+  extraEmccFlags,
+]
   .filter(Boolean)
   .join(" ")
   .trim();
 
-const targetEnv = {
+const targetConfigureEnv = {
   CC_FOR_BUILD: process.env.CC_FOR_BUILD ?? "cc",
   CPPFLAGS: [process.env.CPPFLAGS, platformDefines]
     .filter(Boolean)
     .join(" ")
     .trim(),
-  CFLAGS: [process.env.CFLAGS, combinedEmccFlags]
+  CFLAGS: [process.env.CFLAGS, configureEmccFlags]
     .filter(Boolean)
     .join(" ")
     .trim(),
-  LDFLAGS: [process.env.LDFLAGS, combinedEmccFlags]
+  LDFLAGS: [process.env.LDFLAGS, configureEmccFlags]
     .filter(Boolean)
     .join(" ")
     .trim(),
-  EMCC_CFLAGS: [process.env.EMCC_CFLAGS, combinedEmccFlags]
-    .filter(Boolean)
-    .join(" ")
-    .trim(),
-  EMCC_LDFLAGS: [process.env.EMCC_LDFLAGS, combinedEmccFlags]
+};
+
+const targetBuildEnv = {
+  CC_FOR_BUILD: targetConfigureEnv.CC_FOR_BUILD,
+  CPPFLAGS: targetConfigureEnv.CPPFLAGS,
+  CFLAGS: [process.env.CFLAGS, buildEmccFlags].filter(Boolean).join(" ").trim(),
+  LDFLAGS: [process.env.LDFLAGS, buildEmccFlags]
     .filter(Boolean)
     .join(" ")
     .trim(),
@@ -222,7 +236,7 @@ exec(
     "--disable-places",
     `--enable-racket=${hostRacket}`,
   ],
-  { cwd: targetBuildDir, env: targetEnv },
+  { cwd: targetBuildDir, env: targetConfigureEnv },
 );
 
 const zuoPath = path.join(targetBuildDir, "bin", "zuo");
@@ -230,10 +244,19 @@ if (fs.existsSync(zuoPath)) {
   fs.rmSync(zuoPath, { force: true });
 }
 
-exec("emmake", ["make", `CC_FOR_BUILD=${targetEnv.CC_FOR_BUILD}`], {
-  cwd: targetBuildDir,
-  env: targetEnv,
-});
+exec(
+  "emmake",
+  [
+    "make",
+    `CC_FOR_BUILD=${targetBuildEnv.CC_FOR_BUILD}`,
+    `CFLAGS=${targetBuildEnv.CFLAGS}`,
+    `LDFLAGS=${targetBuildEnv.LDFLAGS}`,
+  ],
+  {
+    cwd: targetBuildDir,
+    env: targetBuildEnv,
+  },
+);
 
 const artifacts = findEmscriptenArtifacts(targetBuildDir);
 if (!artifacts) {

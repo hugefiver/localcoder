@@ -148,11 +148,25 @@ function installRacketWasmLocator(targetModule) {
   };
 }
 
+function ensureRacketMain(module) {
+  if (typeof module._main === "function") return;
+  const mainShim =
+    typeof module.___main_argc_argv === "function"
+      ? module.___main_argc_argv
+      : typeof module.__main_argc_argv === "function"
+        ? module.__main_argc_argv
+        : null;
+  if (mainShim) {
+    module._main = mainShim;
+  }
+}
+
 async function runRacketProgram(module, program) {
+  ensureRacketMain(module);
   if (!module.FS || typeof module.callMain !== "function") {
     throw new Error(
       "Racket runtime missing FS/callMain. Rebuild with Emscripten flags: " +
-        "-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=['FS','callMain'] -sEXPORTED_FUNCTIONS=['_main'] " +
+        "-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=['FS','callMain'] -sEXPORTED_FUNCTIONS=['_main','___main_argc_argv'] -sERROR_ON_UNDEFINED_SYMBOLS=0 " +
         "(then run: pnpm run build:runtimes)",
     );
   }
