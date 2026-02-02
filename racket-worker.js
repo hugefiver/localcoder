@@ -11,6 +11,7 @@
 let isReady = false;
 let modulePromise = null;
 let assetBaseURL = null;
+let racketWasmBytes = null;
 
 function getBaseURL() {
   if (assetBaseURL) return assetBaseURL;
@@ -47,6 +48,18 @@ async function loadRacketModule() {
       },
     };
 
+    moduleConfig.instantiateWasm = (imports, successCallback) => {
+      loadRacketWasmAsset()
+        .then((binary) => WebAssembly.instantiate(binary, imports))
+        .then((result) => {
+          successCallback(result.instance, result.module);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+      return {};
+    };
+
     installRacketWasmLocator(moduleConfig);
 
     self.Module = moduleConfig;
@@ -69,6 +82,7 @@ async function loadRacketModule() {
 }
 
 async function loadRacketWasmAsset() {
+  if (racketWasmBytes) return racketWasmBytes;
   const baseURL = getBaseURL();
   const candidates = [
     baseURL + "racket/racket.wasm.gz",
@@ -90,9 +104,11 @@ async function loadRacketWasmAsset() {
           );
         }
         const stream = res.body.pipeThrough(new DecompressionStream("gzip"));
-        return await new Response(stream).arrayBuffer();
+        racketWasmBytes = await new Response(stream).arrayBuffer();
+        return racketWasmBytes;
       }
-      return await res.arrayBuffer();
+      racketWasmBytes = await res.arrayBuffer();
+      return racketWasmBytes;
     } catch (err) {
       lastErr = err;
     }
@@ -111,6 +127,17 @@ function installRacketWasmLocator(targetModule) {
       : typeof self.Module === "object" && self.Module != null
         ? self.Module
         : (self.Module = {});
+  const baseURL = getBaseURL();
+  moduleTarget.locateFile = (path, prefix) => {
+    if (
+      path.startsWith("data:") ||
+      path.startsWith("blob:") ||
+      /^https?:\/\//i.test(path)
+    ) {
+      return path;
+    }
+    return `${baseURL}racket/${path}`;
+  };
   const getPreloadedPackage = moduleTarget.getPreloadedPackage;
   moduleTarget.getPreloadedPackage = async (name, size) => {
     if (name.endsWith("racket.wasm")) {
@@ -124,7 +151,9 @@ function installRacketWasmLocator(targetModule) {
 async function runRacketProgram(module, program) {
   if (!module.FS || typeof module.callMain !== "function") {
     throw new Error(
-      "Racket runtime missing FS/callMain (check Emscripten build flags)",
+      "Racket runtime missing FS/callMain. Rebuild with Emscripten flags: " +
+        "-sFORCE_FILESYSTEM=1 -sEXPORTED_RUNTIME_METHODS=['FS','callMain'] -sEXPORTED_FUNCTIONS=['_main'] " +
+        "(then run: pnpm run build:runtimes)",
     );
   }
 

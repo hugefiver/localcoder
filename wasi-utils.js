@@ -154,7 +154,31 @@ function makeWasi({ args = [], env = {}, stdinText = "" }) {
 
   const WASI_ESUCCESS = 0;
   const WASI_EBADF = 8;
+  const WASI_EINVAL = 28;
+  const WASI_ENOENT = 44;
   const WASI_ENOSYS = 52;
+  const WASI_ERANGE = 68;
+  const WASI_FILETYPE_CHARACTER_DEVICE = 2;
+  const WASI_FILETYPE_DIRECTORY = 3;
+  const WASI_FILETYPE_REGULAR_FILE = 4;
+  const WASI_EVENTTYPE_CLOCK = 0;
+  const WASI_PREOPENTYPE_DIR = 0;
+  const PREOPEN_FD = 3;
+  const PREOPEN_NAME = "/";
+  const notImplemented = () => WASI_ENOSYS;
+
+  function writeU16(ptr, value) {
+    view.setUint16(ptr, value >>> 0, true);
+  }
+
+  function readU64(ptr) {
+    if (typeof view.getBigUint64 === "function") {
+      return view.getBigUint64(ptr, true);
+    }
+    const lo = BigInt(view.getUint32(ptr, true));
+    const hi = BigInt(view.getUint32(ptr + 4, true));
+    return (hi << 32n) | lo;
+  }
 
   const wasiImport = {
     // args
@@ -264,20 +288,141 @@ function makeWasi({ args = [], env = {}, stdinText = "" }) {
       return WASI_ENOSYS;
     },
 
-    fd_seek(_fd, _offsetLo, _offsetHi, _whence, _newOffsetPtr) {
-      return WASI_ENOSYS;
+    fd_seek(fd, _offsetLo, _offsetHi, _whence, newOffsetPtr) {
+      refreshViewsIfNeeded();
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      writeU64(newOffsetPtr, 0n);
+      return WASI_ESUCCESS;
     },
 
-    path_open() {
-      return WASI_ENOSYS;
+    fd_readdir(fd, _bufPtr, _bufLen, _cookie, bufusedPtr) {
+      refreshViewsIfNeeded();
+      if (fd !== PREOPEN_FD) return WASI_EBADF;
+      writeU32(bufusedPtr, 0);
+      return WASI_ESUCCESS;
+    },
+    fd_filestat_get(fd, statPtr) {
+      refreshViewsIfNeeded();
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      const filetype =
+        fd === PREOPEN_FD
+          ? WASI_FILETYPE_DIRECTORY
+          : WASI_FILETYPE_CHARACTER_DEVICE;
+      writeU64(statPtr, 0n);
+      writeU64(statPtr + 8, 0n);
+      u8[statPtr + 16] = filetype;
+      writeU64(statPtr + 24, 0n);
+      writeU64(statPtr + 32, 0n);
+      writeU64(statPtr + 38, 0n);
+      writeU64(statPtr + 46, 0n);
+      writeU64(statPtr + 52, 0n);
+      return WASI_ESUCCESS;
+    },
+    fd_filestat_set_size(fd, _sizeLo, _sizeHi) {
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      return WASI_ESUCCESS;
+    },
+    fd_filestat_set_times(fd, _atimLo, _atimHi, _mtimLo, _mtimHi, _fstFlags) {
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      return WASI_ESUCCESS;
+    },
+    fd_fdstat_set_flags(fd, _flags) {
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      return WASI_ESUCCESS;
+    },
+    fd_fdstat_set_rights: notImplemented,
+    fd_sync(fd) {
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      return WASI_ESUCCESS;
+    },
+    fd_datasync(fd) {
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      return WASI_ESUCCESS;
+    },
+    fd_allocate: notImplemented,
+    fd_advise: notImplemented,
+    fd_pread: notImplemented,
+    fd_pwrite: notImplemented,
+    fd_renumber: notImplemented,
+    fd_tell(fd, offsetPtr) {
+      refreshViewsIfNeeded();
+      if (fd !== 0 && fd !== 1 && fd !== 2 && fd !== PREOPEN_FD)
+        return WASI_EBADF;
+      writeU64(offsetPtr, 0n);
+      return WASI_ESUCCESS;
     },
 
-    fd_prestat_get() {
-      return WASI_ENOSYS;
+    path_open(
+      fd,
+      _dirflags,
+      _pathPtr,
+      _pathLen,
+      _oflags,
+      _fsRightsBase,
+      _fsRightsInheriting,
+      _fdFlags,
+      _openedFdPtr,
+    ) {
+      if (fd !== PREOPEN_FD) return WASI_EBADF;
+      return WASI_ENOENT;
     },
 
-    fd_prestat_dir_name() {
-      return WASI_ENOSYS;
+    path_create_directory: () => WASI_ENOENT,
+    path_remove_directory: () => WASI_ENOENT,
+    path_unlink_file: () => WASI_ENOENT,
+    path_rename: () => WASI_ENOENT,
+    path_link: () => WASI_ENOENT,
+    path_symlink: () => WASI_ENOENT,
+    path_readlink: () => WASI_ENOENT,
+    path_filestat_get: () => WASI_ENOENT,
+    path_filestat_set_times: () => WASI_ENOENT,
+
+    poll_oneoff(inPtr, outPtr, nsubscriptions, neventsPtr) {
+      refreshViewsIfNeeded();
+      const eventSize = 32;
+      const subscriptionSize = 48;
+      let count = 0;
+      for (let i = 0; i < nsubscriptions; i++) {
+        const subPtr = inPtr + i * subscriptionSize;
+        const userdata = readU64(subPtr);
+        const eventType = u8[subPtr + 8] ?? WASI_EVENTTYPE_CLOCK;
+        const eventPtr = outPtr + i * eventSize;
+        writeU64(eventPtr, userdata);
+        writeU16(eventPtr + 8, WASI_ESUCCESS);
+        u8[eventPtr + 10] = eventType;
+        count++;
+      }
+      writeU32(neventsPtr, count);
+      return WASI_ESUCCESS;
+    },
+
+    sock_accept: notImplemented,
+    sock_recv: notImplemented,
+    sock_send: notImplemented,
+    sock_shutdown: notImplemented,
+
+    fd_prestat_get(fd, prestatPtr) {
+      refreshViewsIfNeeded();
+      if (fd !== PREOPEN_FD) return WASI_EBADF;
+      view.setUint32(prestatPtr, WASI_PREOPENTYPE_DIR, true);
+      view.setUint32(prestatPtr + 4, PREOPEN_NAME.length, true);
+      return WASI_ESUCCESS;
+    },
+
+    fd_prestat_dir_name(fd, pathPtr, pathLen) {
+      refreshViewsIfNeeded();
+      if (fd !== PREOPEN_FD) return WASI_EBADF;
+      const bytes = textEncode(PREOPEN_NAME);
+      if (pathLen < bytes.length) return WASI_ERANGE;
+      u8.set(bytes, pathPtr);
+      return WASI_ESUCCESS;
     },
   };
 
