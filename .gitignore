@@ -55,6 +55,19 @@ public/haskell/ghci.wasm.gz
 public/haskell/libdir.tar.gz
 public/runtime-manifest.json
 
+# Allow committing Haskell GHC/GHCi WASM runtime artifacts
+!runtimes/haskell-ghc/dist/
+!runtimes/haskell-ghc/dist/**
+!public/haskell/ghc.wasm
+!public/haskell/ghc.wasm.gz
+!public/haskell/ghci.wasm
+!public/haskell/ghci.wasm.gz
+!public/haskell/libdir.tar
+!public/haskell/libdir.tar.gz
+!public/haskell/wasi-shim.js
+!public/haskell/runner.meta.json
+!public/runtime-manifest.json
+
 # Rust build artifacts
 runtimes/*/target/
 runtimes/racket-runtime/racket-src

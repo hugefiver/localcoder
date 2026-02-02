@@ -1,0 +1,41 @@
+{
+  "haskell": {
+    "source": "official",
+    "format": "wasi",
+    "shim": "bjorn3",
+    "available": true,
+    "assets": {
+      "ghc": "haskell/ghc.wasm(.gz)",
+      "ghci": "haskell/ghci.wasm(.gz)",
+      "libdir": "haskell/libdir.tar(.gz)",
+      "wasiShim": "haskell/wasi-shim.js",
+      "meta": "haskell/runner.meta.json"
+    }
+  },
+  "rustpython": {
+    "source": "custom",
+    "format": "wasi",
+    "shim": "minimal",
+    "available": false,
+    "assets": {
+      "wasm": "rustpython/runner.wasm(.gz)"
+    }
+  },
+  "racket": {
+    "source": "custom",
+    "format": "emscripten",
+    "available": false,
+    "assets": {
+      "js": "racket/racket.js",
+      "wasm": "racket/racket.wasm"
+    }
+  },
+  "python": {
+    "source": "official",
+    "format": "pyodide",
+    "available": true,
+    "assets": {
+      "base": "pyodide/"
+    }
+  }
+}
