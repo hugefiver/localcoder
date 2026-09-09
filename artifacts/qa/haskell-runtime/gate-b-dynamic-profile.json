@@ -1,0 +1,1516 @@
+{
+  "schemaVersion": 1,
+  "gate": "B",
+  "status": "BLOCKED",
+  "gatePassed": false,
+  "reason": "exact-static-GHC-ghc-e-DynFlags-consistency-loop",
+  "recordedAt": "2026-09-09T15:33:06.349Z",
+  "plan": {
+    "path": "docs/superpowers/plans/2026-09-01-haskell-ghc-e-browser-runtime.md",
+    "sha256": "6d73dafb8a3f97dd6333e11635e9141a8d127c7470aa922a5e8f0b7ed18ba737"
+  },
+  "history": [
+    {
+      "meaning": "Historical missing-tool report, superseded by the real matched source-built tool. Its --numeric-version spelling was incorrect; current preflight uses --version.",
+      "report": {
+        "schemaVersion": 1,
+        "gate": "B",
+        "status": "BLOCKED",
+        "reason": "missing-matching-wasm32-wasi-ghc-pkg",
+        "recordedAt": "2026-09-09T09:09:46.972Z",
+        "expected": {
+          "numericVersion": "9.15.20260202"
+        },
+        "toolchainDiscovery": {
+          "command": [
+            "Get-Command",
+            "wasm32-wasi-ghc-pkg",
+            "-ErrorAction",
+            "SilentlyContinue"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "",
+          "commandFound": false,
+          "executablePath": null,
+          "executableSha256": null
+        },
+        "numericVersionProbe": {
+          "command": [
+            "wasm32-wasi-ghc-pkg",
+            "--numeric-version"
+          ],
+          "executed": false,
+          "exitCode": null,
+          "stdout": "",
+          "stderr": "",
+          "actualNumericVersion": null,
+          "reason": "skipped because wasm32-wasi-ghc-pkg was not found"
+        },
+        "installAttempted": false,
+        "cacheFabricated": false,
+        "taskStatus": {
+          "task2RemainingImplementation": "skipped",
+          "task3": "skipped",
+          "task4": "skipped",
+          "task5": "skipped",
+          "task6": "skipped",
+          "task7": "skipped",
+          "task8": "skipped"
+        }
+      }
+    }
+  ],
+  "toolchain": {
+    "path": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\matched\\stage0\\bin\\wasm32-wasi-ghc-pkg.exe",
+    "version": "9.15.20260202",
+    "sha256": "958e0ef2ff1621ca1f0896eec9258408a0730b7ca7a269c22858b10abea955ae",
+    "versionProbe": {
+      "args": [
+        "--version"
+      ],
+      "exitCode": 0,
+      "stdout": "GHC package manager version 9.15.20260202\n",
+      "stderr": "",
+      "validation": "exact one line and exact ordinal version; executable realpath and SHA256 checked by the production preflight"
+    },
+    "sourceBuildEvidence": "artifacts/qa/haskell-runtime/ghc-pkg-source-build.json",
+    "sourceBuildRootPreserved": true
+  },
+  "build": {
+    "status": "REPRODUCIBLE",
+    "packageCount": 4,
+    "packages": [
+      {
+        "name": "base",
+        "id": "base-4.22.0.0-inplace",
+        "version": "4.22.0.0",
+        "license": "BSD-3-Clause"
+      },
+      {
+        "name": "ghc-internal",
+        "id": "ghc-internal-9.1500.0-inplace",
+        "version": "9.1500.0",
+        "license": "BSD-3-Clause"
+      },
+      {
+        "name": "ghc-prim",
+        "id": "ghc-prim-0.13.1-inplace",
+        "version": "0.13.1",
+        "license": "BSD-3-Clause"
+      },
+      {
+        "name": "rts",
+        "id": "rts-1.0.3",
+        "version": "1.0.3",
+        "license": "BSD-3-Clause"
+      }
+    ],
+    "fileCount": 538,
+    "payloadBytes": 50884682,
+    "compressedBytes": 9712096,
+    "outputHashes": {
+      "dyld-browser-local.mjs": "0d209a986b4c7d5200ff1dc392c412a870e4e29bce20b0ce6e3bc01753918566",
+      "dynamic-e-profile.manifest.json": "59ac5c74beccc41ef216fa591aec3759168dd6a08889fa9241786f2102af759e",
+      "dynamic-e-profile.tar.gz.bin": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b",
+      "ghc-jsffi-imports.mjs": "aa805f7689955cfe7343ea15c0f2851c2a2bbd87850d6b28e92cfa13b5d72828"
+    },
+    "identicalSecondBuild": true,
+    "realProcessRunner": true,
+    "recacheAndCheck": [
+      [
+        {
+          "command": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\matched\\stage0\\bin\\wasm32-wasi-ghc-pkg.exe",
+          "args": [
+            "--no-user-package-db",
+            "--package-db",
+            "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc\\package.conf.d",
+            "recache"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\matched\\stage0\\bin\\wasm32-wasi-ghc-pkg.exe",
+          "args": [
+            "--no-user-package-db",
+            "--package-db",
+            "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc\\package.conf.d",
+            "check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "Warning: library-dirs: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/wasm32-wasi-ghc-9.15.20260202-inplace/rts-1.0.3 doesn't exist or isn't a directory\r\nWarning: include-dirs: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/wasm32-wasi-ghc-9.15.20260202-inplace/rts-1.0.3/include doesn't exist or isn't a directory\r\nWarning: haddock-interfaces: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/../../doc/html/libraries/ghc-prim-0.13.1-inplace/ghc-prim.haddock doesn't exist or isn't a file\r\nWarning: haddock-html: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/../../doc/html/libraries/ghc-prim-0.13.1-inplace doesn't exist or isn't a directory\r\nWarning: include-dirs: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/wasm32-wasi-ghc-9.15.20260202-inplace/ghc-internal-9.1500.0-inplace/include doesn't exist or isn't a directory\r\nWarning: haddock-interfaces: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/../../doc/html/libraries/ghc-internal-9.1500.0-inplace/ghc-internal.haddock doesn't exist or isn't a file\r\nWarning: haddock-html: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/../../doc/html/libraries/ghc-internal-9.1500.0-inplace doesn't exist or isn't a directory\r\nWarning: haddock-interfaces: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/../../doc/html/libraries/base-4.22.0.0-inplace/base.haddock doesn't exist or isn't a file\r\nWarning: haddock-html: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-j71sBd\\ghc/../../doc/html/libraries/base-4.22.0.0-inplace doesn't exist or isn't a directory\r\n"
+        }
+      ],
+      [
+        {
+          "command": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\matched\\stage0\\bin\\wasm32-wasi-ghc-pkg.exe",
+          "args": [
+            "--no-user-package-db",
+            "--package-db",
+            "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc\\package.conf.d",
+            "recache"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "command": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\matched\\stage0\\bin\\wasm32-wasi-ghc-pkg.exe",
+          "args": [
+            "--no-user-package-db",
+            "--package-db",
+            "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc\\package.conf.d",
+            "check"
+          ],
+          "exitCode": 0,
+          "stdout": "",
+          "stderr": "Warning: library-dirs: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/wasm32-wasi-ghc-9.15.20260202-inplace/rts-1.0.3 doesn't exist or isn't a directory\r\nWarning: include-dirs: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/wasm32-wasi-ghc-9.15.20260202-inplace/rts-1.0.3/include doesn't exist or isn't a directory\r\nWarning: haddock-interfaces: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/../../doc/html/libraries/ghc-prim-0.13.1-inplace/ghc-prim.haddock doesn't exist or isn't a file\r\nWarning: haddock-html: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/../../doc/html/libraries/ghc-prim-0.13.1-inplace doesn't exist or isn't a directory\r\nWarning: include-dirs: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/wasm32-wasi-ghc-9.15.20260202-inplace/ghc-internal-9.1500.0-inplace/include doesn't exist or isn't a directory\r\nWarning: haddock-interfaces: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/../../doc/html/libraries/ghc-internal-9.1500.0-inplace/ghc-internal.haddock doesn't exist or isn't a file\r\nWarning: haddock-html: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/../../doc/html/libraries/ghc-internal-9.1500.0-inplace doesn't exist or isn't a directory\r\nWarning: haddock-interfaces: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/../../doc/html/libraries/base-4.22.0.0-inplace/base.haddock doesn't exist or isn't a file\r\nWarning: haddock-html: C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-gate-b-20260909-profile\\.haskell-profile-PESG9n\\ghc/../../doc/html/libraries/base-4.22.0.0-inplace doesn't exist or isn't a directory\r\n"
+        }
+      ]
+    ],
+    "sourceCacheCopied": false,
+    "cacheFabricated": false,
+    "profileManifest": "artifacts/qa/haskell-runtime/gate-b-evidence/candidate.manifest.json"
+  },
+  "profileDiffs": [
+    {
+      "change": "-B /ghc -> -B/ghc",
+      "reason": "Actual separate form searches ./settings; upstream Main.hs partitions -B-prefixed tokens then drops two characters, without consuming a following argument.",
+      "proof": "Browser separate form exit 1 Missing file: ./settings; attached form advances to /ghc/targets/default.target."
+    },
+    {
+      "path": "targets/default.target",
+      "kind": "settings",
+      "sha256": "528016061493884ad6909eadf2b5b099976e76f21a6285c643d373ff7f18d834",
+      "bytes": 3126,
+      "reason": "Actual GHC settings loader requires this locked target. Added to explicit allowlist and rebuilt twice; all four named cases rerun."
+    },
+    {
+      "change": "package path relocation",
+      "from": "${pkgroot}/../lib/",
+      "to": "${pkgroot}/",
+      "reason": "Extracted libdir is mounted at /ghc rather than ../lib. New conf bytes record original SHA256; real recache/check both succeed."
+    },
+    {
+      "change": "upstream license inputs",
+      "reason": "Diagnostic libdir archive contains no licenses. Four locked license texts are copied from the retained same-commit official source into candidate input, not into the diagnostic archive."
+    }
+  ],
+  "browser": {
+    "executed": true,
+    "version": {
+      "Browser": "Edg/148.0.3967.83",
+      "Protocol-Version": "1.3",
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+      "V8-Version": "14.8.21.9",
+      "WebKit-Version": "537.36 (@2db6d3cb8b2da04832d959ec60c40e1ced3363d1)",
+      "webSocketDebuggerUrl": "ws://127.0.0.1:9222/devtools/browser/456fd326-147e-4569-a957-8b1c61792692"
+    },
+    "freshWorkers": true,
+    "sequential": true,
+    "finalNamedToggleCount": 4,
+    "passedNamedToggles": 0,
+    "finalResults": [
+      {
+        "request": {
+          "name": "minimal-main",
+          "source": "main = putStr \"ok\"",
+          "attachedB": true,
+          "deadlineMs": 15000
+        },
+        "timeout": true,
+        "deadlineMs": 15000,
+        "progress": [
+          {
+            "progress": "starting",
+            "args": [
+              "ghc",
+              "-ignore-dot-ghci",
+              "-v0",
+              "-B/ghc",
+              "-hide-all-packages",
+              "-package",
+              "base",
+              "-e",
+              "main",
+              "/work/Main.hs"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682
+          }
+        ]
+      },
+      {
+        "request": {
+          "name": "base-resolution",
+          "source": "import Data.List (sort)\nmain = putStr (sort \"cba\")",
+          "attachedB": true,
+          "deadlineMs": 15000
+        },
+        "timeout": true,
+        "deadlineMs": 15000,
+        "progress": [
+          {
+            "progress": "starting",
+            "args": [
+              "ghc",
+              "-ignore-dot-ghci",
+              "-v0",
+              "-B/ghc",
+              "-hide-all-packages",
+              "-package",
+              "base",
+              "-e",
+              "main",
+              "/work/Main.hs"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682
+          }
+        ]
+      },
+      {
+        "request": {
+          "name": "dynamic-load",
+          "source": "import Data.Char (toUpper)\nmain = putStr (map toUpper \"dynamic\")",
+          "attachedB": true,
+          "deadlineMs": 15000
+        },
+        "timeout": true,
+        "deadlineMs": 15000,
+        "progress": [
+          {
+            "progress": "starting",
+            "args": [
+              "ghc",
+              "-ignore-dot-ghci",
+              "-v0",
+              "-B/ghc",
+              "-hide-all-packages",
+              "-package",
+              "base",
+              "-e",
+              "main",
+              "/work/Main.hs"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682
+          }
+        ]
+      },
+      {
+        "request": {
+          "name": "judge-wrapper",
+          "source": "solution :: String -> String\nsolution = id\nmain = getContents >>= putStr . solution",
+          "stdin": "{\"nested\":[\"汉字\",\"λ\",\"🙂\",{\"value\":[1,true,null]}]}",
+          "attachedB": true,
+          "deadlineMs": 15000
+        },
+        "timeout": true,
+        "deadlineMs": 15000,
+        "progress": [
+          {
+            "progress": "starting",
+            "args": [
+              "ghc",
+              "-ignore-dot-ghci",
+              "-v0",
+              "-B/ghc",
+              "-hide-all-packages",
+              "-package",
+              "base",
+              "-e",
+              "main",
+              "/work/Main.hs"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682
+          }
+        ]
+      },
+      {
+        "request": {
+          "name": "explicit-dynamic-way",
+          "source": "main = putStr \"ok\"",
+          "dynamic": true,
+          "attachedB": true,
+          "deadlineMs": 15000
+        },
+        "timeout": true,
+        "deadlineMs": 15000,
+        "progress": [
+          {
+            "progress": "starting",
+            "args": [
+              "ghc",
+              "-dynamic",
+              "-ignore-dot-ghci",
+              "-v0",
+              "-B/ghc",
+              "-hide-all-packages",
+              "-package",
+              "base",
+              "-e",
+              "main",
+              "/work/Main.hs"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682
+          }
+        ]
+      }
+    ],
+    "networkCapture": "Final run auto-attaches each Worker paused before startup, enables Runtime and Network, then resumes it. Network events include same-origin module imports and runtime fetches.",
+    "network": [
+      {
+        "url": "http://127.0.0.1:5173/",
+        "sessionId": "page",
+        "type": "Document"
+      },
+      {
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "sessionId": "page",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "sessionId": "5F2EA3B0EBED5B576AAFC06E58A67D5F",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs",
+        "sessionId": "5F2EA3B0EBED5B576AAFC06E58A67D5F",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dyld-browser-local.mjs",
+        "sessionId": "5F2EA3B0EBED5B576AAFC06E58A67D5F",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.manifest.json",
+        "sessionId": "5F2EA3B0EBED5B576AAFC06E58A67D5F",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.tar.gz.bin",
+        "sessionId": "5F2EA3B0EBED5B576AAFC06E58A67D5F",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc.wasm.gz.bin",
+        "sessionId": "5F2EA3B0EBED5B576AAFC06E58A67D5F",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "sessionId": "page",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "sessionId": "EFCB0124F068333D54B7165F707A8B1B",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs",
+        "sessionId": "EFCB0124F068333D54B7165F707A8B1B",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dyld-browser-local.mjs",
+        "sessionId": "EFCB0124F068333D54B7165F707A8B1B",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.manifest.json",
+        "sessionId": "EFCB0124F068333D54B7165F707A8B1B",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.tar.gz.bin",
+        "sessionId": "EFCB0124F068333D54B7165F707A8B1B",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc.wasm.gz.bin",
+        "sessionId": "EFCB0124F068333D54B7165F707A8B1B",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "sessionId": "page",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "sessionId": "19A19E88E2CD79ACF9F9699FCFDCC1DB",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs",
+        "sessionId": "19A19E88E2CD79ACF9F9699FCFDCC1DB",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dyld-browser-local.mjs",
+        "sessionId": "19A19E88E2CD79ACF9F9699FCFDCC1DB",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.manifest.json",
+        "sessionId": "19A19E88E2CD79ACF9F9699FCFDCC1DB",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.tar.gz.bin",
+        "sessionId": "19A19E88E2CD79ACF9F9699FCFDCC1DB",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc.wasm.gz.bin",
+        "sessionId": "19A19E88E2CD79ACF9F9699FCFDCC1DB",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "sessionId": "page",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "sessionId": "9BBC41FE47250211577E739AF5821A02",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs",
+        "sessionId": "9BBC41FE47250211577E739AF5821A02",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dyld-browser-local.mjs",
+        "sessionId": "9BBC41FE47250211577E739AF5821A02",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.manifest.json",
+        "sessionId": "9BBC41FE47250211577E739AF5821A02",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.tar.gz.bin",
+        "sessionId": "9BBC41FE47250211577E739AF5821A02",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc.wasm.gz.bin",
+        "sessionId": "9BBC41FE47250211577E739AF5821A02",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "sessionId": "page",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "sessionId": "EF08F9B1D83CDE9BB6FA7F397AEC0D8E",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs",
+        "sessionId": "EF08F9B1D83CDE9BB6FA7F397AEC0D8E",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dyld-browser-local.mjs",
+        "sessionId": "EF08F9B1D83CDE9BB6FA7F397AEC0D8E",
+        "type": "Script"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.manifest.json",
+        "sessionId": "EF08F9B1D83CDE9BB6FA7F397AEC0D8E",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/dynamic-e-profile.tar.gz.bin",
+        "sessionId": "EF08F9B1D83CDE9BB6FA7F397AEC0D8E",
+        "type": "Fetch"
+      },
+      {
+        "url": "http://127.0.0.1:5173/ghc.wasm.gz.bin",
+        "sessionId": "EF08F9B1D83CDE9BB6FA7F397AEC0D8E",
+        "type": "Fetch"
+      }
+    ],
+    "localRequestCount": 36,
+    "remoteRequestCount": 0,
+    "remoteRequests": [],
+    "fullLibdirRequestedByBrowser": false,
+    "staticOrExternalInterpreterFallbackUsed": false,
+    "groupDisableRestore": {
+      "executed": false,
+      "reason": "No GREEN baseline: all four ghc-e scenarios stall before package DB/dyld. Claiming dependency-negative toggles or restored GREEN would be false."
+    },
+    "dyldPathsAndSymbolsObserved": [],
+    "attempts": [
+      {
+        "artifact": "browser-result-1788966002123.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\""
+            },
+            "exitCode": 1,
+            "timeout": false,
+            "stderr": "Missing file: ./settings\n"
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788966057746.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true
+            },
+            "exitCode": 1,
+            "timeout": false,
+            "stderr": "Missing file: /ghc/targets/default.target\n"
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788966284393.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788966376287.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788966485350.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788966755320.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true,
+              "traceWasi": true,
+              "longWait": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788966924423.json",
+        "results": [
+          {
+            "name": "invalid-target",
+            "request": {
+              "name": "invalid-target",
+              "source": "main = putStr \"ok\"",
+              "invalidTarget": true,
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": 1,
+            "timeout": false,
+            "stderr": "Can't parse as Target \"/ghc/targets/default.target\"\n",
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "info-only",
+            "request": {
+              "name": "info-only",
+              "source": "main = putStr \"ok\"",
+              "infoOnly": true,
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": 0,
+            "timeout": false,
+            "stderr": "",
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-B/ghc",
+                  "--info"
+                ]
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788967093860.json",
+        "results": [
+          {
+            "name": "verbose-main",
+            "request": {
+              "name": "verbose-main",
+              "source": "main = putStr \"ok\"",
+              "verbose": true,
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v3",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "bare-eval",
+            "request": {
+              "name": "bare-eval",
+              "source": "main = putStr \"ok\"",
+              "bareEval": true,
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-B/ghc",
+                  "-e",
+                  "1+1"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "show-packages",
+            "request": {
+              "name": "show-packages",
+              "source": "main = putStr \"ok\"",
+              "showPackages": true,
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": 0,
+            "timeout": false,
+            "stderr": "",
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-B/ghc",
+                  "--show-packages"
+                ]
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788967200023.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true,
+              "traceWasi": true
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              }
+            ]
+          }
+        ],
+        "profiled": true
+      },
+      {
+        "artifact": "browser-result-1788967416945.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "base-resolution",
+            "request": {
+              "name": "base-resolution",
+              "source": "import Data.List (sort)\nmain = putStr (sort \"cba\")",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "dynamic-load",
+            "request": {
+              "name": "dynamic-load",
+              "source": "import Data.Char (toUpper)\nmain = putStr (map toUpper \"dynamic\")",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "judge-wrapper",
+            "request": {
+              "name": "judge-wrapper",
+              "source": "solution :: String -> String\nsolution = id\nmain = getContents >>= putStr . solution",
+              "stdin": "{\"nested\":[\"汉字\",\"λ\",\"🙂\",{\"value\":[1,true,null]}]}",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "explicit-dynamic-way",
+            "request": {
+              "name": "explicit-dynamic-way",
+              "source": "main = putStr \"ok\"",
+              "dynamic": true,
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-dynamic",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      },
+      {
+        "artifact": "browser-result-1788967720696.json",
+        "results": [
+          {
+            "name": "minimal-main",
+            "request": {
+              "name": "minimal-main",
+              "source": "main = putStr \"ok\"",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "base-resolution",
+            "request": {
+              "name": "base-resolution",
+              "source": "import Data.List (sort)\nmain = putStr (sort \"cba\")",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "dynamic-load",
+            "request": {
+              "name": "dynamic-load",
+              "source": "import Data.Char (toUpper)\nmain = putStr (map toUpper \"dynamic\")",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "judge-wrapper",
+            "request": {
+              "name": "judge-wrapper",
+              "source": "solution :: String -> String\nsolution = id\nmain = getContents >>= putStr . solution",
+              "stdin": "{\"nested\":[\"汉字\",\"λ\",\"🙂\",{\"value\":[1,true,null]}]}",
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          },
+          {
+            "name": "explicit-dynamic-way",
+            "request": {
+              "name": "explicit-dynamic-way",
+              "source": "main = putStr \"ok\"",
+              "dynamic": true,
+              "attachedB": true,
+              "deadlineMs": 15000
+            },
+            "exitCode": null,
+            "timeout": true,
+            "stderr": null,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-dynamic",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ],
+                "identity": {
+                  "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+                  "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+                },
+                "payloadBytes": 50884682
+              }
+            ]
+          }
+        ],
+        "profiled": false
+      }
+    ]
+  },
+  "diagnosis": {
+    "status": "evidence-backed compiler blocker; not a missing matching tool",
+    "observed": "--info and --show-packages exit 0 in fresh Chromium Workers using the same profile; --info reports GHC Dynamic NO, Have interpreter YES, target RTS linker only supports shared libraries YES, and the exact locked official commit. Every ghc-e variant stalls before package DB/dyld, including bare -e 1+1 and explicit -dynamic. The longest bounded run was 180000 ms, terminated by the harness.",
+    "runtimeProfile": "CDP CPU profile includes GHC.Driver.Session.makeDynFlagsConsistent and DynFlags.gopt; paused stack is inside the same pure STG computation. No JSFFI/dyld invocation, pending remote fetch, package.cache read, or target parse error explains the stall.",
+    "sourceMechanism": "Session.hs 3842-3855 forces WayDyn for LinkInMemory on the shared-only Wasm RTS; 3869-3880 forces targetWays back to hostFullWays for an internal interpreter. The exact compiler is statically built (GHC Dynamic NO), so these restart-on-change rules cycle. --show-packages avoids LinkInMemory and succeeds.",
+    "forbiddenBypasses": [
+      "replace/rebuild/hash-change Gate A GHC",
+      "external interpreter or GHCi route",
+      "change locked target semantics to pretend static linking is supported"
+    ],
+    "remainingProfileUnknowns": [
+      "--show-packages probes missing rts-1.0.3/include/DerivedConstants.h; not added because Gate B cannot reach evaluation with this GHC",
+      "Dynamic library loading/symbol interoperability has not been proven; no claim that this candidate is a sufficient final profile"
+    ]
+  },
+  "verification": [
+    {
+      "command": "pnpm test tests/scripts/haskell-ghc-dynamic-profile.test.mjs",
+      "phase": "initial RED",
+      "exitCode": 1,
+      "tests": 1,
+      "failed": 1,
+      "reason": "ERR_MODULE_NOT_FOUND for not-yet-implemented builder"
+    },
+    {
+      "command": "pnpm test tests/scripts/haskell-ghc-dynamic-profile.test.mjs tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "phase": "initial GREEN",
+      "exitCode": 0,
+      "passed": 15
+    },
+    {
+      "command": "pnpm test tests/scripts/haskell-ghc-dynamic-profile.test.mjs",
+      "phase": "CLI/target regression RED",
+      "exitCode": 1,
+      "passed": 7,
+      "failed": 1
+    },
+    {
+      "command": "pnpm test tests/scripts/haskell-ghc-dynamic-profile.test.mjs tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "phase": "CLI/target and safety GREEN",
+      "exitCode": 0,
+      "passed": 16
+    },
+    {
+      "command": "node scripts/probes/haskell-ghc-profile-toggle.mjs build",
+      "exitCode": 0,
+      "meaning": "First two real matching-tool builds"
+    },
+    {
+      "command": "node scripts/probes/haskell-ghc-profile-toggle.mjs build retry",
+      "exitCode": 0,
+      "meaning": "Repeated three times: locked target addition, final safety validation, and lint-only regex normalization. All three pairs reproducible; final output hashes match the browser-tested profile. Eight real builds total including the initial pair."
+    },
+    {
+      "command": "node scripts/probes/haskell-ghc-profile-toggle.mjs browser gate-blocked",
+      "exitCode": 0,
+      "gateOutcome": "FAILED all named toggles before eval; driver exit 0 means evidence capture completed, not Gate PASS"
+    },
+    {
+      "command": "pnpm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm run lint",
+      "exitCode": 1,
+      "reason": "Three no-regex-spaces violations; corrected to explicit quantifiers"
+    },
+    {
+      "command": "pnpm test tests/scripts/haskell-ghc-dynamic-profile.test.mjs tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "phase": "final Task 2 focused GREEN",
+      "exitCode": 0,
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "pnpm run lint",
+      "phase": "corrected GREEN",
+      "exitCode": 0,
+      "warnings": 0
+    },
+    {
+      "command": "node scripts/probes/haskell-ghc-profile-toggle.mjs extract-target",
+      "initialExitCode": 1,
+      "correctedExitCode": 0,
+      "reason": "Probe-only selective extraction initially discarded GNU long-name metadata. Retaining metadata while skipping payload fixed extraction; no source archive was modified."
+    },
+    {
+      "command": "node scripts/probes/haskell-ghc-profile-toggle.mjs export-evidence",
+      "initialExitCode": 1,
+      "correctedExitCode": 0,
+      "reason": "Probe-only evidence exporter accessed a later lexical constant. Corrected to read the actual executed worker source from the owned temp root."
+    }
+  ],
+  "pnpmWrapperTimeout": false,
+  "directTestFallbackUsed": false,
+  "probeCorrections": [
+    "An undefined disablePackage initially excluded package-unowned settings/cache files. Corrected the predicate before further runs. The separate -B settings failure persisted, distinguishing the actual CLI issue from this probe bug.",
+    "Added incremental Worker progress, WASI trace, CPU profiling, and paused-before-start Worker Network capture. These are retained only as formal diagnostic evidence, not production runtime code."
+  ],
+  "publication": {
+    "published": false,
+    "publicCandidateFilesPresent": [],
+    "buildHookModified": false,
+    "reason": "Gate B did not pass. No public candidates were ever created; runtime metadata, catalog, generated manifest, receipt, UI, and diagnostic full .bin were not changed by Task 2."
+  },
+  "cleanup": {
+    "status": "COMPLETE",
+    "ownedTempRoot": "C:/Users/hugefiver/AppData/Local/Temp/opencode/localcoder-gate-b-20260909-profile",
+    "serverPid": 43016,
+    "browserLauncherPid": 45808,
+    "browserActualPid": 36432,
+    "sourceBuildRootExcluded": true,
+    "sourceBuildExecutableStillExists": true,
+    "ownedTempRootExistsAfterCleanup": false,
+    "probeDeleted": true,
+    "task2DebugJournalDeleted": true,
+    "ports5173_4181_9222FreeAfterCleanup": true,
+    "ownedServerAndBrowserProcessesAbsent": true,
+    "launchProtocol": "Both Node detached/unref launch invocations returned their PID immediately and normally. Edge launcher PID 45808 spawned actual browser PID 36432; its exact owned user-data-dir and command line were inspected before terminating it.",
+    "processCleanup": {
+      "command": "Validate Win32_Process command lines for 36432 and 43016; taskkill.exe /PID 36432 /T /F; taskkill.exe /PID 43016 /T /F",
+      "shellToolOutcome": "TIMEOUT at 20000 ms after both taskkill commands reported success",
+      "recovery": "Separate 15000 ms ownership inspection exited normally: no browser/server/launcher PID, no taskkill process, and no listener on 5173/4181/9222. Timeout was not treated as success without this verification."
+    },
+    "tempCleanup": {
+      "command": "node scripts/probes/haskell-ghc-profile-toggle.mjs cleanup-temp",
+      "targetValidation": "Resolved literal target was the immediate child localcoder-gate-b-20260909-profile of the approved opencode temp parent; source-build root excluded.",
+      "shellToolOutcome": "TIMEOUT at 30000 ms after the script printed completed deletion",
+      "recovery": "Separate 15000 ms inspection exited normally: Test-Path owned root False, matching source-build executable True, no run-owned node/browser processes and all three ports free. The inspection's own PowerShell process was the only command-line match."
+    }
+  },
+  "taskStatus": {
+    "task2": "BLOCKED after real builder and browser proof attempt",
+    "tasks3Through8": "BLOCKED BY GATE B",
+    "task9": "parent-owned; no identity or final review performed here"
+  },
+  "evidence": [
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966002123.json",
+      "bytes": 12606,
+      "sha256": "fcf5494a6dd8758798fc08adaf294c08045a1aada118bd72e032ac9269a493cb"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966057746.json",
+      "bytes": 12660,
+      "sha256": "e1e1d16159bc3e06340c23e81e99f707cecccd906cbc487daccccfb63c15ad06"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966284393.json",
+      "bytes": 11561,
+      "sha256": "3dbe5086e485c4f446eb2a5e09be9d914e82ea2b3b478468639c9f42d69780b8"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966376287.json",
+      "bytes": 12016,
+      "sha256": "f95eb81495713c740d8f7bac0df48f1aa5ef94faa001f1dd79e0bfb00c93af90"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966485350.json",
+      "bytes": 83970,
+      "sha256": "44978ca6de7554379b0a78408c42bad8bd5fe94ee0ec1c43de6421fdfb140050"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966755320.json",
+      "bytes": 108584,
+      "sha256": "7941d8ba9c20bc2a6379d07b65c8b39759b3974f1ce354664128cdea520a7893"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788966924423.json",
+      "bytes": 138680,
+      "sha256": "88c7ab10d80ce3f6f45b9572998c722d3f127ca7d5885f9578659ec7bcbab541"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788967093860.json",
+      "bytes": 344982,
+      "sha256": "77f4ccc2d477ecdce5cc640474fdb42090b306ddb3a1477a09122cfabc822b87"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788967200023.json",
+      "bytes": 325149,
+      "sha256": "1960e638143912015a5023abd116478fa4741b02cd6f8d26cc5039efd3561b5b"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788967416945.json",
+      "bytes": 32851,
+      "sha256": "1cca5f33e9b29d5d13874d0c1fb0c2a5efa910b47e7086b83577137146b9497d"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result-1788967720696.json",
+      "bytes": 309150,
+      "sha256": "97f02c8fec0bdf4757dbcedd7797f941e3b3d85154fc0d89b66cc076ba7f3e46"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/build-result-history-1788966206877.json",
+      "bytes": 534169,
+      "sha256": "c9cc9ef9335b4c5d92685a9380eff791088ebfea387712ef63745884a54c83e6"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/build-result-history-1788967513689.json",
+      "bytes": 534787,
+      "sha256": "d6bcd4eb15a6c2e0704508abf0aa9d2b7948a13e6a2824901d6cd25aadaf5d5b"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/build-result-history-1788967923782.json",
+      "bytes": 534787,
+      "sha256": "da477db6be5764c44c53c73c89ba1c0a333cb925a046db46b80c2512244ec269"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/build-result.json",
+      "bytes": 534787,
+      "sha256": "a04c2d74f2bf1c3d1b8e7c691733c4ec0a5f06903a059c514ffe215df48dd770"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-result.json",
+      "bytes": 309150,
+      "sha256": "97f02c8fec0bdf4757dbcedd7797f941e3b3d85154fc0d89b66cc076ba7f3e46"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/requests.jsonl",
+      "bytes": 11166,
+      "sha256": "5eae85bb0e8c39c510165e947dcb1620f7b0f8da1d340ecbbf16a2af42c1f4f2"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/server-pid.json",
+      "bytes": 195,
+      "sha256": "75f7897f19ce6b5b90e46a705d085ca4824d6842b40328823b8a7fb712dbc5eb"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/browser-pid.json",
+      "bytes": 486,
+      "sha256": "7c7801e97c64a68fed996e46c1989024dcbb2967f3c62a5bcfc02e60dcf285a6"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/candidate.manifest.json",
+      "bytes": 233712,
+      "sha256": "59ac5c74beccc41ef216fa591aec3759168dd6a08889fa9241786f2102af759e"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/harness-source.json",
+      "bytes": 43380,
+      "sha256": "d99174cd3833e54ff1287536971359df4c27587419e04fa8643771bf3bdd3a78"
+    },
+    {
+      "path": "artifacts/qa/haskell-runtime/gate-b-evidence/upstream-constraints.json",
+      "bytes": 4087,
+      "sha256": "04fdf4918388270d03ce7beecde1d88441ee0358eb809de8ad23f118b108a91b"
+    }
+  ]
+}

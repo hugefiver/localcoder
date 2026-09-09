@@ -1,0 +1,3477 @@
+{
+  "results": [
+    {
+      "request": {
+        "name": "minimal-main",
+        "source": "main = putStr \"ok\"",
+        "attachedB": true,
+        "traceWasi": true,
+        "longWait": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "timeout": true,
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              },
+              {
+                "progress": "wasi",
+                "name": "environ_sizes_get",
+                "args": [
+                  "65532",
+                  "65528"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "environ_get",
+                "args": [
+                  "14312704",
+                  "14312672"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "args_sizes_get",
+                "args": [
+                  "65528",
+                  "65532"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "args_get",
+                "args": [
+                  "14312816",
+                  "14312720"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_get",
+                "args": [
+                  "3",
+                  "65000"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_dir_name",
+                "args": [
+                  "3",
+                  "14312864",
+                  "1"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 1,
+                  "fd_prestat_dir_name": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_get",
+                "args": [
+                  "4",
+                  "65000"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "14312864",
+                  "4",
+                  "64960"
+                ],
+                "detail": "work",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 3
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 4
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 5
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 6
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "12",
+                  "65184"
+                ],
+                "detail": "ghc/settings",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_fdstat_get",
+                "args": [
+                  "3",
+                  "65208"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_open",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "12",
+                  "0",
+                  "0",
+                  "0",
+                  "4",
+                  "65204"
+                ],
+                "detail": "ghc/settings",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_filestat_get",
+                "args": [
+                  "4",
+                  "65200"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "4",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "4",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_close",
+                "args": [
+                  "4"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "26",
+                  "65184"
+                ],
+                "detail": "ghc/targets/default.target",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_fdstat_get",
+                "args": [
+                  "3",
+                  "65208"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_open",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "26",
+                  "0",
+                  "0",
+                  "0",
+                  "4",
+                  "65204"
+                ],
+                "detail": "ghc/targets/default.target",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_filestat_get",
+                "args": [
+                  "5",
+                  "65200"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "5",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "5",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_close",
+                "args": [
+                  "5"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 7,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 8,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 9,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 10,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 11,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 12,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 13,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 14,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 15,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 16,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 17,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 18,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 19,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 20,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 21,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 22,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 23,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 24,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 25,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 26,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 27,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 28,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 29,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 30,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 31,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 32,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 33,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 34,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 35,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 36,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 37,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 38,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 39,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 40,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 41,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 42,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 43,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 44,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 45,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 46,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 47,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 48,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 49,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 50,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 51,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 52,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 53,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 54,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 55,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 56,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 57,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 58,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 59,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 60,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 61,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 62,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 63,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 64,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 65,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 66,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 67,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 68,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 69,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 70,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 71,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 72,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 73,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 74,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 75,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64728"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 76,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64824"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 77,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "method": "Runtime.executionContextCreated",
+      "params": {
+        "context": {
+          "id": 7,
+          "origin": "http://127.0.0.1:5173",
+          "name": "",
+          "uniqueId": "-5978863088799618556.5367868053375656256",
+          "auxData": {
+            "isDefault": true,
+            "type": "default",
+            "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+          }
+        }
+      }
+    },
+    {
+      "method": "Page.frameStartedNavigating",
+      "params": {
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "url": "http://127.0.0.1:5173/",
+        "loaderId": "90B979E3B3B799587FD3588BB08EACC8",
+        "navigationType": "differentDocument"
+      }
+    },
+    {
+      "method": "Page.frameStartedLoading",
+      "params": {
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "90B979E3B3B799587FD3588BB08EACC8",
+        "loaderId": "90B979E3B3B799587FD3588BB08EACC8",
+        "documentURL": "http://127.0.0.1:5173/",
+        "request": {
+          "url": "http://127.0.0.1:5173/",
+          "method": "GET",
+          "headers": {
+            "Upgrade-Insecure-Requests": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+            "sec-ch-ua": "\"Chromium\";v=\"148\", \"Microsoft Edge\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\""
+          },
+          "mixedContentType": "none",
+          "initialPriority": "VeryHigh",
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "isSameSite": true
+        },
+        "timestamp": 726848.640067,
+        "wallTime": 1788966574.294966,
+        "initiator": {
+          "type": "other"
+        },
+        "redirectHasExtraInfo": false,
+        "type": "Document",
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "hasUserGesture": false
+      }
+    },
+    {
+      "method": "Network.requestWillBeSentExtraInfo",
+      "params": {
+        "requestId": "90B979E3B3B799587FD3588BB08EACC8",
+        "associatedCookies": [],
+        "headers": {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+          "Connection": "keep-alive",
+          "Host": "127.0.0.1:5173",
+          "Sec-Fetch-Dest": "document",
+          "Sec-Fetch-Mode": "navigate",
+          "Sec-Fetch-Site": "none",
+          "Sec-Fetch-User": "?1",
+          "Upgrade-Insecure-Requests": "1",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+          "sec-ch-ua": "\"Chromium\";v=\"148\", \"Microsoft Edge\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": "\"Windows\""
+        },
+        "connectTiming": {
+          "requestTime": 726848.641169
+        },
+        "siteHasCookieInOtherPartition": false
+      }
+    },
+    {
+      "method": "Network.responseReceivedExtraInfo",
+      "params": {
+        "requestId": "90B979E3B3B799587FD3588BB08EACC8",
+        "blockedCookies": [],
+        "headers": {
+          "Cache-Control": "no-store",
+          "Connection": "keep-alive",
+          "Content-Type": "text/html",
+          "Date": "Wed, 09 Sep 2026 15:09:34 GMT",
+          "Keep-Alive": "timeout=5",
+          "Transfer-Encoding": "chunked"
+        },
+        "resourceIPAddressSpace": "Loopback",
+        "statusCode": 200,
+        "headersText": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nCache-Control: no-store\r\nDate: Wed, 09 Sep 2026 15:09:34 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n",
+        "cookiePartitionKey": {
+          "topLevelSite": "http://127.0.0.1",
+          "hasCrossSiteAncestor": false
+        },
+        "cookiePartitionKeyOpaque": false,
+        "exemptedCookies": []
+      }
+    },
+    {
+      "method": "Network.responseReceived",
+      "params": {
+        "requestId": "90B979E3B3B799587FD3588BB08EACC8",
+        "loaderId": "90B979E3B3B799587FD3588BB08EACC8",
+        "timestamp": 726848.645967,
+        "type": "Document",
+        "response": {
+          "url": "http://127.0.0.1:5173/",
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "Cache-Control": "no-store",
+            "Connection": "keep-alive",
+            "Content-Type": "text/html",
+            "Date": "Wed, 09 Sep 2026 15:09:34 GMT",
+            "Keep-Alive": "timeout=5",
+            "Transfer-Encoding": "chunked"
+          },
+          "mimeType": "text/html",
+          "charset": "",
+          "connectionReused": true,
+          "connectionId": 577,
+          "remoteIPAddress": "127.0.0.1",
+          "remotePort": 5173,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "fromPrefetchCache": false,
+          "encodedDataLength": 181,
+          "timing": {
+            "requestTime": 726848.641169,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.606,
+            "sendEnd": 0.753,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 1.982,
+            "receiveHeadersEnd": 2.043
+          },
+          "responseTime": 1788966574298.102,
+          "protocol": "http/1.1",
+          "alternateProtocolUsage": "unspecifiedReason",
+          "securityState": "secure"
+        },
+        "hasExtraInfo": true,
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+      }
+    },
+    {
+      "method": "Runtime.executionContextsCleared",
+      "params": {}
+    },
+    {
+      "method": "Page.frameNavigated",
+      "params": {
+        "frame": {
+          "id": "2AD36384D243323BFC5EDAF169D199D4",
+          "loaderId": "90B979E3B3B799587FD3588BB08EACC8",
+          "url": "http://127.0.0.1:5173/",
+          "domainAndRegistry": "",
+          "securityOrigin": "http://127.0.0.1:5173",
+          "securityOriginDetails": {
+            "isLocalhost": true
+          },
+          "mimeType": "text/html",
+          "adFrameStatus": {
+            "adFrameType": "none"
+          },
+          "secureContextType": "SecureLocalhost",
+          "crossOriginIsolatedContextType": "NotIsolated",
+          "gatedAPIFeatures": []
+        },
+        "type": "Navigation"
+      }
+    },
+    {
+      "method": "Network.policyUpdated",
+      "params": {}
+    },
+    {
+      "method": "Network.dataReceived",
+      "params": {
+        "requestId": "90B979E3B3B799587FD3588BB08EACC8",
+        "timestamp": 726848.650453,
+        "dataLength": 597,
+        "encodedDataLength": 0
+      }
+    },
+    {
+      "method": "Runtime.executionContextCreated",
+      "params": {
+        "context": {
+          "id": 8,
+          "origin": "http://127.0.0.1:5173",
+          "name": "",
+          "uniqueId": "-8204190456292596805.391751721954349171",
+          "auxData": {
+            "isDefault": true,
+            "type": "default",
+            "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+          }
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFinished",
+      "params": {
+        "requestId": "90B979E3B3B799587FD3588BB08EACC8",
+        "timestamp": 726848.643629,
+        "encodedDataLength": 790
+      }
+    },
+    {
+      "method": "Page.domContentEventFired",
+      "params": {
+        "timestamp": 726848.653308
+      }
+    },
+    {
+      "method": "Page.loadEventFired",
+      "params": {
+        "timestamp": 726848.653706
+      }
+    },
+    {
+      "method": "Page.frameStoppedLoading",
+      "params": {
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "95C33A1507DCE81DE8F095195FAD4FFF",
+        "loaderId": "",
+        "documentURL": "http://127.0.0.1:5173/worker.mjs",
+        "request": {
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "method": "GET",
+          "headers": {
+            "Accept": "*/*"
+          },
+          "initialPriority": "VeryLow",
+          "referrerPolicy": "strict-origin-when-cross-origin"
+        },
+        "timestamp": 726849.654392,
+        "wallTime": 1788966575.309291,
+        "initiator": {
+          "type": "other",
+          "url": "http://127.0.0.1:5173/"
+        },
+        "redirectHasExtraInfo": false,
+        "type": "Script",
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "hasUserGesture": false
+      }
+    },
+    {
+      "method": "Network.requestWillBeSentExtraInfo",
+      "params": {
+        "requestId": "95C33A1507DCE81DE8F095195FAD4FFF",
+        "associatedCookies": [],
+        "headers": {
+          "Accept": "*/*",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+          "Connection": "keep-alive",
+          "Host": "127.0.0.1:5173",
+          "Referer": "http://127.0.0.1:5173/",
+          "Sec-Fetch-Dest": "worker",
+          "Sec-Fetch-Mode": "same-origin",
+          "Sec-Fetch-Site": "same-origin",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+        },
+        "connectTiming": {
+          "requestTime": 726849.655219
+        },
+        "clientSecurityState": {
+          "initiatorIsSecureContext": true,
+          "initiatorIPAddressSpace": "Loopback",
+          "localNetworkAccessRequestPolicy": "PermissionBlock"
+        },
+        "siteHasCookieInOtherPartition": false
+      }
+    },
+    {
+      "method": "Network.responseReceivedExtraInfo",
+      "params": {
+        "requestId": "95C33A1507DCE81DE8F095195FAD4FFF",
+        "blockedCookies": [],
+        "headers": {
+          "Cache-Control": "no-store",
+          "Connection": "keep-alive",
+          "Content-Type": "text/javascript",
+          "Date": "Wed, 09 Sep 2026 15:09:35 GMT",
+          "Keep-Alive": "timeout=5",
+          "Transfer-Encoding": "chunked"
+        },
+        "resourceIPAddressSpace": "Loopback",
+        "statusCode": 200,
+        "headersText": "HTTP/1.1 200 OK\r\nContent-Type: text/javascript\r\nCache-Control: no-store\r\nDate: Wed, 09 Sep 2026 15:09:35 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n",
+        "cookiePartitionKey": {
+          "topLevelSite": "http://127.0.0.1",
+          "hasCrossSiteAncestor": false
+        },
+        "cookiePartitionKeyOpaque": false,
+        "exemptedCookies": []
+      }
+    },
+    {
+      "method": "Target.attachedToTarget",
+      "params": {
+        "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6",
+        "targetInfo": {
+          "targetId": "95C33A1507DCE81DE8F095195FAD4FFF",
+          "type": "worker",
+          "title": "http://127.0.0.1:5173/worker.mjs",
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "2F1C9D6AB046E1E39DCEC0FAA06C99EE",
+          "pid": 30280
+        },
+        "waitingForDebugger": false
+      }
+    },
+    {
+      "method": "Inspector.workerScriptLoaded",
+      "params": {},
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Runtime.executionContextCreated",
+      "params": {
+        "context": {
+          "id": 1,
+          "origin": "http://127.0.0.1:5173/worker.mjs",
+          "name": "",
+          "uniqueId": "-8599982818902626504.-5199428213923740781"
+        }
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "%c%s"
+          },
+          {
+            "type": "string",
+            "value": "color: #265BA0"
+          },
+          {
+            "type": "string",
+            "value": "wasi:"
+          },
+          {
+            "type": "number",
+            "value": 2,
+            "description": "2"
+          },
+          {
+            "type": "number",
+            "value": 22,
+            "description": "22"
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1788966576648.12,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "environ_sizes_get",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 620,
+              "columnNumber": 12
+            }
+          ]
+        }
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "%c%s"
+          },
+          {
+            "type": "string",
+            "value": "color: #265BA0"
+          },
+          {
+            "type": "string",
+            "value": "wasi:"
+          },
+          {
+            "type": "number",
+            "value": 10,
+            "description": "10"
+          },
+          {
+            "type": "number",
+            "value": 87,
+            "description": "87"
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1788966576648.602,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "args_sizes_get",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 594,
+              "columnNumber": 12
+            }
+          ]
+        }
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "%c%s"
+          },
+          {
+            "type": "string",
+            "value": "color: #265BA0"
+          },
+          {
+            "type": "string",
+            "value": "wasi:"
+          },
+          {
+            "type": "string",
+            "value": "ghc/settings"
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1788966576664.632,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "path_open",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 979,
+              "columnNumber": 14
+            }
+          ]
+        }
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "%c%s"
+          },
+          {
+            "type": "string",
+            "value": "color: #265BA0"
+          },
+          {
+            "type": "string",
+            "value": "wasi:"
+          },
+          {
+            "type": "string",
+            "value": "ghc/targets/default.target"
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1788966576671.786,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "path_open",
+              "scriptId": "5",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 979,
+              "columnNumber": 14
+            }
+          ]
+        }
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.scriptParsed",
+      "params": {
+        "scriptId": "3",
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 84,
+        "endColumn": 0,
+        "executionContextId": 1,
+        "hash": "7933592d29ab0b2a03abebb71bcc5880e5215aa3c6b3361c80ef4080280c8814",
+        "buildId": "",
+        "isLiveEdit": false,
+        "sourceMapURL": "",
+        "hasSourceURL": false,
+        "isModule": true,
+        "length": 7372,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "$StgRun",
+              "scriptId": "8",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            }
+          ]
+        },
+        "scriptLanguage": "JavaScript",
+        "embedderName": "http://127.0.0.1:5173/worker.mjs"
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.scriptParsed",
+      "params": {
+        "scriptId": "4",
+        "url": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs",
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 151,
+        "endColumn": 0,
+        "executionContextId": 1,
+        "hash": "aa805f7689955cfe7343ea15c0f2851c2a2bbd87850d6b28e92cfa13b5d72828",
+        "buildId": "",
+        "isLiveEdit": false,
+        "sourceMapURL": "",
+        "hasSourceURL": false,
+        "isModule": true,
+        "length": 10307,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "$StgRun",
+              "scriptId": "8",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            }
+          ]
+        },
+        "scriptLanguage": "JavaScript",
+        "embedderName": "http://127.0.0.1:5173/ghc-jsffi-imports.mjs"
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.scriptParsed",
+      "params": {
+        "scriptId": "5",
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 1819,
+        "endColumn": 0,
+        "executionContextId": 1,
+        "hash": "a3947a157be0d2e64c1e740df0aaed4f64932f1517cec38e8cade0eb5a4942b5",
+        "buildId": "",
+        "isLiveEdit": false,
+        "sourceMapURL": "",
+        "hasSourceURL": false,
+        "isModule": true,
+        "length": 61161,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "$StgRun",
+              "scriptId": "8",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            }
+          ]
+        },
+        "scriptLanguage": "JavaScript",
+        "embedderName": "http://127.0.0.1:5173/shim.mjs"
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.scriptParsed",
+      "params": {
+        "scriptId": "6",
+        "url": "http://127.0.0.1:5173/dyld-browser-local.mjs",
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 767,
+        "endColumn": 0,
+        "executionContextId": 1,
+        "hash": "0d209a986b4c7d5200ff1dc392c412a870e4e29bce20b0ce6e3bc01753918566",
+        "buildId": "",
+        "isLiveEdit": false,
+        "sourceMapURL": "",
+        "hasSourceURL": false,
+        "isModule": true,
+        "length": 15301,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "$StgRun",
+              "scriptId": "8",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            }
+          ]
+        },
+        "scriptLanguage": "JavaScript",
+        "embedderName": "http://127.0.0.1:5173/dyld-browser-local.mjs"
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.scriptParsed",
+      "params": {
+        "scriptId": "7",
+        "url": "wasm://wasm/c8ef7532",
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 0,
+        "endColumn": 103,
+        "executionContextId": 1,
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "buildId": "",
+        "isLiveEdit": false,
+        "sourceMapURL": "",
+        "hasSourceURL": false,
+        "isModule": false,
+        "length": 103,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "$StgRun",
+              "scriptId": "8",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            }
+          ]
+        },
+        "codeOffset": 92,
+        "scriptLanguage": "WebAssembly",
+        "debugSymbols": [],
+        "embedderName": "wasm://wasm/c8ef7532"
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.scriptParsed",
+      "params": {
+        "scriptId": "8",
+        "url": "wasm://wasm/ghc.wasm-22ec9102",
+        "startLine": 0,
+        "startColumn": 0,
+        "endLine": 0,
+        "endColumn": 146482240,
+        "executionContextId": 1,
+        "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "buildId": "",
+        "isLiveEdit": false,
+        "sourceMapURL": "",
+        "hasSourceURL": false,
+        "isModule": false,
+        "length": 146482240,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "$StgRun",
+              "scriptId": "8",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            }
+          ]
+        },
+        "codeOffset": 2681279,
+        "scriptLanguage": "WebAssembly",
+        "debugSymbols": [],
+        "embedderName": "wasm://wasm/ghc.wasm-22ec9102"
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.paused",
+      "params": {
+        "callFrames": [
+          {
+            "callFrameId": "-1985987733658482598.1.0",
+            "functionName": "$StgRun",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120772570
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120772578
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.1"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.2"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.1",
+            "functionName": "$scheduleWaitThread",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120634956
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120635804
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.3"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.4"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.2",
+            "functionName": "$rts_evalLazyIO",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120588444
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120588574
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.5"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.6"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.3",
+            "functionName": "$hs_main",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120599956
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120600114
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.7"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.8"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.4",
+            "functionName": "$main",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 2924922
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 2925134
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.9"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.10"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.5",
+            "functionName": "$__main_void",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120871739
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 120871850
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.11"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.12"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.6",
+            "functionName": "$_start",
+            "functionLocation": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 2681302
+            },
+            "location": {
+              "scriptId": "8",
+              "lineNumber": 0,
+              "columnNumber": 2681357
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.13"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.14"
+            },
+            "canBeRestarted": false
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.7",
+            "functionName": "start",
+            "functionLocation": {
+              "scriptId": "5",
+              "lineNumber": 558,
+              "columnNumber": 7
+            },
+            "location": {
+              "scriptId": "5",
+              "lineNumber": 561,
+              "columnNumber": 23
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "local",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.15"
+                },
+                "name": "start",
+                "startLocation": {
+                  "scriptId": "5",
+                  "lineNumber": 558,
+                  "columnNumber": 7
+                },
+                "endLocation": {
+                  "scriptId": "5",
+                  "lineNumber": 570,
+                  "columnNumber": 3
+                }
+              },
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.16"
+                },
+                "startLocation": {
+                  "scriptId": "5",
+                  "lineNumber": 0,
+                  "columnNumber": 0
+                },
+                "endLocation": {
+                  "scriptId": "5",
+                  "lineNumber": 1819,
+                  "columnNumber": 0
+                }
+              },
+              {
+                "type": "global",
+                "object": {
+                  "type": "object",
+                  "className": "DedicatedWorkerGlobalScope",
+                  "description": "DedicatedWorkerGlobalScope",
+                  "objectId": "-1985987733658482598.1.17"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "WASI2",
+              "description": "WASI2",
+              "objectId": "-1985987733658482598.1.18"
+            },
+            "canBeRestarted": true
+          },
+          {
+            "callFrameId": "-1985987733658482598.1.8",
+            "functionName": "self.onmessage",
+            "functionLocation": {
+              "scriptId": "3",
+              "lineNumber": 6,
+              "columnNumber": 17
+            },
+            "location": {
+              "scriptId": "3",
+              "lineNumber": 80,
+              "columnNumber": 26
+            },
+            "url": "",
+            "scopeChain": [
+              {
+                "type": "block",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.19"
+                },
+                "name": "self.onmessage",
+                "startLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 15,
+                  "columnNumber": 6
+                },
+                "endLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 82,
+                  "columnNumber": 3
+                }
+              },
+              {
+                "type": "block",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.20"
+                },
+                "name": "self.onmessage",
+                "startLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 6,
+                  "columnNumber": 44
+                },
+                "endLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 83,
+                  "columnNumber": 1
+                }
+              },
+              {
+                "type": "local",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.21"
+                },
+                "name": "self.onmessage",
+                "startLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 6,
+                  "columnNumber": 17
+                },
+                "endLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 83,
+                  "columnNumber": 1
+                }
+              },
+              {
+                "type": "module",
+                "object": {
+                  "type": "object",
+                  "className": "Object",
+                  "description": "Object",
+                  "objectId": "-1985987733658482598.1.22"
+                },
+                "startLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 0,
+                  "columnNumber": 0
+                },
+                "endLocation": {
+                  "scriptId": "3",
+                  "lineNumber": 84,
+                  "columnNumber": 0
+                }
+              },
+              {
+                "type": "global",
+                "object": {
+                  "type": "object",
+                  "className": "DedicatedWorkerGlobalScope",
+                  "description": "DedicatedWorkerGlobalScope",
+                  "objectId": "-1985987733658482598.1.23"
+                }
+              }
+            ],
+            "this": {
+              "type": "object",
+              "className": "DedicatedWorkerGlobalScope",
+              "description": "DedicatedWorkerGlobalScope",
+              "objectId": "-1985987733658482598.1.24"
+            },
+            "canBeRestarted": false
+          }
+        ],
+        "reason": "other",
+        "hitBreakpoints": []
+      },
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    },
+    {
+      "method": "Debugger.resumed",
+      "params": {},
+      "sessionId": "EFF7EC5B3B09088F50AF16DA46566DF6"
+    }
+  ]
+}

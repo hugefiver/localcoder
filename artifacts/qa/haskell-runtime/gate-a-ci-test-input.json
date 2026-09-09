@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "gate": "A",
+  "kind": "test-input-portability-correction",
+  "status": "PASS",
+  "recordedAt": "2026-09-09T09:06:42.210Z",
+  "change": "Contract tests read and gunzip only public/haskell/ghc.wasm.gz.bin; there is no raw-dist fallback. This does not read or eagerly inflate a libdir/profile.",
+  "gitObservations": [
+    {
+      "command": [
+        "git",
+        "ls-files",
+        "--",
+        "runtimes/haskell-ghc/dist/ghc.wasm"
+      ],
+      "exitCode": 0,
+      "stdout": "runtimes/haskell-ghc/dist/ghc.wasm\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "check-ignore",
+        "-v",
+        "--",
+        "runtimes/haskell-ghc/dist/ghc.wasm"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "gitObservationNote": "During this correction git ls-files listed the raw asset and git check-ignore returned 1, unlike the caller's reported observation. The repro therefore explicitly models the requested delivery-only filesystem and does not claim it is an actual git clean checkout.",
+  "repro": {
+    "description": "Copied only the test, inventory module, durable contract and delivered gzip-bin asset into an isolated temp tree. The raw-dist input is deliberately absent. No user raw asset was moved, deleted or modified.",
+    "red": {
+      "command": [
+        "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+        "--test",
+        "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-ci-input-20260909-c93a\\snapshot\\tests\\scripts\\haskell-ghc-wasm-contract.test.mjs"
+      ],
+      "exitCode": 1,
+      "stdout": "node:fs:779\n  return binding.open(\n                 ^\n\nError: ENOENT: no such file or directory, open 'C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-ci-input-20260909-c93a\\snapshot\\runtimes\\haskell-ghc\\dist\\ghc.wasm'\n    at Object.openSync (node:fs:779:18)\n    at readFileSync (node:fs:625:35)\n    at file:///C:/Users/HUGEFI%7E1/AppData/Local/Temp/opencode/localcoder-haskell-ci-input-20260909-c93a/snapshot/tests/scripts/haskell-ghc-wasm-contract.test.mjs:6:16\n    at ModuleJob.run (node:internal/modules/esm/module_job:569:25)\n    at async node:internal/modules/esm/loader:650:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  errno: -4058,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: 'C:\\\\Users\\\\HUGEFI~1\\\\AppData\\\\Local\\\\Temp\\\\opencode\\\\localcoder-haskell-ci-input-20260909-c93a\\\\snapshot\\\\runtimes\\\\haskell-ghc\\\\dist\\\\ghc.wasm'\n}\n\nNode.js v26.8.1\n✖ C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-ci-input-20260909-c93a\\snapshot\\tests\\scripts\\haskell-ghc-wasm-contract.test.mjs (427.5014ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 480.2063\n\n✖ failing tests:\n\ntest at tests\\scripts\\haskell-ghc-wasm-contract.test.mjs:1:1\n✖ C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-ci-input-20260909-c93a\\snapshot\\tests\\scripts\\haskell-ghc-wasm-contract.test.mjs (427.5014ms)\n  'test failed'\n",
+      "stderr": "",
+      "timeoutMs": 20000,
+      "timedOut": false,
+      "rawAssetAbsent": true,
+      "fixtureFiles": [
+        "tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+        "scripts/lib/haskell-ghc-wasm-contract.mjs",
+        "runtimes/haskell-ghc/ghc-wasm-contract.json",
+        "public/haskell/ghc.wasm.gz.bin"
+      ]
+    },
+    "green": {
+      "command": [
+        "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+        "--test",
+        "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-ci-input-20260909-c93a\\snapshot\\tests\\scripts\\haskell-ghc-wasm-contract.test.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "✔ the current GHC inventory locks source identity and the complete import/export surface (1192.6416ms)\n✔ inventory is recursively immutable and never evaluates JSFFI bodies (3.0673ms)\n✔ unknown import namespaces, names and kinds are rejected loudly (1.4745ms)\n✔ JSFFI triples reject malformed UTF-8, missing NUL, missing fields and duplicates (2.9543ms)\n✔ only prelude-owned imports may lack records and final binding excludes unselected raw records (1.0838ms)\n✔ post-link selection validates ignored raw records before excluding them (2.0329ms)\n✔ contract validation compares every field and requires an observed numeric version (5.9669ms)\n✔ the browser-approved durable contract matches the actual source (664.0846ms)\nℹ tests 8\nℹ suites 0\nℹ pass 8\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2722.122\n",
+      "stderr": "",
+      "timeoutMs": 20000,
+      "timedOut": false,
+      "rawAssetAbsent": true,
+      "fixtureFiles": [
+        "tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+        "scripts/lib/haskell-ghc-wasm-contract.mjs",
+        "runtimes/haskell-ghc/ghc-wasm-contract.json",
+        "public/haskell/ghc.wasm.gz.bin"
+      ]
+    }
+  },
+  "identities": {
+    "delivered": {
+      "path": "public/haskell/ghc.wasm.gz.bin",
+      "bytes": 21088671,
+      "sha256": "97a96af65aeb2439989a7b0be11c2795e5862b3588b11c6ad3020537ecbd1681"
+    },
+    "decompressed": {
+      "bytes": 146482240,
+      "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+    },
+    "contract": {
+      "path": "runtimes/haskell-ghc/ghc-wasm-contract.json",
+      "bytes": 146482240,
+      "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+    },
+    "matchesDurableContract": true,
+    "matchesExistingBrowserGateASource": true
+  },
+  "browser": {
+    "rerun": false,
+    "reason": "Only test input location changed; decompressed delivered bytes equal the previously browser-verified source bytes/hash. Production inspector, binding and durable contract are unchanged."
+  },
+  "focused": {
+    "command": "pnpm test tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+    "exitCode": 0,
+    "tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "timeoutMs": 45000
+  },
+  "lint": {
+    "command": "pnpm run lint",
+    "exitCode": 0,
+    "timeoutMs": 45000
+  },
+  "cleanup": {
+    "tempRoot": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-ci-input-20260909-c93a",
+    "removed": true,
+    "userRawAssetUntouched": true
+  }
+}

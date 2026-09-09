@@ -1,0 +1,657 @@
+{
+  "schemaVersion": 1,
+  "status": "BLOCKED",
+  "startedAt": "2026-09-01T12:29:54.576Z",
+  "completedAt": "2026-09-01T12:30:13.807Z",
+  "scope": "Read-only LocalCoder Haskell production-browser QA; no source/test/docs/manifest/asset changes",
+  "rulesLoaded": [
+    "AGENTS.md background-process/CDP/profile/cleanup rules",
+    "docs/qa/localcoder-browser-acceptance.md optional-runtime truth table",
+    "debugging Playwright real-browser, Node launcher, QA, and cleanup references"
+  ],
+  "environment": {
+    "node": "v26.8.1",
+    "playwright": {
+      "version": "1.59.0",
+      "browserType": "chromium",
+      "cdpUrl": "http://127.0.0.1:9222",
+      "headed": true,
+      "browserVersion": "147.0.7727.15"
+    },
+    "ports": {
+      "preview": 4173,
+      "verifier": 4181,
+      "cdp": 9222,
+      "initiallyFree": true
+    },
+    "profile": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\profile",
+    "processes": {
+      "preview": {
+        "name": "preview",
+        "pid": 18484,
+        "startedAt": "2026-09-01T12:27:20.530Z",
+        "command": "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+        "args": [
+          "C:\\Users\\hugefiver\\source\\LocalCoder\\node_modules\\vite\\bin\\vite.js",
+          "preview",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "4173",
+          "--strictPort"
+        ],
+        "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+        "stdoutLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\preview.stdout.log",
+        "stderrLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\preview.stderr.log"
+      },
+      "verifier": {
+        "name": "verifier",
+        "pid": 21032,
+        "startedAt": "2026-09-01T12:28:58.988Z",
+        "command": "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+        "args": [
+          "C:\\Users\\hugefiver\\source\\LocalCoder\\artifacts\\qa\\haskell-runtime\\receipt-host.mjs",
+          "C:\\Users\\hugefiver\\source\\LocalCoder",
+          "4181",
+          "http://127.0.0.1:4173"
+        ],
+        "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+        "stdoutLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\verifier.stdout.log",
+        "stderrLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\verifier.stderr.log"
+      },
+      "browser": {
+        "name": "browser",
+        "pid": 27712,
+        "startedAt": "2026-09-01T12:28:16.904Z",
+        "command": "C:\\Users\\hugefiver\\AppData\\Local\\ms-playwright\\chromium-1217\\chrome-win64\\chrome.exe",
+        "args": [
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=9222",
+          "--user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\profile",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--disable-component-update",
+          "--disable-default-apps",
+          "--disable-extensions",
+          "--disable-sync",
+          "--disable-features=Translate,MediaRouter,OptimizationHints",
+          "--no-sandbox",
+          "about:blank"
+        ],
+        "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+        "stdoutLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\browser.stdout.log",
+        "stderrLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\browser.stderr.log"
+      },
+      "automation": {
+        "name": "automation",
+        "pid": 20360,
+        "startedAt": "2026-09-01T12:29:53.752Z",
+        "command": "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+        "args": [
+          "C:\\Users\\hugefiver\\source\\LocalCoder\\artifacts\\qa\\haskell-runtime\\browser-qa.mjs",
+          "C:\\Users\\hugefiver\\source\\LocalCoder\\artifacts\\qa\\haskell-runtime\\haskell-runtime-qa.json",
+          "C:\\Users\\hugefiver\\source\\LocalCoder\\artifacts\\qa\\haskell-runtime\\haskell-runtime.png"
+        ],
+        "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+        "stdoutLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\automation.stdout.log",
+        "stderrLog": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-qa-b86ed890084b4eb1a55b6ac138a85426\\logs\\automation.stderr.log"
+      }
+    }
+  },
+  "distribution": {
+    "source": "dist production preview",
+    "manifestPackaged": true,
+    "manifestInitializeTimeoutMs": 120000,
+    "manifestExecuteTimeoutMs": 120000,
+    "expectedBuildId": "cb5ee067f9482da3",
+    "oldGzipAssetsAbsent": true,
+    "assets": [
+      {
+        "url": "haskell-worker.js",
+        "manifestBytes": 44053,
+        "diskBytes": 44053,
+        "bytesMatch": true,
+        "sha256": "b83e90af070ba252eaeefbb53284d3fcb75e704f78683012133bef87bfd0bcfe",
+        "receiptSha256": "b83e90af070ba252eaeefbb53284d3fcb75e704f78683012133bef87bfd0bcfe",
+        "receiptDigestMatches": true
+      },
+      {
+        "url": "haskell/ghc.wasm.gz.bin",
+        "manifestBytes": 21088671,
+        "diskBytes": 21088671,
+        "bytesMatch": true,
+        "sha256": "97a96af65aeb2439989a7b0be11c2795e5862b3588b11c6ad3020537ecbd1681",
+        "receiptSha256": "97a96af65aeb2439989a7b0be11c2795e5862b3588b11c6ad3020537ecbd1681",
+        "receiptDigestMatches": true
+      },
+      {
+        "url": "haskell/ghc.wasm",
+        "manifestBytes": 146482240,
+        "diskBytes": 146482240,
+        "bytesMatch": true,
+        "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+        "receiptSha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+        "receiptDigestMatches": true
+      },
+      {
+        "url": "haskell/libdir.tar.gz.bin",
+        "manifestBytes": 643211474,
+        "diskBytes": 643211474,
+        "bytesMatch": true,
+        "sha256": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2",
+        "receiptSha256": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2",
+        "receiptDigestMatches": true
+      },
+      {
+        "url": "haskell/wasi-shim.js",
+        "manifestBytes": 62623,
+        "diskBytes": 62623,
+        "bytesMatch": true,
+        "sha256": "cbf267747539a9f267c6c3c555466ee8e7e95d0271713b3f1a20b1be522b2cef",
+        "receiptSha256": "cbf267747539a9f267c6c3c555466ee8e7e95d0271713b3f1a20b1be522b2cef",
+        "receiptDigestMatches": true
+      },
+      {
+        "url": "haskell/runner.meta.json",
+        "manifestBytes": 264,
+        "diskBytes": 264,
+        "bytesMatch": true,
+        "sha256": "e6bd7e1e1badbb55e447c678d456243da56bd6c2d9660690fe2bcebc2ae822a7",
+        "receiptSha256": "e6bd7e1e1badbb55e447c678d456243da56bd6c2d9660690fe2bcebc2ae822a7",
+        "receiptDigestMatches": true
+      }
+    ]
+  },
+  "receipt": {
+    "status": {
+      "kind": "response",
+      "status": 400,
+      "statusText": "Bad Request",
+      "responseBody": "{\"status\":\"BROKEN\",\"reason\":\"Receipt does not contain a verified runtime result\"}",
+      "atEpochMs": 1788265813292
+    },
+    "postSucceeded": false,
+    "artifactPath": "artifacts/runtime-verification/haskell-ghc-wasi.json",
+    "artifactExists": false,
+    "postedReceipt": {
+      "suite": "optional-v1",
+      "runtimeId": "haskell-ghc-wasi",
+      "protocolVersion": 1,
+      "verification": {
+        "state": "broken",
+        "runtimeId": "haskell-ghc-wasi",
+        "code": "haskell-initialization-failed",
+        "message": "Optional runtime verification failed"
+      },
+      "manifestSha256": "01d31262702198c55baa7af5cc99b39a148e43aa97fa178afd0ddf2a671db399",
+      "assets": [
+        {
+          "url": "haskell-worker.js",
+          "sha256": "b83e90af070ba252eaeefbb53284d3fcb75e704f78683012133bef87bfd0bcfe"
+        },
+        {
+          "url": "haskell/ghc.wasm.gz.bin",
+          "sha256": "97a96af65aeb2439989a7b0be11c2795e5862b3588b11c6ad3020537ecbd1681"
+        },
+        {
+          "url": "haskell/ghc.wasm",
+          "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+        },
+        {
+          "url": "haskell/libdir.tar.gz.bin",
+          "sha256": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2"
+        },
+        {
+          "url": "haskell/wasi-shim.js",
+          "sha256": "cbf267747539a9f267c6c3c555466ee8e7e95d0271713b3f1a20b1be522b2cef"
+        },
+        {
+          "url": "haskell/runner.meta.json",
+          "sha256": "e6bd7e1e1badbb55e447c678d456243da56bd6c2d9660690fe2bcebc2ae822a7"
+        }
+      ]
+    },
+    "checks": null,
+    "identity": null
+  },
+  "failure": {
+    "verification": {
+      "state": "broken",
+      "runtimeId": "haskell-ghc-wasi",
+      "code": "haskell-initialization-failed",
+      "message": "Optional runtime verification failed"
+    },
+    "protocolFailure": {
+      "kind": "infrastructure",
+      "code": "haskell-initialization-failed",
+      "message": "Local Haskell runtime could not initialize",
+      "fatal": true
+    },
+    "receiptRejection": {
+      "kind": "response",
+      "status": 400,
+      "statusText": "Bad Request",
+      "responseBody": "{\"status\":\"BROKEN\",\"reason\":\"Receipt does not contain a verified runtime result\"}",
+      "atEpochMs": 1788265813292
+    },
+    "pageResult": "{\n  \"name\": \"Error\",\n  \"message\": \"Runtime verification receipt was rejected with 400\"\n}",
+    "currentPhase": "initializing",
+    "workerTerminated": true
+  },
+  "timings": {
+    "totalMs": 18624,
+    "gzipBinFetchMs": 163,
+    "libdirGzipBinFetchMs": 3780,
+    "initializeMs": 13176,
+    "decompressionAndInitializationAfterCompressedAssetsMs": 9369,
+    "postFinalInitializationRequestMs": 258,
+    "smokeMs": null,
+    "judgeMs": null
+  },
+  "memoryObservations": {
+    "samples": [
+      {
+        "label": "before-harness",
+        "at": "2026-09-01T12:29:54.649Z",
+        "performanceMemory": {
+          "jsHeapSizeLimit": 3760000000,
+          "totalJSHeapSize": 10000000,
+          "usedJSHeapSize": 10000000
+        },
+        "userAgentSpecificMemory": {
+          "available": false
+        }
+      },
+      {
+        "label": "after-verification",
+        "at": "2026-09-01T12:30:13.601Z",
+        "performanceMemory": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 794570290,
+          "usedJSHeapSize": 793156154
+        },
+        "userAgentSpecificMemory": {
+          "available": false
+        }
+      }
+    ],
+    "browserProcessTreeAfterFailure": {
+      "capturePoint": "after Worker termination, before browser cleanup",
+      "processCount": 8,
+      "workingSetBytes": 337866752,
+      "privateMemoryBytes": 302260224
+    },
+    "note": "performance.memory is a browser JS-heap observation, not authoritative device or per-Worker memory; measureUserAgentSpecificMemory was unavailable. Process-tree values are point-in-time OS observations after the failed Worker had terminated."
+  },
+  "harness": {
+    "status": "failed",
+    "url": "http://127.0.0.1:4173/runtime-harness.html?runtimeId=haskell-ghc-wasi&receiptPort=4181&suite=optional-v1",
+    "workerEvents": [
+      {
+        "at": 1788265794827,
+        "direction": "construct",
+        "url": "http://127.0.0.1:4173/haskell-worker.js"
+      },
+      {
+        "at": 1788265794827,
+        "direction": "outbound",
+        "payload": {
+          "protocolVersion": 1,
+          "requestId": "haskell-ghc-wasi:1",
+          "runtimeId": "haskell-ghc-wasi",
+          "type": "initialize"
+        }
+      },
+      {
+        "at": 1788265794844,
+        "direction": "inbound",
+        "payload": {
+          "protocolVersion": 1,
+          "requestId": "haskell-ghc-wasi:1",
+          "runtimeId": "haskell-ghc-wasi",
+          "type": "status",
+          "phase": "initializing",
+          "message": "Initializing runtime"
+        }
+      },
+      {
+        "at": 1788265808003,
+        "direction": "inbound",
+        "payload": {
+          "protocolVersion": 1,
+          "requestId": "haskell-ghc-wasi:1",
+          "runtimeId": "haskell-ghc-wasi",
+          "type": "failure",
+          "error": {
+            "kind": "infrastructure",
+            "code": "haskell-initialization-failed",
+            "message": "Local Haskell runtime could not initialize",
+            "fatal": true
+          }
+        }
+      },
+      {
+        "at": 1788265808003,
+        "direction": "terminate"
+      }
+    ],
+    "execute": {
+      "status": "not-attempted",
+      "reason": "Verification failed"
+    },
+    "judge": {
+      "status": "not-attempted",
+      "reason": "Verification failed"
+    }
+  },
+  "product": {
+    "status": "not-attempted",
+    "reason": "Authoritative optional verification did not succeed"
+  },
+  "browserEvents": {
+    "console": [
+      {
+        "at": "2026-09-01T12:29:54.831Z",
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "location": {
+          "url": "http://127.0.0.1:4173/favicon.ico",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      },
+      {
+        "at": "2026-09-01T12:30:13.226Z",
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+        "location": {
+          "url": "http://127.0.0.1:4181/receipt",
+          "lineNumber": 0,
+          "columnNumber": 0
+        }
+      }
+    ],
+    "pageerror": [],
+    "requestfailed": [],
+    "workers": [
+      {
+        "at": "2026-09-01T12:29:54.838Z",
+        "url": "http://127.0.0.1:4173/haskell-worker.js"
+      }
+    ]
+  },
+  "network": {
+    "requests": [
+      {
+        "url": "http://127.0.0.1:4173/runtime-harness.html?runtimeId=haskell-ghc-wasi&receiptPort=4181&suite=optional-v1",
+        "method": "GET",
+        "resourceType": "document",
+        "status": 200,
+        "durationMs": 63,
+        "failure": null,
+        "contentLength": "790",
+        "contentType": "text/html;charset=utf-8"
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/runtime-harness-vVjaILWe.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 6,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/protocol-dsaeYcPM.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 7,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/supervisor-DTA4oAHP.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 8,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/radix-vendor-C-N8b9hw.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 41,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/assets/problem-modules-B5j9qmys.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 43,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/runtime-manifest.json",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 6,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell-worker.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 16,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/runner.meta.json",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 6,
+        "failure": null,
+        "contentLength": "264",
+        "contentType": "application/json"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/ghc.wasm.gz.bin",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 163,
+        "failure": null,
+        "contentLength": "21088671",
+        "contentType": "application/octet-stream"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/libdir.tar.gz.bin",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 3780,
+        "failure": null,
+        "contentLength": "643211474",
+        "contentType": "application/octet-stream"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/libdir.tar",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 14,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/html"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/wasi-shim.js",
+        "method": "GET",
+        "resourceType": "script",
+        "status": 200,
+        "durationMs": 9,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "text/javascript"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell-worker.js",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 4,
+        "failure": null,
+        "contentLength": null,
+        "contentType": null
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/ghc.wasm.gz.bin",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 748,
+        "failure": null,
+        "contentLength": null,
+        "contentType": null
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/ghc.wasm",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 1511,
+        "failure": null,
+        "contentLength": "146482240",
+        "contentType": "application/wasm"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/libdir.tar.gz.bin",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 4410,
+        "failure": null,
+        "contentLength": "643211474",
+        "contentType": "application/octet-stream"
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/wasi-shim.js",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 597,
+        "failure": null,
+        "contentLength": null,
+        "contentType": null
+      },
+      {
+        "url": "http://127.0.0.1:4173/haskell/runner.meta.json",
+        "method": "GET",
+        "resourceType": "fetch",
+        "status": 200,
+        "durationMs": 664,
+        "failure": null,
+        "contentLength": null,
+        "contentType": null
+      },
+      {
+        "url": "http://127.0.0.1:4181/receipt",
+        "method": "POST",
+        "resourceType": "fetch",
+        "status": 400,
+        "durationMs": 82,
+        "failure": null,
+        "contentLength": null,
+        "contentType": "application/json",
+        "postData": {
+          "suite": "optional-v1",
+          "runtimeId": "haskell-ghc-wasi",
+          "protocolVersion": 1,
+          "verification": {
+            "state": "broken",
+            "runtimeId": "haskell-ghc-wasi",
+            "code": "haskell-initialization-failed",
+            "message": "Optional runtime verification failed"
+          },
+          "manifestSha256": "01d31262702198c55baa7af5cc99b39a148e43aa97fa178afd0ddf2a671db399",
+          "assets": [
+            {
+              "url": "haskell-worker.js",
+              "sha256": "b83e90af070ba252eaeefbb53284d3fcb75e704f78683012133bef87bfd0bcfe"
+            },
+            {
+              "url": "haskell/ghc.wasm.gz.bin",
+              "sha256": "97a96af65aeb2439989a7b0be11c2795e5862b3588b11c6ad3020537ecbd1681"
+            },
+            {
+              "url": "haskell/ghc.wasm",
+              "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+            },
+            {
+              "url": "haskell/libdir.tar.gz.bin",
+              "sha256": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2"
+            },
+            {
+              "url": "haskell/wasi-shim.js",
+              "sha256": "cbf267747539a9f267c6c3c555466ee8e7e95d0271713b3f1a20b1be522b2cef"
+            },
+            {
+              "url": "haskell/runner.meta.json",
+              "sha256": "e6bd7e1e1badbb55e447c678d456243da56bd6c2d9660690fe2bcebc2ae822a7"
+            }
+          ]
+        }
+      }
+    ],
+    "assertions": {
+      "runtimeAssetRequestCount": 12,
+      "runtimeAssetsSameOrigin": true,
+      "oldGzipUrls": [],
+      "noOldGzipUrls": true,
+      "remoteRuntimeRequests": [],
+      "noRemoteRuntimeDependency": true,
+      "assetUrls": [
+        "http://127.0.0.1:4173/haskell-worker.js",
+        "http://127.0.0.1:4173/haskell/runner.meta.json",
+        "http://127.0.0.1:4173/haskell/ghc.wasm.gz.bin",
+        "http://127.0.0.1:4173/haskell/libdir.tar.gz.bin",
+        "http://127.0.0.1:4173/haskell/libdir.tar",
+        "http://127.0.0.1:4173/haskell/wasi-shim.js",
+        "http://127.0.0.1:4173/haskell/ghc.wasm"
+      ]
+    }
+  },
+  "screenshot": "artifacts/qa/haskell-runtime/haskell-runtime.png",
+  "cleanup": {
+    "status": "complete",
+    "runOwnedProcessesGone": true,
+    "portsFree": [
+      4173,
+      4181,
+      9222
+    ],
+    "profileAndLogsRemoved": true,
+    "temporaryScriptsRemoved": true,
+    "receiptArtifactAbsent": true,
+    "workingTreeDelta": "Relative to the recorded baseline, the only new path is artifacts/qa/haskell-runtime/; all pre-existing approved implementation changes and untracked .bin assets remain untouched."
+  }
+}

@@ -1,0 +1,1908 @@
+{
+  "schemaVersion": 1,
+  "gate": "A",
+  "status": "PASS",
+  "gatePassed": true,
+  "recordedAt": "2026-09-09T08:50:17.146Z",
+  "command": [
+    "ghc",
+    "--numeric-version"
+  ],
+  "exitCode": 0,
+  "stdout": "9.15.20260202\n",
+  "stderr": "",
+  "stdoutIsNumericVersion": true,
+  "ghcNumericVersion": "9.15.20260202",
+  "dyldCalls": [],
+  "unsupportedImports": [],
+  "remoteRuntimeRequests": [],
+  "fullLibdirRequestedByBrowser": false,
+  "baseline": {
+    "head": "d92e9803a97b9210e973fbc322db678df2a285ac",
+    "status": " M .gitattributes\n M .gitignore\n M docs/operations/runtime-assets.md\n M public/haskell-worker.js\n M public/haskell/README.md\n D public/haskell/ghc.wasm.gz\n D public/haskell/libdir.tar.gz\n M public/haskell/runner.meta.json\n M public/runtime-manifest.json\n M runtimes/haskell-ghc/README.md\n M runtimes/haskell-ghc/runner.meta.json\n M scripts/build-runtimes.mjs\n M scripts/lib/runtime-catalog.mjs\n M scripts/lib/worker-build-identity.mjs\n M src/workers/haskell/assets.ts\n M src/workers/haskell/tar-filesystem.ts\n M tests/integration/build-worker-assets.test.ts\n M tests/scripts/runtime-manifest-generation.test.mjs\n M tests/workers/haskell-bridge.test.ts\n M tests/workers/haskell-filesystem.test.ts\n?? .debug-journal.md\n?? SESSION-HANDOFF.md\n?? artifacts/qa/haskell-runtime/\n?? docs/superpowers/plans/2026-09-01-haskell-ghc-e-browser-runtime.md\n?? docs/superpowers/specs/2026-09-01-haskell-ghc-e-browser-runtime-design.md\n?? public/haskell/ghc.wasm.gz.bin\n?? public/haskell/libdir.tar.gz.bin\n?? scripts/probes/\n?? tests/scripts/haskell-ghc-wasm-contract.test.mjs\n",
+    "diffStat": " .gitattributes                                     |   2 +-\n .gitignore                                         |  12 +--\n docs/operations/runtime-assets.md                  |  14 +++-\n public/haskell-worker.js                           |  31 ++++---\n public/haskell/README.md                           |  48 +++++------\n public/haskell/ghc.wasm.gz                         | Bin 21088671 -> 0 bytes\n public/haskell/libdir.tar.gz                       |   3 -\n public/haskell/runner.meta.json                    |   4 +-\n public/runtime-manifest.json                       |   8 +-\n runtimes/haskell-ghc/README.md                     |  91 +++++++--------------\n runtimes/haskell-ghc/runner.meta.json              |   4 +-\n scripts/build-runtimes.mjs                         |  21 +++--\n scripts/lib/runtime-catalog.mjs                    |   6 +-\n scripts/lib/worker-build-identity.mjs              |   8 +-\n src/workers/haskell/assets.ts                      |  10 +--\n src/workers/haskell/tar-filesystem.ts              |  18 +++-\n tests/integration/build-worker-assets.test.ts      |  49 +++++++----\n tests/scripts/runtime-manifest-generation.test.mjs |  18 ++--\n tests/workers/haskell-bridge.test.ts               |  63 +++++++++++---\n tests/workers/haskell-filesystem.test.ts           |  20 +++++\n 20 files changed, 253 insertions(+), 177 deletions(-)\n",
+    "diffCheck": "",
+    "protectedFiles": [
+      {
+        "path": ".gitattributes",
+        "bytes": 344,
+        "sha256": "ef0af76759e8940a3bf4446f5e30f808839b58568f0ad5659a40e5c8ff11ee51"
+      },
+      {
+        "path": ".gitignore",
+        "bytes": 1408,
+        "sha256": "83dddd01b9facb96c034bd60f6d8e54c02415e52adc5da8bb7a7e196b05cb74b"
+      },
+      {
+        "path": "docs/operations/runtime-assets.md",
+        "bytes": 8202,
+        "sha256": "efde7395e32fec9790a81f30d28893ff865badd813ffcd29e1330ef1bb65202d"
+      },
+      {
+        "path": "public/haskell-worker.js",
+        "bytes": 44053,
+        "sha256": "b83e90af070ba252eaeefbb53284d3fcb75e704f78683012133bef87bfd0bcfe"
+      },
+      {
+        "path": "public/haskell/README.md",
+        "bytes": 1153,
+        "sha256": "0c91601f897a541a257fd3dc97b82b1463d0fd73dd7fd530746afe68c04194d1"
+      },
+      {
+        "path": "public/haskell/ghc.wasm.gz",
+        "absent": true
+      },
+      {
+        "path": "public/haskell/libdir.tar.gz",
+        "absent": true
+      },
+      {
+        "path": "public/haskell/runner.meta.json",
+        "bytes": 264,
+        "sha256": "e6bd7e1e1badbb55e447c678d456243da56bd6c2d9660690fe2bcebc2ae822a7"
+      },
+      {
+        "path": "public/runtime-manifest.json",
+        "bytes": 5592,
+        "sha256": "01d31262702198c55baa7af5cc99b39a148e43aa97fa178afd0ddf2a671db399"
+      },
+      {
+        "path": "runtimes/haskell-ghc/README.md",
+        "bytes": 1487,
+        "sha256": "aeed97ba4660fef929870fe3f99cd8d305ad22adcc382b36a8b542e1e5a0271f"
+      },
+      {
+        "path": "runtimes/haskell-ghc/runner.meta.json",
+        "bytes": 264,
+        "sha256": "e6bd7e1e1badbb55e447c678d456243da56bd6c2d9660690fe2bcebc2ae822a7"
+      },
+      {
+        "path": "scripts/build-runtimes.mjs",
+        "bytes": 10328,
+        "sha256": "077b26d74c0454f7c20458c5ac9a3585a0eae2bab53af51dd60724e6fe1d1715"
+      },
+      {
+        "path": "scripts/lib/runtime-catalog.mjs",
+        "bytes": 2846,
+        "sha256": "5d9f357e3c74c0fe94fc0f8d65f0b1845dbea07968a4396909c8496fa82bdfb3"
+      },
+      {
+        "path": "scripts/lib/worker-build-identity.mjs",
+        "bytes": 11817,
+        "sha256": "1da82c6b92fac6c6154ef256213ba7e92d1872cb732e46fa669d7bb1a18b7eda"
+      },
+      {
+        "path": "src/workers/haskell/assets.ts",
+        "bytes": 8059,
+        "sha256": "f948ee85972df8ab5c6f926f6ec7669839759754ed421f7bae222ff3b0919c35"
+      },
+      {
+        "path": "src/workers/haskell/tar-filesystem.ts",
+        "bytes": 7887,
+        "sha256": "dcb0215324a50c69231869309c2bdefc76902f35a6ac4c4624c25cb0783fe411"
+      },
+      {
+        "path": "tests/integration/build-worker-assets.test.ts",
+        "bytes": 25908,
+        "sha256": "f55dd39ac7831a8b072d7e3bea952d94a4df8b3a1de56a401d220c1d5721bcf1"
+      },
+      {
+        "path": "tests/scripts/runtime-manifest-generation.test.mjs",
+        "bytes": 10090,
+        "sha256": "67a4ebc2b9957f0fde3959b91b5f5194929211bc83cb99f5080144b658577a07"
+      },
+      {
+        "path": "tests/workers/haskell-bridge.test.ts",
+        "bytes": 13490,
+        "sha256": "2d5286b5a13d35bb61a6393ef65be13de1204617b0c835f65d7c892004260278"
+      },
+      {
+        "path": "tests/workers/haskell-filesystem.test.ts",
+        "bytes": 5077,
+        "sha256": "9cca54b1e1a763c7047e051696ff258163946bbdaf7f1de357dde8366b6be400"
+      }
+    ],
+    "source": {
+      "bytes": 146482240,
+      "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+    },
+    "plan": {
+      "bytes": 78580,
+      "sha256": "c6f96c9f22c62afbafe2de8cd552f998deef2dab5cf27e52dd60abefa4394a0b"
+    },
+    "captureNote": "Step 1 status/stat/check were observed before edits. This machine-readable snapshot was captured after creating the Task 1 test/probe; those new paths below are not prior user work.",
+    "taskPathsAlreadyCreatedAtCapture": [
+      "tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "scripts/probes/haskell-ghc-startup.mjs"
+    ],
+    "allPriorModifiedFilesPreserved": true
+  },
+  "selectionRuling": {
+    "authority": "Parent coordinator/user correction within Task 1 on 2026-09-09; approved spec locks upstream post-link semantics. Plan/spec were not modified.",
+    "rule": "Strictly parse and deduplicate all raw records and bind the complete custom-section hash. Only actual imported records enter jsffiRecords/final binding. Reject unselected final bindings, not unselected raw records. Reject unknown actual imports, missing selected records, duplicate or malformed raw records.",
+    "rawRecordCount": 29,
+    "selectedRecordCount": 12,
+    "ignoredRecordCount": 17,
+    "upstreamSource": {
+      "path": "post-link.mjs",
+      "lines": "29-44",
+      "source": "if (importNames.has(strs[0])) { recs.push(strs); }",
+      "parseSectionsExecuted": true,
+      "parseRecordExecuted": false,
+      "customBodiesEvaluated": false,
+      "sha256": "7189504ba5946eaaafd0154b95b220e8acd851865e59c32766029d63a64a7d2f"
+    },
+    "supersededConclusion": {
+      "status": "BLOCKED",
+      "reason": "LOCKED_JSFFI_RECORD_SELECTION_CONFLICT",
+      "explanation": "The earlier selection-rule conflict was a corrected planning fact, not a runtime capability failure. Its RED evidence is retained below."
+    }
+  },
+  "diagnosticInventory": {
+    "imports": [
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC0ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC1ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC2ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC3ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC17ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC18ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziConcziInternalZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "newJSVal",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "freeJSVal",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "getJSVal",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "scheduleWork",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "args_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "args_sizes_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "environ_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "environ_sizes_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "clock_res_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "clock_time_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_close",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_fdstat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_fdstat_set_flags",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_filestat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_filestat_set_size",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_prestat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_prestat_dir_name",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_read",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_readdir",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_seek",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_write",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_create_directory",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_filestat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_open",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_readlink",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_remove_directory",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_rename",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_unlink_file",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "poll_oneoff",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "proc_exit",
+        "kind": "function"
+      }
+    ],
+    "exports": [
+      {
+        "name": "memory",
+        "kind": "memory"
+      },
+      {
+        "name": "_start",
+        "kind": "function"
+      },
+      {
+        "name": "rts_schedulerLoop",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveUnit",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveJSVal",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveChar",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt8",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt16",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt32",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt64",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord8",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord16",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord32",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord64",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolvePtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveFunPtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveFloat",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveDouble",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveStablePtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveBool",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseReject",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseThrowTo",
+        "kind": "function"
+      },
+      {
+        "name": "rts_freeStablePtr",
+        "kind": "function"
+      }
+    ],
+    "customSections": [
+      {
+        "name": "ghc_wasm_jsffi",
+        "sections": [
+          {
+            "bytes": 4322,
+            "sha256": "a46b019be575e788bfb4db60adcb6fe958f679ed2478cdec518bd1b484434348"
+          }
+        ]
+      },
+      {
+        "name": "name",
+        "sections": [
+          {
+            "bytes": 11372111,
+            "sha256": "0dc8d872d4e4f7ed9773162cf6fa4289be52774a6ee3149658fd6799152bd361"
+          }
+        ]
+      },
+      {
+        "name": "producers",
+        "sections": [
+          {
+            "bytes": 155,
+            "sha256": "d45d3197a9f81f92b3bbd81bbca79ea17028b7c30df41b57d06e72518a75136f"
+          }
+        ]
+      },
+      {
+        "name": "target_features",
+        "sections": [
+          {
+            "bytes": 157,
+            "sha256": "eba3dfff615c252dcf977deb28a5c6a276722ccadebbd6254b8d1403216f8e11"
+          }
+        ]
+      }
+    ],
+    "rawRecordCount": 29,
+    "selectedRecordCount": 12,
+    "unselectedRecordCount": 17,
+    "rawRecords": [
+      {
+        "name": "ZC0ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.findSystemLibrary($1)"
+      },
+      {
+        "name": "ZC1ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.addLibrarySearchPath($1)"
+      },
+      {
+        "name": "ZC2ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "($1)",
+        "body": "__ghc_wasm_jsffi_dyld.lookupSymbol($1)"
+      },
+      {
+        "name": "ZC3ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.loadDLLs($1)"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveBool($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveStablePtr($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveDouble($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveFloat($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveFunPtr($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC5ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolvePtr($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC6ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveWord64($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC7ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveWord32($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC8ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveWord16($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC9ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveWord8($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC10ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveWord($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC11ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveInt64($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC12ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveInt32($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC13ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveInt16($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC14ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveInt8($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC15ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveInt($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC16ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveChar($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC17ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveJSVal($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC18ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(() => __exports.rts_promiseResolveUnit($2), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "`${$1.stack ? $1.stack : $1}`"
+      },
+      {
+        "name": "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1,$2)",
+        "body": "(new TextDecoder('utf-8', {fatal: true})).decode(new Uint8Array(__exports.memory.buffer, $1, $2))"
+      },
+      {
+        "name": "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1,$2,$3)",
+        "body": "(new TextEncoder()).encodeInto($1, new Uint8Array(__exports.memory.buffer, $2, $3)).written"
+      },
+      {
+        "name": "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "$1.length"
+      },
+      {
+        "name": "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "try { __ghc_wasm_jsffi_finalization_registry.unregister($1); } catch {}"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziConcziInternalZC",
+        "binders": "async ($1)",
+        "body": "new Promise(res => setTimeout(res, $1 / 1000))"
+      }
+    ],
+    "selectedByLockedPostLink": [
+      {
+        "name": "ZC0ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.findSystemLibrary($1)"
+      },
+      {
+        "name": "ZC1ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.addLibrarySearchPath($1)"
+      },
+      {
+        "name": "ZC2ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "($1)",
+        "body": "__ghc_wasm_jsffi_dyld.lookupSymbol($1)"
+      },
+      {
+        "name": "ZC3ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.loadDLLs($1)"
+      },
+      {
+        "name": "ZC17ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveJSVal($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC18ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(() => __exports.rts_promiseResolveUnit($2), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "`${$1.stack ? $1.stack : $1}`"
+      },
+      {
+        "name": "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1,$2)",
+        "body": "(new TextDecoder('utf-8', {fatal: true})).decode(new Uint8Array(__exports.memory.buffer, $1, $2))"
+      },
+      {
+        "name": "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1,$2,$3)",
+        "body": "(new TextEncoder()).encodeInto($1, new Uint8Array(__exports.memory.buffer, $2, $3)).written"
+      },
+      {
+        "name": "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "$1.length"
+      },
+      {
+        "name": "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "try { __ghc_wasm_jsffi_finalization_registry.unregister($1); } catch {}"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziConcziInternalZC",
+        "binders": "async ($1)",
+        "body": "new Promise(res => setTimeout(res, $1 / 1000))"
+      }
+    ],
+    "upstreamRule": {
+      "path": "post-link.mjs",
+      "lines": "29-44",
+      "source": "if (importNames.has(strs[0])) { recs.push(strs); }",
+      "parseSectionsExecuted": true,
+      "parseRecordExecuted": false,
+      "customBodiesEvaluated": false
+    },
+    "ignoredRecords": [
+      "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC5ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC6ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC7ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC8ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC9ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC10ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC11ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC12ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC13ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC14ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC15ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "ZC16ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC"
+    ]
+  },
+  "inputs": {
+    "ghc": {
+      "path": "runtimes/haskell-ghc/dist/ghc.wasm",
+      "bytes": 146482240,
+      "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+    },
+    "diagnosticArchive": {
+      "path": "public/haskell/libdir.tar.gz.bin",
+      "bytes": 643211474,
+      "sha256": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2"
+    },
+    "startupScan": {
+      "archive": {
+        "path": "public/haskell/libdir.tar.gz.bin",
+        "bytes": 643211474,
+        "sha256": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2"
+      },
+      "scannedBytes": 2898432000,
+      "retained": [
+        {
+          "name": "prelude.mjs",
+          "bytes": 2805,
+          "sha256": "6858d915bc1850264ffe558aef9da2e3a0e569416439ee7dcf19932befd550e3"
+        },
+        {
+          "name": "settings",
+          "bytes": 245,
+          "sha256": "df3e659a540dae4e550ac1f517f5f41adafd4fdc1801f539748de637a3a90780"
+        },
+        {
+          "name": "post-link.mjs",
+          "bytes": 5703,
+          "sha256": "7189504ba5946eaaafd0154b95b220e8acd851865e59c32766029d63a64a7d2f"
+        }
+      ],
+      "totalRetainedBytes": 8753,
+      "browserFilesystemFiles": [
+        {
+          "path": "/ghc/settings",
+          "bytes": 245,
+          "sha256": "df3e659a540dae4e550ac1f517f5f41adafd4fdc1801f539748de637a3a90780"
+        }
+      ],
+      "additionalStartupRequests": []
+    },
+    "probe": {
+      "bytes": 22637,
+      "sha256": "20ca23c501c92523f39406589f75782ec058260c859cdb7c7f01302e6dc64eda"
+    },
+    "prelude": {
+      "bytes": 2805,
+      "sha256": "6858d915bc1850264ffe558aef9da2e3a0e569416439ee7dcf19932befd550e3"
+    },
+    "postLink": {
+      "bytes": 5703,
+      "sha256": "7189504ba5946eaaafd0154b95b220e8acd851865e59c32766029d63a64a7d2f"
+    },
+    "glue": {
+      "bytes": 4500,
+      "sha256": "70d2c2711326779b85e876795fc52016e52242b5bed2b00ff62a6b319dc1afa9"
+    },
+    "shim": {
+      "bytes": 61161,
+      "sha256": "a3947a157be0d2e64c1e740df0aaed4f64932f1517cec38e8cade0eb5a4942b5"
+    },
+    "shimVersion": "0.4.2",
+    "shimInputs": [
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/wasi_defs.js",
+        "bytes": 9027,
+        "sha256": "0db0f42ba330749a7b05095ea1fd0ff63fd2b30e84cead30fe4c28359d15f194"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/debug.js",
+        "bytes": 414,
+        "sha256": "a91848ee180529e2a60c05dfb9584cad19cd4e1c6f391fdb76a938bcae4c0328"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/wasi.js",
+        "bytes": 16429,
+        "sha256": "168eb977a826f75ab0c39f9322f78cc58dbd5b233019ad1d6a7e940af8a7c4aa"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/fd.js",
+        "bytes": 1906,
+        "sha256": "9e82e1fc1bfd3e3573f64349dc42b4b624ed61d24e5c553f2bb4d041444f166c"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/fs_mem.js",
+        "bytes": 12206,
+        "sha256": "85dbc9e0ee784d9ff8b55452644e00bf7058e32355aab974f8b71d7d85772324"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/fs_opfs.js",
+        "bytes": 2280,
+        "sha256": "4b96aaeb5ac5986cf802cbf22b975c656682d22a38248160c96fc2ded5644869"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/strace.js",
+        "bytes": 318,
+        "sha256": "ece435d3784d928d02bff4d015b7cb686f8c06de8536ff9f8ebc38a8f403a3be"
+      },
+      {
+        "path": "node_modules/.pnpm/@bjorn3+browser_wasi_shim@0.4.2/node_modules/@bjorn3/browser_wasi_shim/dist/index.js",
+        "bytes": 316,
+        "sha256": "7e2fd52ee3f728bb0b1d6e449724e0f13e3d586bb25bde6e02a66366175b5605"
+      }
+    ],
+    "preludeTransformation": "Remove non-browser global setImmediate/Deno selection; preserve upstream scheduler.postTask/MessageChannel/setTimeout browser implementation. No remote or Node dynamic import remains.",
+    "probeSourceAtBrowserAutomationSha256": "aa558e4aa7efa30118fdbc1a701264c28f5ed8617c6c04abf57d72cc0763bfdc",
+    "probeFinalSource": {
+      "bytes": 34089,
+      "sha256": "9480a72f2375da092a410267d62dd3b5162f29675f3fe7d77e9cdc2947cb4d60"
+    },
+    "page": {
+      "bytes": 521,
+      "sha256": "62fd51a3c74dc985e2fdef78fe5502c699623141064e132655be3f61f9f8dfe1"
+    },
+    "worker": {
+      "bytes": 12823,
+      "sha256": "695ef0ff31e950d19b524a93a2b4806c96a61cdd432d28f6895a8d840315f18f"
+    }
+  },
+  "browser": {
+    "executed": true,
+    "version": {
+      "protocolVersion": "1.3",
+      "product": "Edg/148.0.3967.83",
+      "revision": "@2db6d3cb8b2da04832d959ec60c40e1ced3363d1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+      "jsVersion": "14.8.21.9"
+    },
+    "probeUrl": "http://127.0.0.1:5173/",
+    "cdpUrl": "http://127.0.0.1:9222",
+    "profile": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile",
+    "launch": {
+      "pid": 35492,
+      "command": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+      "args": [
+        "--headless=new",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=9222",
+        "--user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-default-apps",
+        "--disable-extensions",
+        "--disable-sync",
+        "about:blank"
+      ],
+      "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+      "startedAt": "2026-09-09T08:44:38.012Z"
+    },
+    "actualBrowserPid": 28280,
+    "server": {
+      "pid": 8904,
+      "command": "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+      "args": [
+        "C:\\Users\\hugefiver\\source\\LocalCoder\\scripts\\probes\\haskell-ghc-startup.mjs",
+        "serve"
+      ],
+      "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+      "startedAt": "2026-09-09T08:44:27.226Z"
+    },
+    "launchNote": "Both detached Node launch calls returned normally with PID immediately. Edge launcher PID 35492 re-executed browser PID 28280; parent linkage, command line, isolated profile and CDP owning PID were verified before automation and cleanup.",
+    "localUrls": [
+      "http://127.0.0.1:5173/",
+      "http://127.0.0.1:5173/worker.mjs",
+      "http://127.0.0.1:5173/shim.mjs",
+      "http://127.0.0.1:5173/glue.mjs",
+      "http://127.0.0.1:5173/ghc.wasm",
+      "http://127.0.0.1:5173/settings"
+    ],
+    "network": [
+      {
+        "sessionId": "0E3018FF3C308A2C52D01CB245309AAA",
+        "requestId": "01E8E9617078253A2AC22CEDD37D0D99",
+        "url": "http://127.0.0.1:5173/",
+        "method": "GET",
+        "type": "Document",
+        "timestamp": 703825.840635,
+        "initiator": {
+          "type": "other"
+        }
+      },
+      {
+        "sessionId": "0E3018FF3C308A2C52D01CB245309AAA",
+        "requestId": "3D97C962F311899554A9F28C19ACB6FF",
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "method": "GET",
+        "type": "Script",
+        "timestamp": 703825.894216,
+        "initiator": {
+          "type": "other",
+          "url": "http://127.0.0.1:5173/"
+        }
+      },
+      {
+        "sessionId": "BD0779C524B50D952812A87D72F79984",
+        "requestId": "37092.3",
+        "url": "http://127.0.0.1:5173/shim.mjs",
+        "method": "GET",
+        "type": "Script",
+        "timestamp": 703825.9151,
+        "initiator": {
+          "type": "script",
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "lineNumber": 1,
+          "columnNumber": 70
+        }
+      },
+      {
+        "sessionId": "BD0779C524B50D952812A87D72F79984",
+        "requestId": "37092.4",
+        "url": "http://127.0.0.1:5173/glue.mjs",
+        "method": "GET",
+        "type": "Script",
+        "timestamp": 703825.915548,
+        "initiator": {
+          "type": "script",
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "lineNumber": 2,
+          "columnNumber": 24
+        }
+      },
+      {
+        "sessionId": "BD0779C524B50D952812A87D72F79984",
+        "requestId": "37092.5",
+        "url": "http://127.0.0.1:5173/ghc.wasm",
+        "method": "GET",
+        "type": "Fetch",
+        "timestamp": 703825.927483,
+        "initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "3",
+                "url": "http://127.0.0.1:5173/worker.mjs",
+                "lineNumber": 11,
+                "columnNumber": 25
+              }
+            ]
+          }
+        }
+      },
+      {
+        "sessionId": "BD0779C524B50D952812A87D72F79984",
+        "requestId": "37092.6",
+        "url": "http://127.0.0.1:5173/settings",
+        "method": "GET",
+        "type": "Fetch",
+        "timestamp": 703827.566317,
+        "initiator": {
+          "type": "script",
+          "stack": {
+            "callFrames": [
+              {
+                "functionName": "",
+                "scriptId": "3",
+                "url": "http://127.0.0.1:5173/worker.mjs",
+                "lineNumber": 19,
+                "columnNumber": 33
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "networkLogHash": {
+      "serialization": "UTF-8 JSON.stringify(network)",
+      "sha256": "7bdf5253d32a78ac74bfc1cb9e222c90a75bd4eeb94a90f1cbb27ead63229bfd",
+      "bytes": 1672
+    },
+    "serverNetworkLog": {
+      "text": "{\"at\":\"2026-09-09T08:44:54.022Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/\"}\n{\"at\":\"2026-09-09T08:45:51.667Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/\"}\n{\"at\":\"2026-09-09T08:45:51.723Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/worker.mjs\"}\n{\"at\":\"2026-09-09T08:45:51.741Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/shim.mjs\"}\n{\"at\":\"2026-09-09T08:45:51.742Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/glue.mjs\"}\n{\"at\":\"2026-09-09T08:45:51.753Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/ghc.wasm\"}\n{\"at\":\"2026-09-09T08:45:53.392Z\",\"method\":\"GET\",\"url\":\"http://127.0.0.1:5173/settings\"}\n",
+      "bytes": 602,
+      "sha256": "fee1415a28f21963e28cfdab89183a44a8fc2b659ffde6cdf46d8d71d71c38da"
+    },
+    "console": [
+      {
+        "sessionId": "BD0779C524B50D952812A87D72F79984",
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "%c%s"
+          },
+          {
+            "type": "string",
+            "value": "color: #265BA0"
+          },
+          {
+            "type": "string",
+            "value": "wasi:"
+          },
+          {
+            "type": "number",
+            "value": 1,
+            "description": "1"
+          },
+          {
+            "type": "number",
+            "value": 10,
+            "description": "10"
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1788943553830.145,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "environ_sizes_get",
+              "scriptId": "4",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 620,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "$__wasi_environ_sizes_get",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120872096
+            },
+            {
+              "functionName": "$__wasilibc_initialize_environ",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120874862
+            },
+            {
+              "functionName": "$__wasilibc_initialize_environ_eagerly",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120875022
+            },
+            {
+              "functionName": "$__wasm_call_ctors",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 2681284
+            },
+            {
+              "functionName": "$_start",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 2681351
+            },
+            {
+              "functionName": "start",
+              "scriptId": "4",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 561,
+              "columnNumber": 23
+            },
+            {
+              "functionName": "",
+              "scriptId": "3",
+              "url": "http://127.0.0.1:5173/worker.mjs",
+              "lineNumber": 67,
+              "columnNumber": 28
+            }
+          ]
+        }
+      },
+      {
+        "sessionId": "BD0779C524B50D952812A87D72F79984",
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "%c%s"
+          },
+          {
+            "type": "string",
+            "value": "color: #265BA0"
+          },
+          {
+            "type": "string",
+            "value": "wasi:"
+          },
+          {
+            "type": "number",
+            "value": 2,
+            "description": "2"
+          },
+          {
+            "type": "number",
+            "value": 22,
+            "description": "22"
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1788943553831.288,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "args_sizes_get",
+              "scriptId": "4",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 594,
+              "columnNumber": 12
+            },
+            {
+              "functionName": "$__wasi_args_sizes_get",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120872060
+            },
+            {
+              "functionName": "$__main_void",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 120871779
+            },
+            {
+              "functionName": "$_start",
+              "scriptId": "6",
+              "url": "wasm://wasm/ghc.wasm-22ec9102",
+              "lineNumber": 0,
+              "columnNumber": 2681357
+            },
+            {
+              "functionName": "start",
+              "scriptId": "4",
+              "url": "http://127.0.0.1:5173/shim.mjs",
+              "lineNumber": 561,
+              "columnNumber": 23
+            },
+            {
+              "functionName": "",
+              "scriptId": "3",
+              "url": "http://127.0.0.1:5173/worker.mjs",
+              "lineNumber": 67,
+              "columnNumber": 28
+            }
+          ]
+        }
+      }
+    ],
+    "exceptions": [],
+    "failedRequests": [],
+    "automationErrors": [],
+    "workerSessions": [
+      {
+        "targetId": "3D97C962F311899554A9F28C19ACB6FF",
+        "type": "worker",
+        "title": "http://127.0.0.1:5173/worker.mjs",
+        "url": "http://127.0.0.1:5173/worker.mjs",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "0D56B19D8118ABB3AA2DCF6E143FFD8B",
+        "pid": 37092
+      }
+    ],
+    "workerMessages": [
+      {
+        "type": "stage",
+        "stage": "compile",
+        "sourceIdentity": {
+          "bytes": 146482240,
+          "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+        }
+      },
+      {
+        "type": "stage",
+        "stage": "instantiate"
+      },
+      {
+        "type": "stage",
+        "stage": "start",
+        "command": [
+          "ghc",
+          "--numeric-version"
+        ]
+      },
+      {
+        "type": "result",
+        "command": [
+          "ghc",
+          "--numeric-version"
+        ],
+        "exitCode": 0,
+        "startReturn": 0,
+        "stdout": "9.15.20260202\n",
+        "stderr": "",
+        "dyldCalls": [],
+        "unsupportedImports": [],
+        "filesystemRequests": [
+          {
+            "fd": 4,
+            "raw": ".",
+            "normalized": "/work",
+            "errno": 0
+          }
+        ],
+        "procExits": [
+          0
+        ],
+        "stage": "finished",
+        "sourceIdentity": {
+          "bytes": 146482240,
+          "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+        },
+        "stdoutIsNumericVersion": true,
+        "elapsedMs": 3144.5
+      }
+    ],
+    "result": {
+      "type": "result",
+      "command": [
+        "ghc",
+        "--numeric-version"
+      ],
+      "exitCode": 0,
+      "startReturn": 0,
+      "stdout": "9.15.20260202\n",
+      "stderr": "",
+      "dyldCalls": [],
+      "unsupportedImports": [],
+      "filesystemRequests": [
+        {
+          "fd": 4,
+          "raw": ".",
+          "normalized": "/work",
+          "errno": 0
+        }
+      ],
+      "procExits": [
+        0
+      ],
+      "stage": "finished",
+      "sourceIdentity": {
+        "bytes": 146482240,
+        "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f"
+      },
+      "stdoutIsNumericVersion": true,
+      "elapsedMs": 3144.5
+    },
+    "processTreeMemorySamples": [
+      {
+        "at": "2026-09-09T08:45:51.657Z",
+        "processes": [
+          {
+            "pid": 28280,
+            "parentPid": 35492,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --headless=new --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync about:blank",
+            "workingBytes": 174067712,
+            "privateBytes": 63217664
+          },
+          {
+            "pid": 44536,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=148.0.7778.180 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --annotation=plat=Win64 --annotation=prod=Edge --annotation=ver=148.0.3967.83 --initial-client-data=0x190,0x194,0x198,0xa8,0x1a0,0x7ffce2be5d58,0x7ffce2be5d64,0x7ffce2be5d70",
+            "workingBytes": 14069760,
+            "privateBytes": 3284992
+          },
+          {
+            "pid": 24048,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=gpu-process --headless=new --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2288 /prefetch:2",
+            "workingBytes": 173334528,
+            "privateBytes": 163057664
+          },
+          {
+            "pid": 41384,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2452 /prefetch:11",
+            "workingBytes": 42467328,
+            "privateBytes": 14118912
+          },
+          {
+            "pid": 19212,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=zh-CN --service-sandbox-type=service --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2704 /prefetch:13",
+            "workingBytes": 20197376,
+            "privateBytes": 10031104
+          },
+          {
+            "pid": 37056,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753163567 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3684 /prefetch:1",
+            "workingBytes": 46567424,
+            "privateBytes": 21680128
+          },
+          {
+            "pid": 37092,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753449053 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709000367499229 --mojo-platform-channel-handle=5220 /prefetch:1",
+            "workingBytes": 49868800,
+            "privateBytes": 24662016
+          },
+          {
+            "pid": 13352,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_search_indexer.mojom.SearchIndexerInterfaceBroker --lang=zh-CN --service-sandbox-type=search_indexer --message-loop-type-ui --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --ssd-no-pressure-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709010674959568 --mojo-platform-channel-handle=5792 /prefetch:14",
+            "workingBytes": 28729344,
+            "privateBytes": 10674176
+          },
+          {
+            "pid": 30160,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=asset_store.mojom.AssetStoreService --lang=zh-CN --service-sandbox-type=asset_store_service --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709011612001417 --mojo-platform-channel-handle=6804 /prefetch:14",
+            "workingBytes": 19685376,
+            "privateBytes": 9682944
+          },
+          {
+            "pid": 36680,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=28 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703824756075 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709012549043266 --mojo-platform-channel-handle=5508 /prefetch:1",
+            "workingBytes": 33361920,
+            "privateBytes": 19058688
+          },
+          {
+            "pid": 23888,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_collections.mojom.CollectionsDataManager --lang=zh-CN --service-sandbox-type=collections --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709013486085115 --mojo-platform-channel-handle=9200 /prefetch:14",
+            "workingBytes": 16683008,
+            "privateBytes": 8896512
+          }
+        ],
+        "workingBytes": 619032576,
+        "privateBytes": 348364800
+      },
+      {
+        "at": "2026-09-09T08:45:53.410Z",
+        "processes": [
+          {
+            "pid": 28280,
+            "parentPid": 35492,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --headless=new --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync about:blank",
+            "workingBytes": 177172480,
+            "privateBytes": 65470464
+          },
+          {
+            "pid": 44536,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=148.0.7778.180 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --annotation=plat=Win64 --annotation=prod=Edge --annotation=ver=148.0.3967.83 --initial-client-data=0x190,0x194,0x198,0xa8,0x1a0,0x7ffce2be5d58,0x7ffce2be5d64,0x7ffce2be5d70",
+            "workingBytes": 14069760,
+            "privateBytes": 3284992
+          },
+          {
+            "pid": 24048,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=gpu-process --headless=new --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2288 /prefetch:2",
+            "workingBytes": 170885120,
+            "privateBytes": 160555008
+          },
+          {
+            "pid": 41384,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2452 /prefetch:11",
+            "workingBytes": 42868736,
+            "privateBytes": 14168064
+          },
+          {
+            "pid": 19212,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=zh-CN --service-sandbox-type=service --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2704 /prefetch:13",
+            "workingBytes": 20422656,
+            "privateBytes": 10035200
+          },
+          {
+            "pid": 37056,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753163567 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3684 /prefetch:1",
+            "workingBytes": 46567424,
+            "privateBytes": 21680128
+          },
+          {
+            "pid": 37092,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753449053 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709000367499229 --mojo-platform-channel-handle=5220 /prefetch:1",
+            "workingBytes": 352378880,
+            "privateBytes": 325459968
+          },
+          {
+            "pid": 13352,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_search_indexer.mojom.SearchIndexerInterfaceBroker --lang=zh-CN --service-sandbox-type=search_indexer --message-loop-type-ui --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --ssd-no-pressure-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709010674959568 --mojo-platform-channel-handle=5792 /prefetch:14",
+            "workingBytes": 28729344,
+            "privateBytes": 10674176
+          },
+          {
+            "pid": 30160,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=asset_store.mojom.AssetStoreService --lang=zh-CN --service-sandbox-type=asset_store_service --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709011612001417 --mojo-platform-channel-handle=6804 /prefetch:14",
+            "workingBytes": 19689472,
+            "privateBytes": 9682944
+          },
+          {
+            "pid": 36680,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=28 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703824756075 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709012549043266 --mojo-platform-channel-handle=5508 /prefetch:1",
+            "workingBytes": 33423360,
+            "privateBytes": 19091456
+          },
+          {
+            "pid": 23888,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_collections.mojom.CollectionsDataManager --lang=zh-CN --service-sandbox-type=collections --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709013486085115 --mojo-platform-channel-handle=9200 /prefetch:14",
+            "workingBytes": 16699392,
+            "privateBytes": 8937472
+          }
+        ],
+        "workingBytes": 922906624,
+        "privateBytes": 649039872
+      },
+      {
+        "at": "2026-09-09T08:45:55.164Z",
+        "processes": [
+          {
+            "pid": 28280,
+            "parentPid": 35492,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --headless=new --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync about:blank",
+            "workingBytes": 177172480,
+            "privateBytes": 65466368
+          },
+          {
+            "pid": 44536,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=148.0.7778.180 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --annotation=plat=Win64 --annotation=prod=Edge --annotation=ver=148.0.3967.83 --initial-client-data=0x190,0x194,0x198,0xa8,0x1a0,0x7ffce2be5d58,0x7ffce2be5d64,0x7ffce2be5d70",
+            "workingBytes": 14069760,
+            "privateBytes": 3284992
+          },
+          {
+            "pid": 24048,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=gpu-process --headless=new --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2288 /prefetch:2",
+            "workingBytes": 155308032,
+            "privateBytes": 144220160
+          },
+          {
+            "pid": 41384,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2452 /prefetch:11",
+            "workingBytes": 42868736,
+            "privateBytes": 14163968
+          },
+          {
+            "pid": 19212,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=zh-CN --service-sandbox-type=service --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2704 /prefetch:13",
+            "workingBytes": 20422656,
+            "privateBytes": 10035200
+          },
+          {
+            "pid": 37056,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753163567 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3684 /prefetch:1",
+            "workingBytes": 46567424,
+            "privateBytes": 21680128
+          },
+          {
+            "pid": 37092,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753449053 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709000367499229 --mojo-platform-channel-handle=5220 /prefetch:1",
+            "workingBytes": 493621248,
+            "privateBytes": 475136000
+          },
+          {
+            "pid": 13352,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_search_indexer.mojom.SearchIndexerInterfaceBroker --lang=zh-CN --service-sandbox-type=search_indexer --message-loop-type-ui --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --ssd-no-pressure-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709010674959568 --mojo-platform-channel-handle=5792 /prefetch:14",
+            "workingBytes": 28733440,
+            "privateBytes": 10678272
+          },
+          {
+            "pid": 30160,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=asset_store.mojom.AssetStoreService --lang=zh-CN --service-sandbox-type=asset_store_service --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709011612001417 --mojo-platform-channel-handle=6804 /prefetch:14",
+            "workingBytes": 19767296,
+            "privateBytes": 9682944
+          },
+          {
+            "pid": 36680,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=28 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703824756075 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709012549043266 --mojo-platform-channel-handle=5508 /prefetch:1",
+            "workingBytes": 33480704,
+            "privateBytes": 19091456
+          },
+          {
+            "pid": 23888,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_collections.mojom.CollectionsDataManager --lang=zh-CN --service-sandbox-type=collections --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709013486085115 --mojo-platform-channel-handle=9200 /prefetch:14",
+            "workingBytes": 16793600,
+            "privateBytes": 8937472
+          }
+        ],
+        "workingBytes": 1048805376,
+        "privateBytes": 782376960
+      },
+      {
+        "at": "2026-09-09T08:45:57.095Z",
+        "processes": [
+          {
+            "pid": 28280,
+            "parentPid": 35492,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --headless=new --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync about:blank",
+            "workingBytes": 177172480,
+            "privateBytes": 65466368
+          },
+          {
+            "pid": 44536,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=148.0.7778.180 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --annotation=plat=Win64 --annotation=prod=Edge --annotation=ver=148.0.3967.83 --initial-client-data=0x190,0x194,0x198,0xa8,0x1a0,0x7ffce2be5d58,0x7ffce2be5d64,0x7ffce2be5d70",
+            "workingBytes": 14069760,
+            "privateBytes": 3284992
+          },
+          {
+            "pid": 24048,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=gpu-process --headless=new --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2288 /prefetch:2",
+            "workingBytes": 155308032,
+            "privateBytes": 144220160
+          },
+          {
+            "pid": 41384,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2452 /prefetch:11",
+            "workingBytes": 42868736,
+            "privateBytes": 14163968
+          },
+          {
+            "pid": 19212,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=zh-CN --service-sandbox-type=service --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2704 /prefetch:13",
+            "workingBytes": 20422656,
+            "privateBytes": 10035200
+          },
+          {
+            "pid": 37056,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753163567 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3684 /prefetch:1",
+            "workingBytes": 46567424,
+            "privateBytes": 21680128
+          },
+          {
+            "pid": 37092,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753449053 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709000367499229 --mojo-platform-channel-handle=5220 /prefetch:1",
+            "workingBytes": 493080576,
+            "privateBytes": 474546176
+          },
+          {
+            "pid": 13352,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_search_indexer.mojom.SearchIndexerInterfaceBroker --lang=zh-CN --service-sandbox-type=search_indexer --message-loop-type-ui --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --ssd-no-pressure-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709010674959568 --mojo-platform-channel-handle=5792 /prefetch:14",
+            "workingBytes": 28733440,
+            "privateBytes": 10678272
+          },
+          {
+            "pid": 30160,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=asset_store.mojom.AssetStoreService --lang=zh-CN --service-sandbox-type=asset_store_service --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709011612001417 --mojo-platform-channel-handle=6804 /prefetch:14",
+            "workingBytes": 19767296,
+            "privateBytes": 9682944
+          },
+          {
+            "pid": 36680,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=28 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703824756075 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709012549043266 --mojo-platform-channel-handle=5508 /prefetch:1",
+            "workingBytes": 33509376,
+            "privateBytes": 19091456
+          },
+          {
+            "pid": 23888,
+            "parentPid": 28280,
+            "name": "msedge.exe",
+            "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_collections.mojom.CollectionsDataManager --lang=zh-CN --service-sandbox-type=collections --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709013486085115 --mojo-platform-channel-handle=9200 /prefetch:14",
+            "workingBytes": 16793600,
+            "privateBytes": 8937472
+          }
+        ],
+        "workingBytes": 1048293376,
+        "privateBytes": 781787136
+      }
+    ],
+    "peakSampledWorkingBytes": 1048805376,
+    "peakSampledPrivateBytes": 782376960,
+    "memoryMeasurement": "Win32_Process WorkingSetSize and PrivatePageCount, complete verified browser process tree, sampled during cold startup. Sampled maxima, not a product budget or guaranteed instantaneous peak.",
+    "browserStderr": "[28280:45196:0909/164438.582:ERROR:components\\edge_window_tab_manager\\wtm_com_statics_provider_impl.cc:41] (base::win::GetActivationFactory< IWindowTabManagerStatics, RuntimeClass_Windows_UI_Shell_WindowTabManager>( &tab_manager_statics)) failed: 拒绝访问。 (0x80070005)\r\n\r\nDevTools listening on ws://127.0.0.1:9222/devtools/browser/f76616ab-43b4-4cb1-b015-db2e7e5879a5\r\n[28280:34592:0909/164706.698:ERROR:components\\device_event_log\\device_event_log_impl.cc:248] [16:47:06.698] USB: usb_service_win.cc:108 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 找不到元素。 (0x490)\r\n",
+    "serverStderr": "",
+    "browserStderrNote": "Edge emitted an OS WindowTabManager COM access-denied warning at launch; no page/Worker exception, crash or request failure occurred."
+  },
+  "verification": [
+    {
+      "stage": "requested RED command",
+      "command": "pnpm test -- tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "exitCode": 1,
+      "error": "Focused tests must be .test.ts or .test.mjs files under tests/: --",
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "actual RED",
+      "command": "pnpm test tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "exitCode": 1,
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "error": "ERR_MODULE_NOT_FOUND: scripts/lib/haskell-ghc-wasm-contract.mjs",
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "post-implementation (not GREEN)",
+      "command": "pnpm test tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "exitCode": 1,
+      "tests": 7,
+      "passed": 5,
+      "failed": 1,
+      "skipped": 1,
+      "error": "JSFFI unselected record: ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "typecheck",
+      "command": "pnpm run typecheck",
+      "exitCode": 0,
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "lint",
+      "command": "pnpm run lint",
+      "exitCode": 0,
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "final whitespace check",
+      "command": "git diff --check",
+      "exitCode": 0,
+      "timeoutMs": 20000,
+      "timedOut": false
+    },
+    {
+      "stage": "corrected static GREEN",
+      "command": "pnpm test tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "exitCode": 0,
+      "tests": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "real browser",
+      "command": "node scripts/probes/haskell-ghc-startup.mjs automate",
+      "exitCode": 0,
+      "timeoutMs": 90000,
+      "timedOut": false
+    },
+    {
+      "stage": "final durable-contract GREEN after browser PASS and probe deletion",
+      "command": "pnpm test tests/scripts/haskell-ghc-wasm-contract.test.mjs",
+      "exitCode": 0,
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "timeoutMs": 45000,
+      "timedOut": false,
+      "note": "Durable contract is now mandatory in this test; missing contract fails rather than skipping."
+    },
+    {
+      "stage": "final typecheck",
+      "command": "pnpm run typecheck",
+      "exitCode": 0,
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "final lint",
+      "command": "pnpm run lint",
+      "exitCode": 0,
+      "timeoutMs": 45000,
+      "timedOut": false
+    },
+    {
+      "stage": "final dirty-tree whitespace check",
+      "command": "git diff --check",
+      "exitCode": 0,
+      "timeoutMs": 20000,
+      "timedOut": false
+    }
+  ],
+  "commandAdjustment": "pnpm 12 forwards '--' into this repository's focused test harness. Removed only the separator; no direct-Node fallback or wrapper timeout occurred.",
+  "cleanup": {
+    "verifiedCommandLines": true,
+    "terminated": [
+      {
+        "pid": 28280,
+        "parentPid": 35492,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --headless=new --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync about:blank",
+        "terminated": true
+      },
+      {
+        "pid": 44536,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=crashpad-handler --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile /prefetch:4 --monitor-self-annotation=ptype=crashpad-handler --database=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\\Crashpad --annotation=IsOfficialBuild=1 --annotation=channel= --annotation=chromium-version=148.0.7778.180 \"--annotation=exe=C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --annotation=plat=Win64 --annotation=prod=Edge --annotation=ver=148.0.3967.83 --initial-client-data=0x190,0x194,0x198,0xa8,0x1a0,0x7ffce2be5d58,0x7ffce2be5d64,0x7ffce2be5d70",
+        "terminated": true
+      },
+      {
+        "pid": 24048,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=gpu-process --headless=new --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --gpu-preferences=SAAAAAAAAADgAAAEAAAAAAAAAAAAAGAAAQAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708988185955192 --mojo-platform-channel-handle=2288 /prefetch:2",
+        "terminated": true
+      },
+      {
+        "pid": 41384,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=network.mojom.NetworkService --lang=zh-CN --service-sandbox-type=none --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708989122997041 --mojo-platform-channel-handle=2452 /prefetch:11",
+        "terminated": true
+      },
+      {
+        "pid": 19212,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=storage.mojom.StorageService --lang=zh-CN --service-sandbox-type=service --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --startup-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990060038890 --mojo-platform-channel-handle=2704 /prefetch:13",
+        "terminated": true
+      },
+      {
+        "pid": 37056,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753163567 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190708990997080739 --mojo-platform-channel-handle=3684 /prefetch:1",
+        "terminated": true
+      },
+      {
+        "pid": 37092,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=15 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703753449053 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709000367499229 --mojo-platform-channel-handle=5220 /prefetch:1",
+        "terminated": true
+      },
+      {
+        "pid": 13352,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=utility --utility-sub-type=edge_search_indexer.mojom.SearchIndexerInterfaceBroker --lang=zh-CN --service-sandbox-type=search_indexer --message-loop-type-ui --video-capture-use-gpu-memory-buffer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --ssd-no-pressure-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709010674959568 --mojo-platform-channel-handle=5792 /prefetch:14",
+        "terminated": true
+      },
+      {
+        "pid": 36680,
+        "parentPid": 28280,
+        "commandLine": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --type=renderer --noerrdialogs --user-data-dir=\"C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile\" --pdf-upsell-enabled --remote-debugging-port=9222 --video-capture-use-gpu-memory-buffer --lang=zh-CN --js-flags --device-scale-factor=2 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=28 --time-ticks-at-unix-epoch=-1788239725825134 --launch-time-ticks=703824756075 --skip-read-main-dll --field-trial-handle=2300,i,12994693312313147008,3965188321940134827,262144 --disable-features=PaintHolding --variations-seed-version --pseudonymization-salt-handle=2304,i,13971045441625226266,10448465138218473833,4 --trace-process-track-uuid=3190709012549043266 --mojo-platform-channel-handle=5508 /prefetch:1",
+        "terminated": true
+      },
+      {
+        "pid": 8904,
+        "parentPid": 35416,
+        "commandLine": "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe C:\\Users\\hugefiver\\source\\LocalCoder\\scripts\\probes\\haskell-ghc-startup.mjs serve",
+        "terminated": true
+      }
+    ],
+    "ownedProcessesLaunched": [
+      {
+        "pid": 8904,
+        "command": "C:\\Users\\hugefiver\\scoop\\apps\\nodejs\\current\\node.exe",
+        "args": [
+          "C:\\Users\\hugefiver\\source\\LocalCoder\\scripts\\probes\\haskell-ghc-startup.mjs",
+          "serve"
+        ],
+        "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+        "startedAt": "2026-09-09T08:44:27.226Z"
+      },
+      {
+        "pid": 35492,
+        "command": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "args": [
+          "--headless=new",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=9222",
+          "--user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2\\profile",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--disable-component-update",
+          "--disable-default-apps",
+          "--disable-extensions",
+          "--disable-sync",
+          "about:blank"
+        ],
+        "cwd": "C:\\Users\\hugefiver\\source\\LocalCoder",
+        "startedAt": "2026-09-09T08:44:38.012Z"
+      }
+    ],
+    "exactTempRoot": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-haskell-gate-a-20260909-b6e2",
+    "tempRootRemoved": true,
+    "profileRemoved": true,
+    "probeDeleted": true,
+    "probeAndTempAbsenceIndependentlyVerifiedByTestPath": true,
+    "portsVerifiedFree": true,
+    "noOwnedBrowserProcessesRemain": true
+  },
+  "limitations": [
+    "Gate A proves compiler startup only, not ghc -e, dynamic profile, product availability or optional-v1 verification.",
+    "No product memory/cold-start budget is inferred from this workstation sample.",
+    "Only installed Edge/Chromium was exercised; Firefox/WebKit were not tested."
+  ]
+}

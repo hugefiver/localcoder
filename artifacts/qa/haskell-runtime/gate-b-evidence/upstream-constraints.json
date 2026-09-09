@@ -1,0 +1,26 @@
+[
+  {
+    "upstreamCommit": "ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+    "path": "ghc/Main.hs",
+    "sha256": "3883115a50b250c992d3a33f4cf345ddcff1a7e2d7f44414fcbb27ed3126a7ea",
+    "startLine": 113,
+    "endLine": 118,
+    "text": "    -- 1. extract the -B flag from the args\n    argv0 <- getArgs\n\n    let (minusB_args, argv1) = partition (\"-B\" `isPrefixOf`) argv0\n        mbMinusB | null minusB_args = Nothing\n                 | otherwise = Just (drop 2 (last minusB_args))"
+  },
+  {
+    "upstreamCommit": "ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+    "path": "ghc/Main.hs",
+    "sha256": "3883115a50b250c992d3a33f4cf345ddcff1a7e2d7f44414fcbb27ed3126a7ea",
+    "startLine": 164,
+    "endLine": 173,
+    "text": "  -- set the default GhcMode, backend and GhcLink.  The backend\n  -- can be further adjusted on a module by module basis, using only\n  -- the -fllvm and -fasm flags.  If the default backend is not\n  -- LLVM or NCG, -fllvm and -fasm have no effect.\n  let dflt_backend = backend dflags0\n      (mode, bcknd, link)\n         = case postLoadMode of\n               DoInteractive   -> (CompManager, bytecodeBackend,  LinkInMemory)\n               DoEval _        -> (CompManager, bytecodeBackend,  LinkInMemory)\n               DoRun           -> (CompManager, bytecodeBackend,  LinkInMemory)"
+  },
+  {
+    "upstreamCommit": "ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+    "path": "compiler/GHC/Driver/Session.hs",
+    "sha256": "5f060d89123bef8def0d0a42733319918ab02d86808283b2ef8a8e958c617aaa",
+    "startLine": 3840,
+    "endLine": 3889,
+    "text": "  -- When we do ghci, force using dyn ways if the target RTS linker\n  -- only supports dynamic code\n | LinkInMemory <- ghcLink dflags\n , sTargetRTSLinkerOnlySupportsSharedLibs $ settings dflags\n#if defined(HAVE_INTERNAL_INTERPRETER)\n , not (ways dflags `hasWay` WayDyn)\n#else\n , not (ways dflags `hasWay` WayDyn && gopt Opt_ExternalInterpreter dflags)\n#endif\n    = flip loopNoWarn \"Forcing dynamic way because target RTS linker only supports dynamic code\" $\n#if !defined(HAVE_INTERNAL_INTERPRETER)\n        -- Force -fexternal-interpreter if internal-interpreter is not\n        -- available at this stage\n        setGeneralFlag' Opt_ExternalInterpreter $\n#endif\n        addWay' WayDyn dflags\n\n | LinkExecutable _ <- ghcLink dflags\n , gopt Opt_ByteCode dflags\n    = loop (dflags { ghcLink = NoLink })\n           \"Byte-code linking does not currently support linking an executable, enabling -no-link\"\n | LinkExecutable FullyStatic <- ghcLink dflags\n , ways dflags `hasWay` WayDyn\n    = let warn = \"-dynamic is ignored when using -fully-static\"\n      in loop dflags{targetWays_ = removeWay WayDyn (targetWays_ dflags)} warn\n | LinkStaticLib <- ghcLink dflags\n , ways dflags `hasWay` WayDyn\n    = let warn = \"-dynamic is ignored when using -staticlib\"\n      in loop dflags{targetWays_ = removeWay WayDyn (targetWays_ dflags)} warn\n | LinkInMemory <- ghcLink dflags\n , not (gopt Opt_ExternalInterpreter dflags)\n , targetWays_ dflags /= hostFullWays\n    = flip loopNoWarn \"Forcing build ways to match the compiler ways because we're using the internal interpreter\" $\n        let dflags_a = dflags { targetWays_ = hostFullWays }\n            dflags_b = foldl gopt_set dflags_a\n                     $ concatMap (wayGeneralFlags platform)\n                                 hostFullWays\n            dflags_c = foldl gopt_unset dflags_b\n                     $ concatMap (wayUnsetGeneralFlags platform)\n                                 hostFullWays\n        in dflags_c\n\n | otherwise = (dflags, mempty, mempty)\n    where loc = mkGeneralSrcSpan (fsLit \"when making flags consistent\")\n          loop updated_dflags warning\n              = case makeDynFlagsConsistent updated_dflags of\n                (dflags', ws, is) -> (dflags', L loc (DriverInconsistentDynFlags warning) : ws, is)\n          loopNoWarn updated_dflags doc\n              = case makeDynFlagsConsistent updated_dflags of\n                (dflags', ws, is) -> (dflags', ws, L loc (text doc):is)"
+  }
+]

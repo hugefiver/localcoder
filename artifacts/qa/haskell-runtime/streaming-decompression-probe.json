@@ -1,0 +1,1090 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "startedAt": "2026-09-01T13:10:05.388Z",
+  "completedAt": "2026-09-01T13:14:47.589Z",
+  "scope": "Read-only production-dist Chromium H1 probe; only this formal JSON evidence persists",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "claim": "Eager Response(decompressed).arrayBuffer() fails while chunk-discarding DecompressionStream consumption can pass 1 GiB with much lower memory."
+    },
+    {
+      "id": "H2",
+      "claim": "DecompressionStream itself fails on this 2,898,432,000-byte gzip output even when chunks are not retained."
+    },
+    {
+      "id": "H3",
+      "claim": "The same-origin compressed response is truncated or carries incompatible headers/bytes."
+    }
+  ],
+  "environment": {
+    "node": "v26.8.1",
+    "platform": "win32",
+    "playwrightVersion": "1.59.0",
+    "browserType": "chromium",
+    "chromiumExecutable": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe",
+    "headed": true,
+    "profileIsolation": "Separate empty run-owned profile directory for each case; cases run sequentially",
+    "projectRoot": "C:\\Users\\hugefiver\\source\\LocalCoder",
+    "productionDist": "C:\\Users\\hugefiver\\source\\LocalCoder\\dist",
+    "automationPid": 21992
+  },
+  "asset": {
+    "relativeUrl": "/haskell/libdir.tar.gz.bin",
+    "diskPath": "C:\\Users\\hugefiver\\source\\LocalCoder\\dist\\haskell\\libdir.tar.gz.bin",
+    "diskBytes": 643211474,
+    "diskMtimeUtc": "2026-08-28T11:58:43.691Z",
+    "expectedCompressedBytes": 643211474,
+    "expectedGzipIsize": 2898432000,
+    "expectedSha256FromPriorCurrentAssetEvidence": "fd46feea31a5982025a6ecbb81858a5ff861aff561b4e7153d35707055125fa2",
+    "validationMethod": "Browser response status/headers plus in-page TransformStream compressed-byte count; hash was not recomputed"
+  },
+  "thresholds": {
+    "primaryOutputBytes": 1073741824,
+    "fullOutputBytes": 2898432000,
+    "progressIntervalBytes": 268435456,
+    "continueToFullWhenBelow": {
+      "jsHeapBytes": 536870912,
+      "browserTreeWorkingSetBytes": 1342177280,
+      "elapsedMs": 300000
+    },
+    "significantJsHeapRatioBelow": 0.5,
+    "significantProcessWorkingSetRatioBelow": 0.5
+  },
+  "streaming": {
+    "browser": {
+      "caseName": "streaming",
+      "launchedAt": "2026-09-01T13:10:05.407Z",
+      "rootPid": 2308,
+      "cdpPort": 57467,
+      "browserVersion": "147.0.7727.15",
+      "executable": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe",
+      "args": [
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-default-apps",
+        "--disable-extensions",
+        "--disable-sync",
+        "--disable-features=Translate,MediaRouter,OptimizationHints",
+        "--enable-precise-memory-info",
+        "--no-sandbox",
+        "about:blank"
+      ],
+      "profileDir": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming",
+      "stdoutPath": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\chromium-streaming.stdout.log",
+      "stderrPath": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\chromium-streaming.stderr.log",
+      "initialProcessTree": {
+        "rootPid": 2308,
+        "processCount": 9,
+        "workingSetBytes": 525127680,
+        "privateMemoryBytes": 294203392,
+        "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+        "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+      },
+      "cleanup": {
+        "forced": true,
+        "processTreeAfterClose": {
+          "rootPid": 2308,
+          "processCount": 0,
+          "workingSetBytes": 0,
+          "privateMemoryBytes": 0,
+          "rootCommandLine": null,
+          "rootStartTimeUtc": null
+        },
+        "profileRemoved": true
+      }
+    },
+    "samples": [
+      {
+        "label": "response-opened",
+        "outputBytes": 0,
+        "compressedBytes": 0,
+        "outputChunks": 0,
+        "elapsedMs": 12,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 1588733,
+          "usedJSHeapSize": 1098909
+        },
+        "observedAt": "2026-09-01T13:10:09.768Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 581660672,
+          "privateMemoryBytes": 322662400,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-268435456",
+        "outputBytes": 268482068,
+        "compressedBytes": 41943040,
+        "outputChunks": 4109,
+        "elapsedMs": 2135,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 155824253,
+          "usedJSHeapSize": 153419757
+        },
+        "observedAt": "2026-09-01T13:10:12.053Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 11,
+          "workingSetBytes": 773345280,
+          "privateMemoryBytes": 499597312,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-536870912",
+        "outputBytes": 536899990,
+        "compressedBytes": 102760448,
+        "outputChunks": 8218,
+        "elapsedMs": 4503,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 119041967,
+          "usedJSHeapSize": 116506159
+        },
+        "observedAt": "2026-09-01T13:10:14.382Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 717811712,
+          "privateMemoryBytes": 454729728,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-805306368",
+        "outputBytes": 805321919,
+        "compressedBytes": 161480704,
+        "outputChunks": 12327,
+        "elapsedMs": 6769,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 145672197,
+          "usedJSHeapSize": 144017573
+        },
+        "observedAt": "2026-09-01T13:10:16.528Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 684244992,
+          "privateMemoryBytes": 420495360,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-1073741824",
+        "outputBytes": 1073747162,
+        "compressedBytes": 213909504,
+        "outputChunks": 16435,
+        "elapsedMs": 8864,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 163695828,
+          "usedJSHeapSize": 161312436
+        },
+        "observedAt": "2026-09-01T13:10:18.649Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 765583360,
+          "privateMemoryBytes": 499388416,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "one-gib-threshold",
+        "outputBytes": 1073747162,
+        "compressedBytes": 216006656,
+        "outputChunks": 16435,
+        "elapsedMs": 10403,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 165858516,
+          "usedJSHeapSize": 163490212
+        },
+        "observedAt": "2026-09-01T13:10:20.077Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 764039168,
+          "privateMemoryBytes": 496582656,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-1342177280",
+        "outputBytes": 1342220970,
+        "compressedBytes": 281018368,
+        "outputChunks": 20547,
+        "elapsedMs": 12515,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 66267019,
+          "usedJSHeapSize": 63835079
+        },
+        "observedAt": "2026-09-01T13:10:22.321Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 704221184,
+          "privateMemoryBytes": 437121024,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-1610612736",
+        "outputBytes": 1610677285,
+        "compressedBytes": 350224384,
+        "outputChunks": 24657,
+        "elapsedMs": 14754,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 89410064,
+          "usedJSHeapSize": 87059348
+        },
+        "observedAt": "2026-09-01T13:10:24.355Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 714715136,
+          "privateMemoryBytes": 445313024,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-1879048192",
+        "outputBytes": 1879101112,
+        "compressedBytes": 427819008,
+        "outputChunks": 28772,
+        "elapsedMs": 16854,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 129813242,
+          "usedJSHeapSize": 127877382
+        },
+        "observedAt": "2026-09-01T13:10:26.622Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 738394112,
+          "privateMemoryBytes": 468770816,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-2147483648",
+        "outputBytes": 2147499418,
+        "compressedBytes": 501219328,
+        "outputChunks": 32887,
+        "elapsedMs": 19109,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 159107046,
+          "usedJSHeapSize": 157577346
+        },
+        "observedAt": "2026-09-01T13:10:28.723Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 770867200,
+          "privateMemoryBytes": 501309440,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-2415919104",
+        "outputBytes": 2415947348,
+        "compressedBytes": 536870912,
+        "outputChunks": 36992,
+        "elapsedMs": 20949,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 168113887,
+          "usedJSHeapSize": 165036315
+        },
+        "observedAt": "2026-09-01T13:10:30.332Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 726351872,
+          "privateMemoryBytes": 456712192,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "progress-2684354560",
+        "outputBytes": 2684405670,
+        "compressedBytes": 595591168,
+        "outputChunks": 41103,
+        "elapsedMs": 22640,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 194672786,
+          "usedJSHeapSize": 192213014
+        },
+        "observedAt": "2026-09-01T13:10:31.999Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 737902592,
+          "privateMemoryBytes": 468189184,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      {
+        "label": "full-isize-threshold",
+        "outputBytes": 2898432000,
+        "compressedBytes": 643211474,
+        "outputChunks": 44384,
+        "elapsedMs": 24179,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 153455380,
+          "usedJSHeapSize": 150329748
+        },
+        "observedAt": "2026-09-01T13:10:33.518Z",
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 690061312,
+          "privateMemoryBytes": 424288256,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      }
+    ],
+    "result": {
+      "status": "completed",
+      "endedBy": "explicit-reader-cancel",
+      "startedAt": "2026-09-01T13:10:08.247Z",
+      "completedAt": "2026-09-01T13:10:33.520Z",
+      "durationMs": 25272,
+      "response": {
+        "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+        "status": 200,
+        "statusText": "OK",
+        "ok": true,
+        "redirected": false,
+        "type": "basic",
+        "headers": {
+          "accept-ranges": "bytes",
+          "cache-control": "no-store",
+          "connection": "keep-alive",
+          "content-length": "643211474",
+          "content-type": "application/octet-stream",
+          "cross-origin-resource-policy": "same-origin",
+          "date": "Tue, 01 Sep 2026 13:10:08 GMT",
+          "keep-alive": "timeout=5",
+          "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+        }
+      },
+      "compressedBytes": 643211474,
+      "outputBytes": 2898432000,
+      "outputChunks": 44384,
+      "selectedTargetBytes": 2898432000,
+      "thresholdDecision": {
+        "label": "one-gib-threshold",
+        "outputBytes": 1073747162,
+        "compressedBytes": 216006656,
+        "outputChunks": 16435,
+        "elapsedMs": 10403,
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 165858516,
+          "usedJSHeapSize": 163490212
+        },
+        "continueToFull": true,
+        "processTree": {
+          "rootPid": 2308,
+          "processCount": 10,
+          "workingSetBytes": 764039168,
+          "privateMemoryBytes": 496582656,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-streaming --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:05.4124051Z"
+        }
+      },
+      "cancelCalled": true,
+      "cancelError": null,
+      "finalJsHeap": {
+        "jsHeapSizeLimit": 4395630592,
+        "totalJSHeapSize": 153455380,
+        "usedJSHeapSize": 150342836
+      }
+    }
+  },
+  "eager": {
+    "browser": {
+      "caseName": "eager",
+      "launchedAt": "2026-09-01T13:10:46.172Z",
+      "rootPid": 20972,
+      "cdpPort": 55045,
+      "browserVersion": "147.0.7727.15",
+      "executable": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe",
+      "args": [
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-default-apps",
+        "--disable-extensions",
+        "--disable-sync",
+        "--disable-features=Translate,MediaRouter,OptimizationHints",
+        "--enable-precise-memory-info",
+        "--no-sandbox",
+        "about:blank"
+      ],
+      "profileDir": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager",
+      "stdoutPath": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\chromium-eager.stdout.log",
+      "stderrPath": "C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\chromium-eager.stderr.log",
+      "initialProcessTree": {
+        "rootPid": 20972,
+        "processCount": 9,
+        "workingSetBytes": 530735104,
+        "privateMemoryBytes": 303398912,
+        "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+        "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+      },
+      "cleanup": {
+        "forced": true,
+        "processTreeAfterClose": {
+          "rootPid": 20972,
+          "processCount": 0,
+          "workingSetBytes": 0,
+          "privateMemoryBytes": 0,
+          "rootCommandLine": null,
+          "rootStartTimeUtc": null
+        },
+        "profileRemoved": true
+      }
+    },
+    "startState": {
+      "status": "running",
+      "phase": "fetching",
+      "startedAt": "2026-09-01T13:10:48.159Z",
+      "startedPerformanceMs": 1361.155000001192,
+      "initialJsHeap": {
+        "jsHeapSizeLimit": 4395630592,
+        "totalJSHeapSize": 1588284,
+        "usedJSHeapSize": 1021760
+      },
+      "response": null,
+      "error": null
+    },
+    "samples": [
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 69562741,
+          "usedJSHeapSize": 67965229
+        },
+        "observedAt": "2026-09-01T13:10:49.183Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 9,
+          "workingSetBytes": 987770880,
+          "privateMemoryBytes": 844976128,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:10:50.164Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 43236016,
+          "usedJSHeapSize": 41861152
+        },
+        "observedAt": "2026-09-01T13:10:51.176Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 9,
+          "workingSetBytes": 1297428480,
+          "privateMemoryBytes": 1239498752,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:10:52.276Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 45141047,
+          "usedJSHeapSize": 43771039
+        },
+        "observedAt": "2026-09-01T13:10:53.315Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 9,
+          "workingSetBytes": 1644998656,
+          "privateMemoryBytes": 1673416704,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:10:54.500Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 69062357,
+          "usedJSHeapSize": 67728701
+        },
+        "observedAt": "2026-09-01T13:10:55.513Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 9,
+          "workingSetBytes": 1923518464,
+          "privateMemoryBytes": 2030841856,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:10:56.477Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 53643501,
+          "usedJSHeapSize": 52023345
+        },
+        "observedAt": "2026-09-01T13:10:57.493Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 19,
+          "workingSetBytes": 2337730560,
+          "privateMemoryBytes": 2788790272,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:10:58.603Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 53845615,
+          "usedJSHeapSize": 52485731
+        },
+        "observedAt": "2026-09-01T13:10:59.638Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 19,
+          "workingSetBytes": 2616033280,
+          "privateMemoryBytes": 3139612672,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:11:00.793Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 43644825,
+          "usedJSHeapSize": 42279689
+        },
+        "observedAt": "2026-09-01T13:11:01.867Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 19,
+          "workingSetBytes": 3012456448,
+          "privateMemoryBytes": 3635187712,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:11:03.031Z"
+      },
+      {
+        "state": {
+          "status": "running",
+          "phase": "response-decompressed-array-buffer",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": null
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 75927720,
+          "usedJSHeapSize": 74610940
+        },
+        "observedAt": "2026-09-01T13:11:04.041Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 19,
+          "workingSetBytes": 3327819776,
+          "privateMemoryBytes": 4032540672,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:11:05.202Z"
+      },
+      {
+        "state": {
+          "status": "rejected",
+          "phase": "complete",
+          "startedAt": "2026-09-01T13:10:48.159Z",
+          "startedPerformanceMs": 1361.155000001192,
+          "initialJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 1588284,
+            "usedJSHeapSize": 1021760
+          },
+          "response": {
+            "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+            "status": 200,
+            "statusText": "OK",
+            "ok": true,
+            "redirected": false,
+            "type": "basic",
+            "headers": {
+              "accept-ranges": "bytes",
+              "cache-control": "no-store",
+              "connection": "keep-alive",
+              "content-length": "643211474",
+              "content-type": "application/octet-stream",
+              "cross-origin-resource-policy": "same-origin",
+              "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+              "keep-alive": "timeout=5",
+              "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+            }
+          },
+          "error": {
+            "constructor": "TypeError",
+            "name": "TypeError",
+            "message": "Failed to fetch",
+            "text": "TypeError: Failed to fetch",
+            "stack": "TypeError: Failed to fetch"
+          },
+          "failureJsHeap": {
+            "jsHeapSizeLimit": 4395630592,
+            "totalJSHeapSize": 3523337,
+            "usedJSHeapSize": 2596457
+          },
+          "completedAt": "2026-09-01T13:11:06.017Z",
+          "durationMs": 17858
+        },
+        "jsHeap": {
+          "jsHeapSizeLimit": 4395630592,
+          "totalJSHeapSize": 3523361,
+          "usedJSHeapSize": 2618517
+        },
+        "observedAt": "2026-09-01T13:11:06.207Z",
+        "processTree": {
+          "rootPid": 20972,
+          "processCount": 19,
+          "workingSetBytes": 3544334336,
+          "privateMemoryBytes": 4310593536,
+          "rootCommandLine": "C:/Users/hugefiver/AppData/Local/ms-playwright/chromium-1217/chrome-win64/chrome.exe --remote-debugging-address=127.0.0.1 --remote-debugging-port=0 --user-data-dir=C:\\Users\\HUGEFI~1\\AppData\\Local\\Temp\\opencode\\localcoder-h1-probe-aa52b63344244c73bb363c63d2310856\\profile-eager --no-first-run --no-default-browser-check --disable-background-networking --disable-component-update --disable-default-apps --disable-extensions --disable-sync --disable-features=Translate,MediaRouter,OptimizationHints --enable-precise-memory-info --no-sandbox about:blank",
+          "rootStartTimeUtc": "2026-09-01T13:10:46.1745999Z"
+        },
+        "controllerObservedAt": "2026-09-01T13:11:07.605Z"
+      }
+    ],
+    "result": {
+      "status": "rejected",
+      "phase": "complete",
+      "startedAt": "2026-09-01T13:10:48.159Z",
+      "startedPerformanceMs": 1361.155000001192,
+      "initialJsHeap": {
+        "jsHeapSizeLimit": 4395630592,
+        "totalJSHeapSize": 1588284,
+        "usedJSHeapSize": 1021760
+      },
+      "response": {
+        "url": "http://127.0.0.1:57466/haskell/libdir.tar.gz.bin",
+        "status": 200,
+        "statusText": "OK",
+        "ok": true,
+        "redirected": false,
+        "type": "basic",
+        "headers": {
+          "accept-ranges": "bytes",
+          "cache-control": "no-store",
+          "connection": "keep-alive",
+          "content-length": "643211474",
+          "content-type": "application/octet-stream",
+          "cross-origin-resource-policy": "same-origin",
+          "date": "Tue, 01 Sep 2026 13:10:48 GMT",
+          "keep-alive": "timeout=5",
+          "last-modified": "Fri, 28 Aug 2026 11:58:43 GMT"
+        }
+      },
+      "error": {
+        "constructor": "TypeError",
+        "name": "TypeError",
+        "message": "Failed to fetch",
+        "text": "TypeError: Failed to fetch",
+        "stack": "TypeError: Failed to fetch"
+      },
+      "failureJsHeap": {
+        "jsHeapSizeLimit": 4395630592,
+        "totalJSHeapSize": 3523337,
+        "usedJSHeapSize": 2596457
+      },
+      "completedAt": "2026-09-01T13:11:06.017Z",
+      "durationMs": 17858
+    }
+  },
+  "comparison": {
+    "h1": "CONFIRMED",
+    "reason": "Streaming consumed the complete 2,898,432,000-byte output and all 643,211,474 compressed response bytes, while the independent eager arrayBuffer path rejected with TypeError: Failed to fetch. Eager allocation pressure appeared in Chromium process memory rather than performance.memory: streaming peak working set was 21.8% of eager (78.2% lower).",
+    "streamedPastOneGiB": true,
+    "streamedFullIsize": true,
+    "eagerRejected": true,
+    "streamingPeakJsHeapBytes": 192213014,
+    "eagerPeakJsHeapBytes": 74610940,
+    "streamingToEagerJsHeapRatio": 2.5762041598725336,
+    "jsHeapSignificantlyLower": false,
+    "streamingPeakBrowserTreeWorkingSetBytes": 773345280,
+    "eagerPeakBrowserTreeWorkingSetBytes": 3544334336,
+    "streamingToEagerWorkingSetRatio": 0.2181919668652839,
+    "browserTreeWorkingSetReductionFraction": 0.7818080331347161,
+    "processMemorySignificantlyLower": true,
+    "jsHeapInterpretation": "performance.memory did not account for the eager ArrayBuffer/native buffering pressure; the browser process tree working set and private memory captured it."
+  },
+  "server": {
+    "origin": "http://127.0.0.1:57466",
+    "port": 57466,
+    "requests": [
+      {
+        "method": "GET",
+        "url": "/__h1_probe__.html",
+        "startedAt": "2026-09-01T13:10:06.360Z",
+        "status": 200,
+        "declaredContentLength": 82,
+        "bytesReadFromDisk": 0,
+        "completed": true,
+        "responseClosed": true,
+        "endedAt": "2026-09-01T13:10:06.363Z"
+      },
+      {
+        "method": "GET",
+        "url": "/favicon.ico",
+        "startedAt": "2026-09-01T13:10:08.216Z",
+        "status": 404,
+        "declaredContentLength": null,
+        "bytesReadFromDisk": 0,
+        "completed": true,
+        "responseClosed": true,
+        "endedAt": "2026-09-01T13:10:08.216Z"
+      },
+      {
+        "method": "GET",
+        "url": "/haskell/libdir.tar.gz.bin",
+        "startedAt": "2026-09-01T13:10:08.252Z",
+        "status": 200,
+        "declaredContentLength": 643211474,
+        "bytesReadFromDisk": 643211474,
+        "completed": true,
+        "responseClosed": true,
+        "endedAt": "2026-09-01T13:10:32.385Z"
+      },
+      {
+        "method": "GET",
+        "url": "/__h1_probe__.html",
+        "startedAt": "2026-09-01T13:10:46.812Z",
+        "status": 200,
+        "declaredContentLength": 82,
+        "bytesReadFromDisk": 0,
+        "completed": true,
+        "responseClosed": true,
+        "endedAt": "2026-09-01T13:10:46.814Z"
+      },
+      {
+        "method": "GET",
+        "url": "/favicon.ico",
+        "startedAt": "2026-09-01T13:10:48.147Z",
+        "status": 404,
+        "declaredContentLength": null,
+        "bytesReadFromDisk": 0,
+        "completed": true,
+        "responseClosed": true,
+        "endedAt": "2026-09-01T13:10:48.148Z"
+      },
+      {
+        "method": "GET",
+        "url": "/haskell/libdir.tar.gz.bin",
+        "startedAt": "2026-09-01T13:10:48.160Z",
+        "status": 200,
+        "declaredContentLength": 643211474,
+        "bytesReadFromDisk": 643211474,
+        "completed": true,
+        "responseClosed": true,
+        "endedAt": "2026-09-01T13:11:05.868Z"
+      }
+    ]
+  },
+  "cleanup": {
+    "runOwnedBrowserTreesGone": true,
+    "profilesRemoved": true,
+    "serverClosed": true,
+    "serverPortFree": true,
+    "runRootRemovedByController": true,
+    "temporaryProbeScriptRemovedByController": true,
+    "priorQaPortsStillFree": true,
+    "controllerVerifiedAt": "2026-09-01T13:14:47.589Z"
+  },
+  "fatalError": null
+}

@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-09T12:21:58.3692518Z",
+  "scope": "bounded-gitattributes-and-task2-probe-followup",
+  "status": "FOLLOWUP_COMPLETE_GATE_B_STILL_BLOCKED",
+  "lfsAttributeCorrection": {
+    "path": "public/haskell/ghc.wasm.gz.bin",
+    "rule": "/public/haskell/ghc.wasm.gz.bin filter=lfs diff=lfs merge=lfs -text",
+    "before": {
+      "filter": "unspecified",
+      "diff": "unspecified",
+      "merge": "unspecified",
+      "text": "unspecified"
+    },
+    "after": {
+      "filter": "lfs",
+      "diff": "lfs",
+      "merge": "lfs",
+      "text": "unset"
+    },
+    "neighboringRulesAfter": [
+      {
+        "path": "public/haskell/libdir.tar.gz.bin",
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      },
+      {
+        "path": "public/rustpython/runner.wasm.gz.bin",
+        "filter": "lfs",
+        "diff": "lfs",
+        "merge": "lfs",
+        "text": "unset"
+      }
+    ],
+    "gitLfsTrackExecuted": false,
+    "gitWriteExecuted": false
+  },
+  "officialSourceEvidence": {
+    "url": "https://raw.githubusercontent.com/ghc/ghc/ddf1434ff9bb08cfef3c93f23de6b83ec698aa27/utils/ghc-pkg/Main.hs",
+    "commit": "ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+    "observedOption": "--version",
+    "numericVersionOptionPresent": false,
+    "outputDefinition": "GHC package manager version <cProjectVersion>"
+  },
+  "strictProbeContract": {
+    "commandArgument": "--version",
+    "outputRepresentation": "string[]",
+    "requiredExitCode": 0,
+    "requiredLineCount": 1,
+    "regex": "\\AGHC package manager version (\\d+\\.\\d+(?:\\.\\d+)?)\\z",
+    "comparison": "ordinal-byte-for-byte-with-Gate-A-ghcNumericVersion",
+    "trimUsed": false,
+    "gateACompilerCommandChanged": false
+  },
+  "expectedVersion": "9.15.20260202",
+  "installedOrdinaryTool": {
+    "path": "C:\\Users\\hugefiver\\scoop\\apps\\ghcup\\current\\ghcup\\bin\\ghc-pkg-9.14.1.exe",
+    "sha256": "7c55e201f71860c5babea886007c8fa44b861abf50d1c07e5677eb0bda387a70",
+    "versionProbe": {
+      "command": [
+        "C:\\Users\\hugefiver\\scoop\\apps\\ghcup\\current\\ghcup\\bin\\ghc-pkg-9.14.1.exe",
+        "--version"
+      ],
+      "exitCode": 0,
+      "outputLines": [
+        "GHC package manager version 9.14.1"
+      ],
+      "extractedVersion": "9.14.1",
+      "matchesExpectedVersion": false
+    },
+    "supersededNumericVersionProbe": {
+      "command": [
+        "C:\\Users\\hugefiver\\scoop\\apps\\ghcup\\current\\ghcup\\bin\\ghc-pkg-9.14.1.exe",
+        "--numeric-version"
+      ],
+      "exitCode": 1,
+      "outputLines": [
+        "ghc-pkg-9.14.1.exe: unrecognized option `--numeric-version'",
+        "For usage information see 'ghc-pkg-9.14.1.exe --help'."
+      ]
+    }
+  },
+  "inMemoryValidationCases": [
+    {
+      "name": "canonical-matching-version",
+      "accepted": true,
+      "extractedVersion": "9.15.20260202",
+      "expectationMet": true
+    },
+    {
+      "name": "extra-line",
+      "accepted": false,
+      "reason": "ghc-pkg --version must emit exactly one line",
+      "expectationMet": true
+    },
+    {
+      "name": "banner",
+      "accepted": false,
+      "reason": "ghc-pkg --version output is not canonical",
+      "expectationMet": true
+    },
+    {
+      "name": "nonzero-exit",
+      "accepted": false,
+      "reason": "ghc-pkg version probe failed with exit 1",
+      "expectationMet": true
+    },
+    {
+      "name": "numeric-mismatch",
+      "accepted": false,
+      "reason": "ghc-pkg version mismatch: expected 9.15.20260202, got 9.14.1",
+      "expectationMet": true
+    },
+    {
+      "name": "installed-ghc-pkg-9.14.1",
+      "accepted": false,
+      "reason": "ghc-pkg version mismatch: expected 9.15.20260202, got 9.14.1",
+      "expectationMet": true
+    },
+    {
+      "name": "installed-numeric-version-option",
+      "accepted": false,
+      "reason": "ghc-pkg version probe failed with exit 1",
+      "expectationMet": true
+    }
+  ],
+  "allValidationExpectationsMet": true,
+  "matchingToolDiscovery": {
+    "target": "wasm32-wasi-ghc-pkg",
+    "found": false,
+    "matchingToolStillMissing": true
+  },
+  "authorizationBoundary": {
+    "followupDownloadAttempted": false,
+    "followupInstallAttempted": false,
+    "futureOfficialSourceIsolatedMatchingToolAcquisitionAuthorized": true,
+    "replaceExistingGhcAuthorized": false,
+    "modifyGlobalPathAuthorized": false,
+    "msysHadrianAdditionalPlatformDependenciesAuthorized": false
+  },
+  "outputsNotCreated": [
+    "dynamic-e-profile",
+    "package.cache",
+    "optional-v1-receipt",
+    "product-budget.json"
+  ],
+  "planRevision": {
+    "path": "docs/superpowers/plans/2026-09-01-haskell-ghc-e-browser-runtime.md",
+    "bytes": 81268,
+    "sha256": "6d73dafb8a3f97dd6333e11635e9141a8d127c7470aa922a5e8f0b7ed18ba737",
+    "receiptStatus": "current-revision-pending-re-review"
+  },
+  "historicalTestCountsNotRerun": {
+    "focused": "75/75",
+    "full": "303/303"
+  }
+}

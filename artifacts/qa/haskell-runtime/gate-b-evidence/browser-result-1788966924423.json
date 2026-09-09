@@ -1,0 +1,4195 @@
+{
+  "results": [
+    {
+      "request": {
+        "name": "invalid-target",
+        "source": "main = putStr \"ok\"",
+        "invalidTarget": true,
+        "attachedB": true,
+        "traceWasi": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "done": true,
+            "exitCode": 1,
+            "args": [
+              "ghc",
+              "-ignore-dot-ghci",
+              "-v0",
+              "-B/ghc",
+              "-hide-all-packages",
+              "-package",
+              "base",
+              "-e",
+              "main",
+              "/work/Main.hs"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682,
+            "stdout": "",
+            "stderr": "Can't parse as Target \"/ghc/targets/default.target\"\n",
+            "trace": [],
+            "missing": [],
+            "requests": [
+              "/dynamic-e-profile.manifest.json",
+              "/dynamic-e-profile.tar.gz.bin",
+              "/ghc.wasm.gz.bin"
+            ],
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-ignore-dot-ghci",
+                  "-v0",
+                  "-B/ghc",
+                  "-hide-all-packages",
+                  "-package",
+                  "base",
+                  "-e",
+                  "main",
+                  "/work/Main.hs"
+                ]
+              },
+              {
+                "progress": "wasi",
+                "name": "environ_sizes_get",
+                "args": [
+                  "65532",
+                  "65528"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "environ_get",
+                "args": [
+                  "14312704",
+                  "14312672"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "args_sizes_get",
+                "args": [
+                  "65528",
+                  "65532"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "args_get",
+                "args": [
+                  "14312816",
+                  "14312720"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_get",
+                "args": [
+                  "3",
+                  "65000"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_dir_name",
+                "args": [
+                  "3",
+                  "14312864",
+                  "1"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 1,
+                  "fd_prestat_dir_name": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_get",
+                "args": [
+                  "4",
+                  "65000"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "14312864",
+                  "4",
+                  "64960"
+                ],
+                "detail": "work",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 3
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 4
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 5
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 6
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "12",
+                  "65184"
+                ],
+                "detail": "ghc/settings",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_fdstat_get",
+                "args": [
+                  "3",
+                  "65208"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_open",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "12",
+                  "0",
+                  "0",
+                  "0",
+                  "4",
+                  "65204"
+                ],
+                "detail": "ghc/settings",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_filestat_get",
+                "args": [
+                  "4",
+                  "65200"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "4",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "4",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_close",
+                "args": [
+                  "4"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "26",
+                  "65184"
+                ],
+                "detail": "ghc/targets/default.target",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_fdstat_get",
+                "args": [
+                  "3",
+                  "65208"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_open",
+                "args": [
+                  "3",
+                  "1",
+                  "18545952",
+                  "26",
+                  "0",
+                  "0",
+                  "0",
+                  "4",
+                  "65204"
+                ],
+                "detail": "ghc/targets/default.target",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_filestat_get",
+                "args": [
+                  "5",
+                  "65200"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "5",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "2",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "stderr",
+                "text": "Can't parse as Target \"/ghc/targets/default.target\"\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65224"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 7,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65224"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 8,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64792"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 9,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64792"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 10,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64792"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 11,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64696"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 12,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "64696"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 13,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65224"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 14,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65224"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 15,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "63464"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 16,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "63464"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 17,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1,
+                  "fd_write": 1
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "name": "info-only",
+        "source": "main = putStr \"ok\"",
+        "infoOnly": true,
+        "attachedB": true,
+        "traceWasi": true
+      },
+      "result": {
+        "result": {
+          "type": "object",
+          "value": {
+            "done": true,
+            "exitCode": 0,
+            "args": [
+              "ghc",
+              "-B/ghc",
+              "--info"
+            ],
+            "identity": {
+              "ghc": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+              "profile": "1cc1ff1e3e36c7889b3dc85f31701843d18f68d3f2e254f080496cf3da52949b"
+            },
+            "payloadBytes": 50884682,
+            "stdout": " [(\"Project name\",\"The Glorious Glasgow Haskell Compilation System\")\n ,(\"unlit command\",\"/ghc/../bin/wasm32-wasi-unlit\")\n ,(\"Use interpreter\",\"YES\")\n ,(\"RTS ways\",\"v debug debug_p debug_p_dyn debug_dyn p p_dyn dyn\")\n ,(\"Relative Global Package DB\",\"package.conf.d\")\n ,(\"base unit-id\",\"base-4.22.0.0-inplace\")\n ,(\"C compiler command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n ,(\"C compiler flags\",\"--target=wasm32-unknown-wasi -Wno-error=int-conversion -O3 -mcpu=lime1 -mreference-types -msimd128 -Qunused-arguments\")\n ,(\"C++ compiler command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang++\")\n ,(\"C++ compiler flags\",\"--target=wasm32-unknown-wasi -fno-exceptions -Wno-error=int-conversion -O3 -mcpu=lime1 -mreference-types -msimd128\")\n ,(\"C compiler link flags\",\"--target=wasm32-unknown-wasi -Wl,--error-limit=0,--keep-section=ghc_wasm_jsffi,--keep-section=target_features,--stack-first,--strip-debug\")\n ,(\"C compiler supports -no-pie\",\"NO\")\n ,(\"CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n ,(\"CPP flags\",\"-E\")\n ,(\"Haskell CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n ,(\"Haskell CPP flags\",\"-E -undef -traditional -Wno-invalid-pp-token -Wno-unicode -Wno-trigraphs\")\n ,(\"JavaScript CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n ,(\"JavaScript CPP flags\",\"-E -CC -Wno-unicode -nostdinc\")\n ,(\"C-- CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n ,(\"C-- CPP flags\",\"-E\")\n ,(\"C-- CPP supports -g0\",\"YES\")\n ,(\"ld supports compact unwind\",\"NO\")\n ,(\"ld supports filelist\",\"NO\")\n ,(\"ld supports single module\",\"NO\")\n ,(\"ld is GNU ld\",\"NO\")\n ,(\"Merge objects command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm-ld\")\n ,(\"Merge objects flags\",\"-r\")\n ,(\"Merge objects supports response files\",\"YES\")\n ,(\"ar command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/llvm-ar\")\n ,(\"ar flags\",\"qcls\")\n ,(\"ar supports at file\",\"YES\")\n ,(\"ar supports -L\",\"YES\")\n ,(\"ranlib command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/llvm-ranlib\")\n ,(\"otool command\",\"\")\n ,(\"install_name_tool command\",\"\")\n ,(\"windres command\",\"/bin/false\")\n ,(\"cross compiling\",\"YES\")\n ,(\"target platform string\",\"wasm32-unknown-wasi\")\n ,(\"target os\",\"OSWasi\")\n ,(\"target arch\",\"ArchWasm32\")\n ,(\"target word size\",\"4\")\n ,(\"target word big endian\",\"NO\")\n ,(\"target has GNU nonexec stack\",\"NO\")\n ,(\"target has libm\",\"YES\")\n ,(\"target has .ident directive\",\"YES\")\n ,(\"target has subsections via symbols\",\"NO\")\n ,(\"target RTS linker only supports shared libraries\",\"YES\")\n ,(\"Unregisterised\",\"NO\")\n ,(\"LLVM target\",\"wasm32-unknown-wasi\")\n ,(\"LLVM llc command\",\"\")\n ,(\"LLVM opt command\",\"\")\n ,(\"LLVM llvm-as command\",\"wasm32-wasi-clang\")\n ,(\"LLVM llvm-as flags\",\"\")\n ,(\"Tables next to code\",\"NO\")\n ,(\"Leading underscore\",\"NO\")\n ,(\"RTS expects libdw\",\"NO\")\n ,(\"Project version\",\"9.15.20260202\")\n ,(\"Project Git commit id\",\"ddf1434ff9bb08cfef3c93f23de6b83ec698aa27\")\n ,(\"Project Version Int\",\"915\")\n ,(\"Project Patch Level\",\"20260202\")\n ,(\"Project Patch Level1\",\"20260202\")\n ,(\"Project Patch Level2\",\"0\")\n ,(\"Project Unit Id\",\"ghc-9.15-inplace\")\n ,(\"ghc-internal Unit Id\",\"ghc-internal-9.1500.0-inplace\")\n ,(\"Booter version\",\"9.14.1\")\n ,(\"Stage\",\"2\")\n ,(\"Build platform\",\"x86_64-unknown-linux\")\n ,(\"Host platform\",\"wasm32-unknown-wasi\")\n ,(\"Target platform\",\"wasm32-unknown-wasi\")\n ,(\"target os string\",\"wasi\")\n ,(\"target arch string\",\"wasm32\")\n ,(\"target word size in bits\",\"32\")\n ,(\"Have interpreter\",\"YES\")\n ,(\"Object splitting supported\",\"NO\")\n ,(\"Have native code generator\",\"YES\")\n ,(\"target has RTS linker\",\"YES\")\n ,(\"Target default backend\",\"native code generator\")\n ,(\"Support dynamic-too\",\"YES\")\n ,(\"Support parallel --make\",\"YES\")\n ,(\"Support reexported-modules\",\"YES\")\n ,(\"Support thinning and renaming package flags\",\"YES\")\n ,(\"Support Backpack\",\"YES\")\n ,(\"Support SMP\",\"NO\")\n ,(\"Requires unified installed package IDs\",\"YES\")\n ,(\"Uses package keys\",\"YES\")\n ,(\"Uses unit IDs\",\"YES\")\n ,(\"GHC Dynamic\",\"NO\")\n ,(\"GHC Profiled\",\"NO\")\n ,(\"Debug on\",\"NO\")\n ,(\"LibDir\",\"/ghc\")\n ,(\"Global Package DB\",\"/ghc/package.conf.d\")\n ]\n",
+            "stderr": "",
+            "trace": [],
+            "missing": [],
+            "requests": [
+              "/dynamic-e-profile.manifest.json",
+              "/dynamic-e-profile.tar.gz.bin",
+              "/ghc.wasm.gz.bin"
+            ],
+            "progress": [
+              {
+                "progress": "starting",
+                "args": [
+                  "ghc",
+                  "-B/ghc",
+                  "--info"
+                ]
+              },
+              {
+                "progress": "wasi",
+                "name": "environ_sizes_get",
+                "args": [
+                  "65532",
+                  "65528"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "environ_get",
+                "args": [
+                  "14312704",
+                  "14312672"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "args_sizes_get",
+                "args": [
+                  "65528",
+                  "65532"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "args_get",
+                "args": [
+                  "14312752",
+                  "14312720"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_get",
+                "args": [
+                  "3",
+                  "65000"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_dir_name",
+                "args": [
+                  "3",
+                  "14312784",
+                  "1"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 1,
+                  "fd_prestat_dir_name": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_prestat_get",
+                "args": [
+                  "4",
+                  "65000"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "14312784",
+                  "4",
+                  "64960"
+                ],
+                "detail": "work",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 3
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 4
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 5
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "clock_time_get",
+                "args": [
+                  "1",
+                  "1",
+                  "65160"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 1,
+                  "clock_time_get": 6
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "18545520",
+                  "12",
+                  "65184"
+                ],
+                "detail": "ghc/settings",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_fdstat_get",
+                "args": [
+                  "3",
+                  "65208"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_open",
+                "args": [
+                  "3",
+                  "1",
+                  "18545520",
+                  "12",
+                  "0",
+                  "0",
+                  "0",
+                  "4",
+                  "65204"
+                ],
+                "detail": "ghc/settings",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_filestat_get",
+                "args": [
+                  "4",
+                  "65200"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "4",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "4",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_close",
+                "args": [
+                  "4"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 2,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_filestat_get",
+                "args": [
+                  "3",
+                  "1",
+                  "18545520",
+                  "26",
+                  "65184"
+                ],
+                "detail": "ghc/targets/default.target",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 1,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_fdstat_get",
+                "args": [
+                  "3",
+                  "65208"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 1,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "path_open",
+                "args": [
+                  "3",
+                  "1",
+                  "18545520",
+                  "26",
+                  "0",
+                  "0",
+                  "0",
+                  "4",
+                  "65204"
+                ],
+                "detail": "ghc/targets/default.target",
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 1,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_filestat_get",
+                "args": [
+                  "5",
+                  "65200"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 2,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "5",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 3,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_read",
+                "args": [
+                  "5",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 1
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_close",
+                "args": [
+                  "5"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2
+                }
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 1
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " [(\"Project name\",\"The Glorious Glasgow Haskell Compilation System\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 2
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"unlit command\",\"/ghc/../bin/wasm32-wasi-unlit\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 3
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Use interpreter\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 4
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"RTS ways\",\"v debug debug_p debug_p_dyn debug_dyn p p_dyn dyn\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 5
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Relative Global Package DB\",\"package.conf.d\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 6
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"base unit-id\",\"base-4.22.0.0-inplace\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 7
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C compiler command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 8
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C compiler flags\",\"--target=wasm32-unknown-wasi -Wno-error=int-conversion -O3 -mcpu=lime1 -mreference-types -msimd128 -Qunused-arguments\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 9
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C++ compiler command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang++\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 10
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C++ compiler flags\",\"--target=wasm32-unknown-wasi -fno-exceptions -Wno-error=int-conversion -O3 -mcpu=lime1 -mreference-types -msimd128\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 11
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C compiler link flags\",\"--target=wasm32-unknown-wasi -Wl,--error-limit=0,--keep-section=ghc_wasm_jsffi,--keep-section=target_features,--stack-first,--strip-debug\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 12
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C compiler supports -no-pie\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 13
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 14
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"CPP flags\",\"-E\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 15
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Haskell CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 16
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Haskell CPP flags\",\"-E -undef -traditional -Wno-invalid-pp-token -Wno-unicode -Wno-trigraphs\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 17
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"JavaScript CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 18
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"JavaScript CPP flags\",\"-E -CC -Wno-unicode -nostdinc\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 19
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C-- CPP command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm32-wasi-clang\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 20
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C-- CPP flags\",\"-E\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 21
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"C-- CPP supports -g0\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 22
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ld supports compact unwind\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 23
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ld supports filelist\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 24
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ld supports single module\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 25
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ld is GNU ld\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 26
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Merge objects command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/wasm-ld\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 27
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Merge objects flags\",\"-r\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 28
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Merge objects supports response files\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 29
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ar command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/llvm-ar\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 30
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ar flags\",\"qcls\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 31
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ar supports at file\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 32
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ar supports -L\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 33
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ranlib command\",\"/home/codespace/.ghc-wasm/wasi-sdk/bin/llvm-ranlib\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 34
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"otool command\",\"\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 35
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"install_name_tool command\",\"\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 36
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"windres command\",\"/bin/false\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 37
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"cross compiling\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 38
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target platform string\",\"wasm32-unknown-wasi\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 39
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target os\",\"OSWasi\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 40
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target arch\",\"ArchWasm32\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 41
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target word size\",\"4\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 42
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target word big endian\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 43
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target has GNU nonexec stack\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 44
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target has libm\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 45
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target has .ident directive\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 46
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target has subsections via symbols\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 47
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target RTS linker only supports shared libraries\",\"YES\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 48
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Unregisterised\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 49
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"LLVM target\",\"wasm32-unknown-wasi\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 50
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"LLVM llc command\",\"\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 51
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"LLVM opt command\",\"\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 52
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"LLVM llvm-as command\",\"wasm32-wasi-clang\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 53
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"LLVM llvm-as flags\",\"\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 54
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Tables next to code\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 55
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Leading underscore\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 56
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"RTS expects libdw\",\"NO\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 57
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project version\",\"9.15.20260202\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 58
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project Git commit id\",\"ddf1434ff9bb08cfef3c93f23de6b83ec698aa27\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 59
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project Version Int\",\"915\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 60
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project Patch Level\",\"20260202\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 61
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project Patch Level1\",\"20260202\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 62
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project Patch Level2\",\"0\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 63
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Project Unit Id\",\"ghc-9.15-inplace\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 64
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"ghc-internal Unit Id\",\"ghc-internal-9.1500.0-inplace\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 65
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Booter version\",\"9.14.1\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 66
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Stage\",\"2\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 67
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Build platform\",\"x86_64-unknown-linux\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 68
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Host platform\",\"wasm32-unknown-wasi\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 69
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Target platform\",\"wasm32-unknown-wasi\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 70
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target os string\",\"wasi\")\n"
+              },
+              {
+                "progress": "wasi",
+                "name": "fd_write",
+                "args": [
+                  "1",
+                  "65256",
+                  "1",
+                  "65252"
+                ],
+                "counts": {
+                  "environ_sizes_get": 1,
+                  "environ_get": 1,
+                  "args_sizes_get": 1,
+                  "args_get": 1,
+                  "fd_prestat_get": 2,
+                  "fd_prestat_dir_name": 1,
+                  "path_filestat_get": 3,
+                  "clock_time_get": 6,
+                  "fd_fdstat_get": 2,
+                  "path_open": 2,
+                  "fd_filestat_get": 2,
+                  "fd_read": 4,
+                  "fd_close": 2,
+                  "fd_write": 71
+                }
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target arch string\",\"wasm32\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target word size in bits\",\"32\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Have interpreter\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Object splitting supported\",\"NO\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Have native code generator\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"target has RTS linker\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Target default backend\",\"native code generator\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Support dynamic-too\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Support parallel --make\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Support reexported-modules\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Support thinning and renaming package flags\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Support Backpack\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Support SMP\",\"NO\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Requires unified installed package IDs\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Uses package keys\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Uses unit IDs\",\"YES\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"GHC Dynamic\",\"NO\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"GHC Profiled\",\"NO\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Debug on\",\"NO\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"LibDir\",\"/ghc\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ,(\"Global Package DB\",\"/ghc/package.conf.d\")\n"
+              },
+              {
+                "progress": "stdout",
+                "text": " ]\n"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "events": [
+    {
+      "method": "Runtime.executionContextCreated",
+      "params": {
+        "context": {
+          "id": 8,
+          "origin": "http://127.0.0.1:5173",
+          "name": "",
+          "uniqueId": "-8204190456292596805.391751721954349171",
+          "auxData": {
+            "isDefault": true,
+            "type": "default",
+            "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+          }
+        }
+      }
+    },
+    {
+      "method": "Page.frameStartedNavigating",
+      "params": {
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "url": "http://127.0.0.1:5173/",
+        "loaderId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "navigationType": "differentDocument"
+      }
+    },
+    {
+      "method": "Page.frameStartedLoading",
+      "params": {
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "loaderId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "documentURL": "http://127.0.0.1:5173/",
+        "request": {
+          "url": "http://127.0.0.1:5173/",
+          "method": "GET",
+          "headers": {
+            "Upgrade-Insecure-Requests": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+            "sec-ch-ua": "\"Chromium\";v=\"148\", \"Microsoft Edge\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\""
+          },
+          "mixedContentType": "none",
+          "initialPriority": "VeryHigh",
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "isSameSite": true
+        },
+        "timestamp": 727195.297605,
+        "wallTime": 1788966920.951238,
+        "initiator": {
+          "type": "other"
+        },
+        "redirectHasExtraInfo": false,
+        "type": "Document",
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "hasUserGesture": false
+      }
+    },
+    {
+      "method": "Network.requestWillBeSentExtraInfo",
+      "params": {
+        "requestId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "associatedCookies": [],
+        "headers": {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+          "Connection": "keep-alive",
+          "Host": "127.0.0.1:5173",
+          "Sec-Fetch-Dest": "document",
+          "Sec-Fetch-Mode": "navigate",
+          "Sec-Fetch-Site": "none",
+          "Sec-Fetch-User": "?1",
+          "Upgrade-Insecure-Requests": "1",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+          "sec-ch-ua": "\"Chromium\";v=\"148\", \"Microsoft Edge\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": "\"Windows\""
+        },
+        "connectTiming": {
+          "requestTime": 727195.298763
+        },
+        "siteHasCookieInOtherPartition": false
+      }
+    },
+    {
+      "method": "Network.responseReceivedExtraInfo",
+      "params": {
+        "requestId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "blockedCookies": [],
+        "headers": {
+          "Cache-Control": "no-store",
+          "Connection": "keep-alive",
+          "Content-Type": "text/html",
+          "Date": "Wed, 09 Sep 2026 15:15:20 GMT",
+          "Keep-Alive": "timeout=5",
+          "Transfer-Encoding": "chunked"
+        },
+        "resourceIPAddressSpace": "Loopback",
+        "statusCode": 200,
+        "headersText": "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nCache-Control: no-store\r\nDate: Wed, 09 Sep 2026 15:15:20 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n",
+        "cookiePartitionKey": {
+          "topLevelSite": "http://127.0.0.1",
+          "hasCrossSiteAncestor": false
+        },
+        "cookiePartitionKeyOpaque": false,
+        "exemptedCookies": []
+      }
+    },
+    {
+      "method": "Network.responseReceived",
+      "params": {
+        "requestId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "loaderId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "timestamp": 727195.303309,
+        "type": "Document",
+        "response": {
+          "url": "http://127.0.0.1:5173/",
+          "status": 200,
+          "statusText": "OK",
+          "headers": {
+            "Cache-Control": "no-store",
+            "Connection": "keep-alive",
+            "Content-Type": "text/html",
+            "Date": "Wed, 09 Sep 2026 15:15:20 GMT",
+            "Keep-Alive": "timeout=5",
+            "Transfer-Encoding": "chunked"
+          },
+          "mimeType": "text/html",
+          "charset": "",
+          "connectionReused": true,
+          "connectionId": 633,
+          "remoteIPAddress": "127.0.0.1",
+          "remotePort": 5173,
+          "fromDiskCache": false,
+          "fromServiceWorker": false,
+          "fromPrefetchCache": false,
+          "encodedDataLength": 181,
+          "timing": {
+            "requestTime": 727195.298763,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.502,
+            "sendEnd": 0.682,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 2.423,
+            "receiveHeadersEnd": 2.51
+          },
+          "responseTime": 1788966920954.736,
+          "protocol": "http/1.1",
+          "alternateProtocolUsage": "unspecifiedReason",
+          "securityState": "secure"
+        },
+        "hasExtraInfo": true,
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+      }
+    },
+    {
+      "method": "Runtime.executionContextsCleared",
+      "params": {}
+    },
+    {
+      "method": "Page.frameNavigated",
+      "params": {
+        "frame": {
+          "id": "2AD36384D243323BFC5EDAF169D199D4",
+          "loaderId": "EE103AFD574171BDE07FAA3A7F890E41",
+          "url": "http://127.0.0.1:5173/",
+          "domainAndRegistry": "",
+          "securityOrigin": "http://127.0.0.1:5173",
+          "securityOriginDetails": {
+            "isLocalhost": true
+          },
+          "mimeType": "text/html",
+          "adFrameStatus": {
+            "adFrameType": "none"
+          },
+          "secureContextType": "SecureLocalhost",
+          "crossOriginIsolatedContextType": "NotIsolated",
+          "gatedAPIFeatures": []
+        },
+        "type": "Navigation"
+      }
+    },
+    {
+      "method": "Network.policyUpdated",
+      "params": {}
+    },
+    {
+      "method": "Network.dataReceived",
+      "params": {
+        "requestId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "timestamp": 727195.307162,
+        "dataLength": 597,
+        "encodedDataLength": 0
+      }
+    },
+    {
+      "method": "Runtime.executionContextCreated",
+      "params": {
+        "context": {
+          "id": 9,
+          "origin": "http://127.0.0.1:5173",
+          "name": "",
+          "uniqueId": "1046340830852419836.-5847677165991878442",
+          "auxData": {
+            "isDefault": true,
+            "type": "default",
+            "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+          }
+        }
+      }
+    },
+    {
+      "method": "Network.loadingFinished",
+      "params": {
+        "requestId": "EE103AFD574171BDE07FAA3A7F890E41",
+        "timestamp": 727195.301835,
+        "encodedDataLength": 790
+      }
+    },
+    {
+      "method": "Page.domContentEventFired",
+      "params": {
+        "timestamp": 727195.309091
+      }
+    },
+    {
+      "method": "Page.loadEventFired",
+      "params": {
+        "timestamp": 727195.309371
+      }
+    },
+    {
+      "method": "Page.frameStoppedLoading",
+      "params": {
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4"
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "A127AC23BBDDBB5E01191A6E872A0502",
+        "loaderId": "",
+        "documentURL": "http://127.0.0.1:5173/worker.mjs",
+        "request": {
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "method": "GET",
+          "headers": {
+            "Accept": "*/*"
+          },
+          "initialPriority": "VeryLow",
+          "referrerPolicy": "strict-origin-when-cross-origin"
+        },
+        "timestamp": 727196.311543,
+        "wallTime": 1788966921.965179,
+        "initiator": {
+          "type": "other",
+          "url": "http://127.0.0.1:5173/"
+        },
+        "redirectHasExtraInfo": false,
+        "type": "Script",
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "hasUserGesture": false
+      }
+    },
+    {
+      "method": "Network.requestWillBeSentExtraInfo",
+      "params": {
+        "requestId": "A127AC23BBDDBB5E01191A6E872A0502",
+        "associatedCookies": [],
+        "headers": {
+          "Accept": "*/*",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+          "Connection": "keep-alive",
+          "Host": "127.0.0.1:5173",
+          "Referer": "http://127.0.0.1:5173/",
+          "Sec-Fetch-Dest": "worker",
+          "Sec-Fetch-Mode": "same-origin",
+          "Sec-Fetch-Site": "same-origin",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+        },
+        "connectTiming": {
+          "requestTime": 727196.31233
+        },
+        "clientSecurityState": {
+          "initiatorIsSecureContext": true,
+          "initiatorIPAddressSpace": "Loopback",
+          "localNetworkAccessRequestPolicy": "PermissionBlock"
+        },
+        "siteHasCookieInOtherPartition": false
+      }
+    },
+    {
+      "method": "Network.responseReceivedExtraInfo",
+      "params": {
+        "requestId": "A127AC23BBDDBB5E01191A6E872A0502",
+        "blockedCookies": [],
+        "headers": {
+          "Cache-Control": "no-store",
+          "Connection": "keep-alive",
+          "Content-Type": "text/javascript",
+          "Date": "Wed, 09 Sep 2026 15:15:21 GMT",
+          "Keep-Alive": "timeout=5",
+          "Transfer-Encoding": "chunked"
+        },
+        "resourceIPAddressSpace": "Loopback",
+        "statusCode": 200,
+        "headersText": "HTTP/1.1 200 OK\r\nContent-Type: text/javascript\r\nCache-Control: no-store\r\nDate: Wed, 09 Sep 2026 15:15:21 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n",
+        "cookiePartitionKey": {
+          "topLevelSite": "http://127.0.0.1",
+          "hasCrossSiteAncestor": false
+        },
+        "cookiePartitionKeyOpaque": false,
+        "exemptedCookies": []
+      }
+    },
+    {
+      "method": "Target.attachedToTarget",
+      "params": {
+        "sessionId": "B33F3FD6EC776AEFB4A6C1C01D8DDE46",
+        "targetInfo": {
+          "targetId": "A127AC23BBDDBB5E01191A6E872A0502",
+          "type": "worker",
+          "title": "http://127.0.0.1:5173/worker.mjs",
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "2F1C9D6AB046E1E39DCEC0FAA06C99EE",
+          "pid": 30280
+        },
+        "waitingForDebugger": false
+      }
+    },
+    {
+      "method": "Inspector.workerScriptLoaded",
+      "params": {},
+      "sessionId": "B33F3FD6EC776AEFB4A6C1C01D8DDE46"
+    },
+    {
+      "method": "Target.detachedFromTarget",
+      "params": {
+        "sessionId": "B33F3FD6EC776AEFB4A6C1C01D8DDE46",
+        "targetId": "A127AC23BBDDBB5E01191A6E872A0502"
+      }
+    },
+    {
+      "method": "Network.requestWillBeSent",
+      "params": {
+        "requestId": "13551C1D43CAF19D1402A6A6D589C687",
+        "loaderId": "",
+        "documentURL": "http://127.0.0.1:5173/worker.mjs",
+        "request": {
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "method": "GET",
+          "headers": {
+            "Accept": "*/*"
+          },
+          "initialPriority": "VeryLow",
+          "referrerPolicy": "strict-origin-when-cross-origin"
+        },
+        "timestamp": 727197.50198,
+        "wallTime": 1788966923.155613,
+        "initiator": {
+          "type": "other",
+          "url": "http://127.0.0.1:5173/"
+        },
+        "redirectHasExtraInfo": false,
+        "type": "Script",
+        "frameId": "2AD36384D243323BFC5EDAF169D199D4",
+        "hasUserGesture": false
+      }
+    },
+    {
+      "method": "Network.requestWillBeSentExtraInfo",
+      "params": {
+        "requestId": "13551C1D43CAF19D1402A6A6D589C687",
+        "associatedCookies": [],
+        "headers": {
+          "Accept": "*/*",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+          "Connection": "keep-alive",
+          "Host": "127.0.0.1:5173",
+          "Referer": "http://127.0.0.1:5173/",
+          "Sec-Fetch-Dest": "worker",
+          "Sec-Fetch-Mode": "same-origin",
+          "Sec-Fetch-Site": "same-origin",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0"
+        },
+        "connectTiming": {
+          "requestTime": 727197.502545
+        },
+        "clientSecurityState": {
+          "initiatorIsSecureContext": true,
+          "initiatorIPAddressSpace": "Loopback",
+          "localNetworkAccessRequestPolicy": "PermissionBlock"
+        },
+        "siteHasCookieInOtherPartition": false
+      }
+    },
+    {
+      "method": "Network.responseReceivedExtraInfo",
+      "params": {
+        "requestId": "13551C1D43CAF19D1402A6A6D589C687",
+        "blockedCookies": [],
+        "headers": {
+          "Cache-Control": "no-store",
+          "Connection": "keep-alive",
+          "Content-Type": "text/javascript",
+          "Date": "Wed, 09 Sep 2026 15:15:23 GMT",
+          "Keep-Alive": "timeout=5",
+          "Transfer-Encoding": "chunked"
+        },
+        "resourceIPAddressSpace": "Loopback",
+        "statusCode": 200,
+        "headersText": "HTTP/1.1 200 OK\r\nContent-Type: text/javascript\r\nCache-Control: no-store\r\nDate: Wed, 09 Sep 2026 15:15:23 GMT\r\nConnection: keep-alive\r\nKeep-Alive: timeout=5\r\nTransfer-Encoding: chunked\r\n\r\n",
+        "cookiePartitionKey": {
+          "topLevelSite": "http://127.0.0.1",
+          "hasCrossSiteAncestor": false
+        },
+        "cookiePartitionKeyOpaque": false,
+        "exemptedCookies": []
+      }
+    },
+    {
+      "method": "Target.attachedToTarget",
+      "params": {
+        "sessionId": "42EDF4F14CAD7C82D8BBDD72932B127D",
+        "targetInfo": {
+          "targetId": "13551C1D43CAF19D1402A6A6D589C687",
+          "type": "worker",
+          "title": "http://127.0.0.1:5173/worker.mjs",
+          "url": "http://127.0.0.1:5173/worker.mjs",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "2F1C9D6AB046E1E39DCEC0FAA06C99EE",
+          "pid": 30280
+        },
+        "waitingForDebugger": false
+      }
+    },
+    {
+      "method": "Inspector.workerScriptLoaded",
+      "params": {},
+      "sessionId": "42EDF4F14CAD7C82D8BBDD72932B127D"
+    },
+    {
+      "method": "Target.detachedFromTarget",
+      "params": {
+        "sessionId": "42EDF4F14CAD7C82D8BBDD72932B127D",
+        "targetId": "13551C1D43CAF19D1402A6A6D589C687"
+      }
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-09-09",
+  "status": "MATCHING_HOST_TOOL_BUILT_AND_SMALL_DB_VERIFIED",
+  "gateBStatus": "NOT_EVALUATED_BY_THIS_PROBE",
+  "scope": "User-authorized isolated Windows official-source host ghc-pkg build; no production source or profile changes",
+  "ownership": {
+    "root": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso",
+    "owner": "LocalCoder Gate B isolated ghc-pkg source-build probe, 2026-09-09",
+    "retainForParentTask2": true,
+    "cleanupPolicy": "Do not remove the owned root until Task 2 has finished using the matching tool and its retained provenance. Remove only this exact root when authorized cleanup is appropriate.",
+    "globalPathChanged": false,
+    "existingGhcReplaced": false,
+    "userCabalOrStackConfigWritten": false,
+    "gitWriteExecuted": false,
+    "agentsDelegated": false,
+    "repositoryWrites": ["artifacts/qa/haskell-runtime/ghc-pkg-source-build.json"]
+  },
+  "handoff": {
+    "executable": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\matched\\stage0\\bin\\wasm32-wasi-ghc-pkg.exe",
+    "executableBytes": 34893312,
+    "executableSha256": "958e0ef2ff1621ca1f0896eec9258408a0730b7ca7a269c22858b10abea955ae",
+    "requiredLayoutRelativeToOwnedRoot": [
+      "matched/stage0/bin/wasm32-wasi-ghc-pkg.exe",
+      "matched/stage0/lib/settings",
+      "matched/stage0/lib/targets/default.target",
+      "matched/stage1/lib/package.conf.d"
+    ],
+    "globalDatabase": "matched/stage1/lib/package.conf.d is a fresh EMPTY database initialized by this matching executable, not a copied bootstrap database",
+    "layoutReason": "Official generated stage0 settings direct the global package database to ../../stage1/lib/package.conf.d. Preserve this layout; merely copying the executable to an arbitrary bin directory is insufficient.",
+    "recacheArguments": ["--no-user-package-db", "--package-db", "<absolute staged profile package.conf.d>", "recache"],
+    "checkArguments": ["--no-user-package-db", "--package-db", "<absolute staged profile package.conf.d>", "check"],
+    "environment": "Native Windows executable; verified with PATH=C:\\Windows\\System32, without GHC, MSYS, cabal or WASI SDK on PATH. Clear inherited GHC_PACKAGE_PATH for deterministic DB selection. Use --no-user-package-db for profile operations.",
+    "runtimeDependencies": "Only Windows system DLLs/UCRT, enumerated in retained evidence-index.json; no GHC or MSYS DLL is imported",
+    "targetCompilerPaths": "Official default.target retains absolute paths to the isolated WASI SDK. ghc-pkg recache/check do not invoke those compilers. The SDK remains in the owned root for provenance and subsequent diagnostic use.",
+    "prohibitedUse": "Do not use any probe or bootstrap package.cache as the profile cache; Task 2 must invoke this executable to recache its own staged package descriptions. No full libdir browser fallback was created."
+  },
+  "officialSourceAssociation": {
+    "ghcCommit": "ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+    "commitMetadataUrl": "https://api.github.com/repos/ghc/ghc/commits/ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+    "officialCommitterDate": "2026-02-02T00:38:52Z",
+    "configureAcVersion": "9.15",
+    "versionRule": "Official m4/fp_setup_project_version.m4 appends the UTC last-commit date for development versions and explicitly accepts VERSION_DATE and GIT_COMMIT_ID for archive source trees. Those two archive metadata inputs were supplied from the official commit response. No version module or tool banner was handwritten or modified.",
+    "versionRuleUrl": "https://raw.githubusercontent.com/ghc/ghc/ddf1434ff9bb08cfef3c93f23de6b83ec698aa27/m4/fp_setup_project_version.m4",
+    "expectedVersion": "9.15.20260202",
+    "gateACompiler": {
+      "path": "runtimes/haskell-ghc/dist/ghc.wasm",
+      "bytes": 146482240,
+      "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+      "lockedCommitAsciiOffsetInHashVerifiedBinary": 131267166,
+      "meaning": "The exact locked commit string is present in the hash-verified Gate A compiler, in addition to the official commit/date/version-rule association. This is not a new browser startup receipt."
+    },
+    "cabalSubmodule": {
+      "sha": "d9b0904b49dc84e0bfc79062daf2bbdf9d22a422",
+      "version": "3.16.0.0",
+      "authority": "https://api.github.com/repos/ghc/ghc/contents/libraries/Cabal?ref=ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+      "usedForProducedGhcPkg": "Matching in-tree Cabal and Cabal-syntax sources; NOT the same-version installed libraries"
+    },
+    "sourceVerification": {
+      "ghcRelevantFilesComparedToOfficialGitTreeBlobs": 230,
+      "cabalAndCabalSyntaxFilesComparedToOfficialGitTreeBlobs": 290,
+      "allComparedFilesMatch": true,
+      "ghcPrefixes": ["utils/ghc-pkg/", "utils/ghc-toolchain/", "libraries/ghc-boot/", "libraries/ghc-boot-th/", "libraries/ghc-platform/", "hadrian/"],
+      "details": "Every checked file's upstream blob identity and actual SHA-256 are in evidence-index.json/sourceChecks. Submodule archive URLs use the exact gitlinks in the official locked GHC tree."
+    }
+  },
+  "primaryDownloads": [
+    {
+      "url": "https://codeload.github.com/ghc/ghc/tar.gz/ddf1434ff9bb08cfef3c93f23de6b83ec698aa27",
+      "bytes": 26675722,
+      "sha256": "d9e00eb4ff3f93cd6f226ad17fa33803824cc9ff9be1ccaf92b0c1f5caae3465",
+      "upstreamPublishedArchiveSha256": null,
+      "verification": "HTTPS official source archive plus relevant source files verified against official commit Git blob identities"
+    },
+    {
+      "url": "https://codeload.github.com/haskell/cabal/tar.gz/d9b0904b49dc84e0bfc79062daf2bbdf9d22a422",
+      "bytes": 4073426,
+      "sha256": "45be40fafca149599fe6380cb3e97d976cccac752eba22c71bc6bb8379caf484",
+      "verification": "GHC's official gitlink and official Cabal source blob comparison"
+    },
+    {
+      "url": "https://github.com/msys2/msys2-installer/releases/download/nightly-x86_64/msys2-base-x86_64-latest.tar.xz",
+      "releaseAssetId": 552319079,
+      "bytes": 42949460,
+      "sha256": "3a1b3a3ba7f9ec6973a418eec94f2defe944ce79129457e5abd586fe6d8d62f7",
+      "matchesOfficialReleaseDigest": true,
+      "metadataRetained": "msys-release.json",
+      "installation": "Archive extraction into owned root/msys64; pacman-key --init and --populate msys2, followed by signed official repository packages. No system-wide installer was used."
+    },
+    {
+      "url": "https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-34/wasi-sdk-34.0-x86_64-windows.tar.gz",
+      "releaseAssetId": 528366541,
+      "bytes": 619003408,
+      "sha256": "cccb5c323a9b34f0349a9b09e8804a0a7632c68c3310f4b5f437ed57d7e71d8f",
+      "matchesOfficialReleaseDigest": true,
+      "metadataRetained": "wasi-release.json",
+      "purpose": "Official target compiler/sysroot necessary for authentic wasm32-wasi configure/ghc-toolchain probes, not a replacement GHC"
+    }
+  ],
+  "additionalSources": {
+    "submodules": ["directory", "filepath", "process", "Win32", "time", "os-string", "file-io", "hsc2hs", "haskeline", "xhtml", "hpc", "semaphore-compat", "hpc-bin", "template-haskell-lift", "template-haskell-quasiquoter"],
+    "submoduleSourceAndHashLedger": "evidence-index.json/events, kind=download; source-tree.json records exact locked gitlinks",
+    "hackage": "https://hackage.haskell.org/ using Cabal secure repository metadata; Hadrian's official cabal.project pins index-state 2025-12-19T19:24:24Z. Complete build plan including source hashes is embedded in evidence-index.json/hackagePlan.",
+    "msys": "Official MSYS repositories with normal signature checking enabled. Installed package/version list and each cached package archive SHA-256 are embedded in evidence-index.json.",
+    "isolatedCabalConfig": "cabal/config in owned root explicitly sets repository cache, store, logs and world file inside owned root; process CABAL_DIR/CABAL_CONFIG/STACK_ROOT also point inside owned root"
+  },
+  "build": {
+    "host": "x86_64 Windows",
+    "target": "wasm32-unknown-wasi",
+    "bootstrapGhcVersion": "9.14.1",
+    "bootstrapGhcExecutableSha256": "6e06830cebf9c6aefb83a96c7cef01e061a92071edf2234bd779b107a4a0294c",
+    "bootstrapGhcPkgExecutableSha256": "f55690ddc03c45c42f7b69525dd10b8eb1cec3c353d3441373249d7f5800e41c",
+    "cabalInstallVersion": "3.14.2.0",
+    "actualCabalInstallExecutableSha256": "4b43a1d5a6bba82bc703db6b8ebd98b0712b2269ca7799a0f0bf6df5b5c683d0",
+    "ghcupShimNote": "The small bin/cabal.exe is a shim. The actual cabal-3.14.2.0.exe was separately hashed. Bootstrap ghc-pkg was used ONLY for the official Hadrian host bootstrap DB, never as the profile-cache producer.",
+    "hadrianExecutableSha256": "0087a57b72299a3f41cd54f2063b5e848c9655eb8ead5ea9684b140871458296",
+    "dependencySetup": [
+      {"command": "msys64/usr/bin/bash.exe /usr/bin/pacman-key --init", "exitCode": 0},
+      {"command": "msys64/usr/bin/bash.exe /usr/bin/pacman-key --populate msys2", "exitCode": 0},
+      {"command": "msys64/usr/bin/pacman.exe -Sy --noconfirm --needed autoconf automake make python perl patch", "exitCode": 0},
+      {"command": "cabal update", "exitCode": 0},
+      {"command": "cabal build exe:hadrian --builddir=<owned-root>/hb --disable-optimization -j4", "cwd": "locked GHC hadrian directory", "exitCode": 0},
+      {"command": "cabal install happy-2.1.7 alex-3.5.4.0 --ignore-project --installdir=<owned-root>/bin --install-method=copy --allow-newer=base,ghc-bignum --disable-optimization -j4", "exitCode": 0}
+    ],
+    "finalConfigure": {
+      "cwd": "<owned-root>/s",
+      "command": "<owned-root>/msys64/usr/bin/bash.exe ./configure --target=wasm32-wasi --enable-distro-toolchain --enable-ghc-toolchain",
+      "additionalArguments": {
+        "CC": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/clang.exe",
+        "CXX": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/clang++.exe",
+        "LD": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/wasm-ld.exe",
+        "AR": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/llvm-ar.exe",
+        "RANLIB": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/llvm-ranlib.exe",
+        "NM": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/llvm-nm.exe",
+        "OBJDUMP": "<owned-root>/wasi-sdk-34.0-x86_64-windows/bin/llvm-objdump.exe"
+      },
+      "exitCode": 0,
+      "durationSeconds": 100.505
+    },
+    "finalBuild": {
+      "cwd": "<owned-root>/s",
+      "command": "<built-hadrian.exe> --flavour=quickest -j4 --build-root=_b _b/stage0/bin/wasm32-wasi-ghc-pkg.exe",
+      "exitCode": 0,
+      "durationSeconds": 406.397,
+      "wholeGhcCompilerBuilt": false,
+      "bootstrapLibraryContract": "Official Hadrian generated ghc-boot-9.15 and ghc-boot-th-next-9.15 using ProjectVersionMunged, while generated GHC.Version exposes full 9.15.20260202. No fabricated date-version package metadata was used. Host ghc-internal was provided by the bootstrap compiler as prescribed by stage0, rather than pretending it was a target library."
+    },
+    "generatedTargets": [
+      {"command": "<built-hadrian.exe> --flavour=quickest -j4 --build-root=_b _b/stage0/lib/targets/default.target", "exitCode": 0},
+      {"command": "<built-hadrian.exe> --flavour=quickest -j4 --build-root=_b _b/stage0/lib/settings", "exitCode": 0}
+    ],
+    "sourceEdits": "Only VERSION_DATE and GIT_COMMIT_ID archive metadata inputs; all retained GHC/Hadrian/cache-serialization source comparisons passed. No source patch, banner patch, handwritten GHC.Version/GHC.Platform.Host/settings/default.target, or cache copying."
+  },
+  "generatedConfiguration": {
+    "generator": "Official locked Hadrian Rules.Generate",
+    "GHC.Version": {"sha256": "b9be5e85b6b08365e205348fa05ba39dedfdfd624d9bc980345a6d0e6946c0d2", "cProjectVersion": "9.15.20260202", "cProjectGitCommitId": "ddf1434ff9bb08cfef3c93f23de6b83ec698aa27"},
+    "GHC.Platform.Host": {"sha256": "696b3e980f81054af109d62ff14d3ea50f1bfb4f38846d0cfb2e4158ac625571", "arch": "ArchX86_64", "os": "OSMinGW32", "note": "Correct HOST of native executable; target is read separately from default.target"},
+    "settings": {"sha256": "8ae676c523dcbb8c8358d5620fea6fa879e220f8d0fd02cd6e37f8559ef49576", "bytes": 222},
+    "default.target": {"sha256": "62dd10885508f65aeca4a38ec140ebaf603ee21471d831bd5c697f9dd76a75e9", "bytes": 3769, "arch": "ArchWasm32", "os": "OSWasi", "wordSize": "WS4", "llvmTarget": "wasm32-unknown-wasi", "locallyExecutable": false},
+    "fullContents": "evidence-index.json/generated contains complete generated files, including ghc-boot and ghc-boot-th-next package metadata"
+  },
+  "verification": {
+    "script": "<owned-root>/verify-tool.mjs",
+    "finalScriptExitCode": 0,
+    "pathDuringVerification": "C:\\Windows\\System32",
+    "userHomeAppdataXdgTemp": "All explicitly isolated to owned root; no inherited GHC_PACKAGE_PATH",
+    "version": {"arguments": ["--version"], "exitCode": 0, "stdout": "GHC package manager version 9.15.20260202\r\n", "stderr": "", "lineCount": 1, "strictNumericMatch": true, "trimUsed": false, "numericVersionOptionUsed": false},
+    "smallDatabase": {
+      "path": "<owned-root>/tool/lib/package.conf.d",
+      "fixture": "localcoder-probe-0.0.0, a real metadata-only package description with no library/dependency claims",
+      "recacheExitCode": 0,
+      "checkExitCode": 0,
+      "listExitCode": 0,
+      "listStdout": "localcoder-probe-0.0.0\r\n",
+      "dumpExitCode": 0,
+      "dumpRetainsDescription": true,
+      "missingDependencyRegisterExitCode": 1,
+      "missingDependencyStderr": "localcoder-invalid-0.0.0: dependency \"missing-dependency-0.0.0\" doesn't exist (use --force to override)",
+      "cacheProducer": "The newly built official matching executable, via recache, NOT copied or fabricated"
+    },
+    "targetRuntimeProbe": {
+      "arguments": ["--user", "recache", "-v"],
+      "exitCode": 0,
+      "observedUserDatabase": "<owned-root>/xdg/ghc/wasm32-wasi-9.15.20260202/package.conf.d",
+      "stderr": "",
+      "hostFallbackWarningObserved": false,
+      "meaning": "Actual Main.hs loaded generated default.target and selected WASI rather than native Windows user DB"
+    },
+    "nodeProjectTestsRun": false,
+    "browserGateBRun": false,
+    "reason": "No application source changed; this probe tests the actual native tool. Full allowlist/profile generation, target package closure, browser compile/eval and Gate B toggles remain parent Task 2 work."
+  },
+  "resolvedFailures": [
+    {"attempt": "MSYS initial pacman", "exitCode": 1, "error": "Public keyring not found / invalid PGP database", "resolution": "Initialized and populated isolated official keyring; signature validation was not disabled"},
+    {"attempt": "First cabal update", "exitCode": 1, "error": "fromAbsoluteFilePath: not an absolute path: C:Users...", "resolution": "Native Windows curl precedence and Windows-form isolated Cabal paths"},
+    {"attempt": "Initial Hadrian build", "exitCode": 1, "error": "ghc-pkg openBinaryTempFileWithDefaultPermissions: invalid argument in long dist-newstyle path", "resolution": "Explicit shorter hb build directory; Hadrian subsequently built successfully"},
+    {"attempt": "Initial cross configure", "exitCode": 1, "error": "Host gcc failed GHC preprocessor check", "resolution": "Installed official Windows WASI SDK and supplied explicit compiler tools"},
+    {"attempt": "Relative SDK tool paths", "exitCode": 1, "error": "C++ compiler not found after configure changed working directory", "resolution": "Absolute SDK tool paths"},
+    {"attempt": "Configure with no Happy", "exitCode": 1, "error": "Happy version == 1.20.* || >= 2.0.2 && < 2.2 is required", "resolution": "Isolated official Hackage happy-2.1.7 and alex-3.5.4.0 builds"},
+    {"attempt": "Default configure host target generation", "exitCode": 1, "error": "Stage0 time compiler received --target=wasm32-unknown-wasi despite native host compiler; cannot create executables", "resolution": "Official --enable-ghc-toolchain produced correct host compiler flags; no manual target-file repair"},
+    {"attempt": "Absolute Hadrian build-root", "exitCode": 1, "error": "No dependencies found for absolute C:/.../ArchOS.o", "resolution": "Relative build-root"},
+    {"attempt": "Long source directory with ../gr build-root", "exitCode": 1, "error": "Cabal-syntax library copyFile: does not exist", "resolution": "Re-extracted the identical official archives into short s directory and used in-tree _b build root; complete subset build then exited 0"},
+    {"attempt": "Initial standalone packaging", "exitCode": 1, "error": "Missing stage1 global database or stage0 settings", "resolution": "Preserved the official stage0/settings to stage1/package.conf.d layout; fresh global DB initialized with matching executable"},
+    {"attempt": "First raw stdout assertion", "exitCode": 1, "error": "Fixture expected LF, native Windows emitted CRLF", "resolution": "Asserted exact native CRLF output; did not trim or weaken the one-line/version check"}
+  ],
+  "completeEvidence": {
+    "indexPath": "C:\\Users\\hugefiver\\AppData\\Local\\Temp\\opencode\\localcoder-ghc-pkg-build-20260909-iso\\evidence-index.json",
+    "indexBytes": 330809,
+    "indexSha256": "d3013d95c4d109249e871509556579085efaa43fb1d70ebc4928b5d7f529724a",
+    "eventCount": 125,
+    "hashedCommandLogs": 78,
+    "contents": "Complete ordered command argv/cwd/exit/PID/timing ledger, download URLs/actual hashes, all successful final tool outputs, complete generated configurations, source blob checks, tool hashes, DLL imports, signed MSYS package inventory and hashes, and Hackage build plan. Full compiler logs remain alongside the index with hashes. Failed and superseded attempts are retained, not represented as passing.",
+    "retention": "Evidence and owned root are retained for the parent. This repository JSON is the formal summary and binding to the full external build evidence, not a browser or full Gate B receipt."
+  },
+  "cleanup": {
+    "status": "COMPLETE_SUCCESSFUL_TOOL_AND_PROVENANCE_RETAINED",
+    "ownedGpgAgent": {"pid": 24976, "command": "msys64/usr/bin/gpgconf.exe --homedir /etc/pacman.d/gnupg --kill all", "exitCode": 0},
+    "timedOutBuildCommands": 0,
+    "removedRelativeToRoot": ["ghc-ddf1434ff9bb08cfef3c93f23de6b83ec698aa27", "gb", "gr", "tool/bin"],
+    "removalCommand": "node <owned-root>/cleanup-obsolete.mjs",
+    "removalExitCode": 0,
+    "removalCompletedAt": "2026-09-09T14:36:41Z",
+    "removalReceipt": "<owned-root>/cleanup.json",
+    "ownedProcessInspection": "Get-CimInstance Win32_Process filtered by executable path containing the exact owned root; zero remaining owned executable processes after gpg-agent shutdown and post-cleanup verification",
+    "remainingOwnedProcesses": 0,
+    "postCleanupVerificationCommand": "node <owned-root>/verify-tool.mjs",
+    "postCleanupVerificationExitCode": 0,
+    "postCleanupVerificationLog": "<owned-root>/post-cleanup-verification.log",
+    "preserve": ["matched", "s", "hb", "msys64", "wasi-sdk-34.0-x86_64-windows", "cabal", "bin", "tool/lib/package.conf.d", "all source archives", "all command logs", "evidence-index.json", "verification.json", "throwaway probe scripts"]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-09-09T18:33:46.868Z",
+  "evidenceStatus": "CURRENT",
+  "scope": "User-paused Haskell UNAVAILABLE product-selector dependency-baseline refresh",
+  "baseline": {
+    "head": "feb34917715b93e602096f34b3c2a9c76902251f",
+    "lockfile": {
+      "path": "pnpm-lock.yaml",
+      "bytes": 231745,
+      "sha256": "0630a2747be7e4c75924f9b7b12872f4c035c4ceb0c654ed6d0536589c1f44bf"
+    },
+    "dependencies": {
+      "@codemirror/lang-javascript": "6.2.5",
+      "@codemirror/lint": "6.9.5",
+      "react-day-picker": "9.14.0",
+      "@tailwindcss/postcss": "4.2.2",
+      "typescript-eslint": "8.57.1",
+      "@lezer/common": "1.5.1-only"
+    }
+  },
+  "browser": {
+    "product": "147.0.7727.15",
+    "playwrightVersion": "1.59.0",
+    "cdpPort": 48632,
+    "headed": true,
+    "throwawayProfile": "C:/Users/HUGEFI~1/AppData/Local/Temp/opencode/localcoder-haskell-refresh-feb3491-48632/profile"
+  },
+  "preview": {
+    "url": "http://127.0.0.1:48631/executor",
+    "port": 48631,
+    "productionBuild": true
+  },
+  "runtime": {
+    "runtimeId": "haskell-ghc-wasi",
+    "expectedState": "UNAVAILABLE",
+    "reason": "Haskell runtime is temporarily unavailable: browser ghc -e evaluation is blocked by incompatible compiler runtime ways.",
+    "selectedBefore": "JavaScript可加载",
+    "selectedAfterBlockedAttempt": "JavaScript可加载",
+    "options": [
+      {
+        "text": "JavaScript可加载",
+        "ariaDisabled": null,
+        "dataDisabled": false
+      },
+      {
+        "text": "TypeScript可加载",
+        "ariaDisabled": null,
+        "dataDisabled": false
+      },
+      {
+        "text": "Python · Pyodide可加载",
+        "ariaDisabled": null,
+        "dataDisabled": false
+      },
+      {
+        "text": "Python · RustPython待验证",
+        "ariaDisabled": "true",
+        "dataDisabled": true
+      },
+      {
+        "text": "Racket不可用",
+        "ariaDisabled": "true",
+        "dataDisabled": true
+      },
+      {
+        "text": "Haskell不可用",
+        "ariaDisabled": "true",
+        "dataDisabled": true
+      }
+    ]
+  },
+  "network": {
+    "requestCount": 18,
+    "haskellRequests": [],
+    "hugeHaskellRequests": []
+  },
+  "errors": {
+    "console": [],
+    "page": []
+  },
+  "assertions": {
+    "reasonVisible": true,
+    "haskellOptionVisible": true,
+    "haskellOptionDisabled": true,
+    "blockedSelectionPreserved": true,
+    "javascriptAvailable": true,
+    "noHaskellAssetRequests": true,
+    "noHugeHaskellAssetRequests": true,
+    "noPageErrors": true,
+    "noConsoleErrors": true
+  },
+  "screenshot": "artifacts/qa/haskell-runtime/haskell-unavailable.png",
+  "history": {
+    "priorBaselineHead": "d92e9803a97b9210e973fbc322db678df2a285ac",
+    "priorRecordedAt": "2026-09-09T17:37:34.887Z",
+    "priorRequestCount": 18,
+    "priorAssertionsAllTrue": true,
+    "priorScreenshotSha256": "2b1fc9aa763c8420c56d6e0831bc87a36722c14d5816f8b487a55255d895c698",
+    "note": "The formal screenshot path is reused by this current capture; the prior result summary remains in task9-closeout.json."
+  },
+  "claimBoundary": "This verifies the disabled UNAVAILABLE selector state and absence of Haskell asset downloads in this Chromium capture; it is not runtime verification or a packaged-state claim."
+}
