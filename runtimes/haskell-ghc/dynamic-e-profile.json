@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "packages": ["base", "ghc-internal", "ghc-prim", "rts"],
+  "includeKinds": ["package-conf", "dyn-hi", "non-profiling-shared-library", "settings", "prelude", "post-link", "dyld", "license"],
+  "excludeSuffixes": [".a", "_p.a", ".p_hi", ".p_dyn_hi", "_p.so"],
+  "symlinkPolicy": "dereference-within-libdir",
+  "packageCachePolicy": "matching-ghc-pkg-recache-only",
+  "executionMode": "ghc-e",
+  "requiredPackages": ["base"],
+  "profilePayloadStopBytes": 916339975,
+  "packageCountStop": 33,
+  "command": ["ghc", "-ignore-dot-ghci", "-v0", "-B/ghc", "-hide-all-packages", "-package", "base", "-e", "main", "/work/Main.hs"],
+  "packagePathRelocation": { "from": "${pkgroot}/../lib/", "to": "${pkgroot}/" },
+  "lockedFiles": [
+    { "path": "targets/default.target", "kind": "settings", "sha256": "528016061493884ad6909eadf2b5b099976e76f21a6285c643d373ff7f18d834" },
+    { "path": "settings", "kind": "settings", "sha256": "df3e659a540dae4e550ac1f517f5f41adafd4fdc1801f539748de637a3a90780" },
+    { "path": "prelude.mjs", "kind": "prelude", "sha256": "6858d915bc1850264ffe558aef9da2e3a0e569416439ee7dcf19932befd550e3" },
+    { "path": "post-link.mjs", "kind": "post-link", "sha256": "7189504ba5946eaaafd0154b95b220e8acd851865e59c32766029d63a64a7d2f" },
+    { "path": "dyld.mjs", "kind": "dyld", "sha256": "f84b006738629bd222cb79f30b3995e0a82a63bada0a0fac6a9964e6096fdc5c" },
+    { "path": "licenses/LICENSE", "kind": "license", "sha256": "e06c13b8a117652621781c15d622bd4c62c568307954f7136955b4b656d14ec1", "upstream": "ghc@ddf1434ff9bb08cfef3c93f23de6b83ec698aa27/LICENSE" },
+    { "path": "licenses/libraries-base-LICENSE", "kind": "license", "sha256": "768c070bd0b7d820d169ee8153d5487acfc262cbbc10dfce18d05c0bb2d2800d", "upstream": "ghc@ddf1434ff9bb08cfef3c93f23de6b83ec698aa27/libraries/base/LICENSE" },
+    { "path": "licenses/libraries-ghc-internal-LICENSE", "kind": "license", "sha256": "768c070bd0b7d820d169ee8153d5487acfc262cbbc10dfce18d05c0bb2d2800d", "upstream": "ghc@ddf1434ff9bb08cfef3c93f23de6b83ec698aa27/libraries/ghc-internal/LICENSE" },
+    { "path": "licenses/libraries-ghc-prim-LICENSE", "kind": "license", "sha256": "e17dc2656f2bdc4b5715a6a35fa4cdfa403b0e95a8d63e97366818e067fe6f6e", "upstream": "ghc@ddf1434ff9bb08cfef3c93f23de6b83ec698aa27/libraries/ghc-prim/LICENSE" }
+  ]
+}

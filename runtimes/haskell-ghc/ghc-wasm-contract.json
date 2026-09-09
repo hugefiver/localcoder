@@ -1,0 +1,406 @@
+{
+  "schemaVersion": 1,
+  "ghcNumericVersion": "9.15.20260202",
+  "inventory": {
+    "bytes": 146482240,
+    "sha256": "a4d584aec1585cdc8a4d716faa82f5750c875c930fe882fcb0e8115c79c19e4f",
+    "imports": [
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC0ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziConcziInternalZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC17ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC18ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC1ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC2ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC3ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "freeJSVal",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "getJSVal",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "newJSVal",
+        "kind": "function"
+      },
+      {
+        "module": "ghc_wasm_jsffi",
+        "name": "scheduleWork",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "args_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "args_sizes_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "clock_res_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "clock_time_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "environ_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "environ_sizes_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_close",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_fdstat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_fdstat_set_flags",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_filestat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_filestat_set_size",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_prestat_dir_name",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_prestat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_read",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_readdir",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_seek",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "fd_write",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_create_directory",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_filestat_get",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_open",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_readlink",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_remove_directory",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_rename",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "path_unlink_file",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "poll_oneoff",
+        "kind": "function"
+      },
+      {
+        "module": "wasi_snapshot_preview1",
+        "name": "proc_exit",
+        "kind": "function"
+      }
+    ],
+    "exports": [
+      {
+        "name": "_start",
+        "kind": "function"
+      },
+      {
+        "name": "memory",
+        "kind": "memory"
+      },
+      {
+        "name": "rts_freeStablePtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseReject",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveBool",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveChar",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveDouble",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveFloat",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveFunPtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt16",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt32",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt64",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveInt8",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveJSVal",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolvePtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveStablePtr",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveUnit",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord16",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord32",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord64",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseResolveWord8",
+        "kind": "function"
+      },
+      {
+        "name": "rts_promiseThrowTo",
+        "kind": "function"
+      },
+      {
+        "name": "rts_schedulerLoop",
+        "kind": "function"
+      }
+    ],
+    "customSections": [
+      {
+        "name": "ghc_wasm_jsffi",
+        "bytes": 4322,
+        "sha256": "a46b019be575e788bfb4db60adcb6fe958f679ed2478cdec518bd1b484434348"
+      },
+      {
+        "name": "name",
+        "bytes": 11372111,
+        "sha256": "0dc8d872d4e4f7ed9773162cf6fa4289be52774a6ee3149658fd6799152bd361"
+      },
+      {
+        "name": "producers",
+        "bytes": 155,
+        "sha256": "d45d3197a9f81f92b3bbd81bbca79ea17028b7c30df41b57d06e72518a75136f"
+      },
+      {
+        "name": "target_features",
+        "bytes": 157,
+        "sha256": "eba3dfff615c252dcf977deb28a5c6a276722ccadebbd6254b8d1403216f8e11"
+      }
+    ],
+    "jsffiRecords": [
+      {
+        "name": "ZC0ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.findSystemLibrary($1)"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziConcziInternalZC",
+        "binders": "async ($1)",
+        "body": "new Promise(res => setTimeout(res, $1 / 1000))"
+      },
+      {
+        "name": "ZC0ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "`${$1.stack ? $1.stack : $1}`"
+      },
+      {
+        "name": "ZC17ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(res => __exports.rts_promiseResolveJSVal($2, res), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC18ZCghczminternalZCGHCziInternalziWasmziPrimziImportsZC",
+        "binders": "($1,$2)",
+        "body": "$1.then(() => __exports.rts_promiseResolveUnit($2), err => __exports.rts_promiseReject($2, err))"
+      },
+      {
+        "name": "ZC1ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.addLibrarySearchPath($1)"
+      },
+      {
+        "name": "ZC1ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1,$2)",
+        "body": "(new TextDecoder('utf-8', {fatal: true})).decode(new Uint8Array(__exports.memory.buffer, $1, $2))"
+      },
+      {
+        "name": "ZC2ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "($1)",
+        "body": "__ghc_wasm_jsffi_dyld.lookupSymbol($1)"
+      },
+      {
+        "name": "ZC2ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1,$2,$3)",
+        "body": "(new TextEncoder()).encodeInto($1, new Uint8Array(__exports.memory.buffer, $2, $3)).written"
+      },
+      {
+        "name": "ZC3ZCghcizm9zi15zminplaceZCGHCiziObjLinkZC",
+        "binders": "async ($1)",
+        "body": "__ghc_wasm_jsffi_dyld.loadDLLs($1)"
+      },
+      {
+        "name": "ZC3ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "$1.length"
+      },
+      {
+        "name": "ZC4ZCghczminternalZCGHCziInternalziWasmziPrimziTypesZC",
+        "binders": "($1)",
+        "body": "try { __ghc_wasm_jsffi_finalization_registry.unregister($1); } catch {}"
+      }
+    ]
+  }
+}
