@@ -60,6 +60,11 @@ interface WorkerIdentityModule {
     readonly name: string;
     readonly bytes: Buffer;
   }[];
+  haskellRuntimeIdentityRecords(root: string): readonly {
+    readonly tag: string;
+    readonly name: string;
+    readonly bytes: Buffer;
+  }[];
 }
 
 const emittedOrProjectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -226,16 +231,16 @@ function createFixture(): string {
     protocol: "ghc-wasi-v1",
     executorMode: "ghc-e",
     testMode: "ghc-compile",
-    ghcWasm: "haskell/ghc.wasm.gz",
-    libdirTar: "haskell/libdir.tar.gz",
+    ghcWasm: "haskell/ghc.wasm.gz.bin",
+    libdirTar: "haskell/libdir.tar.gz.bin",
     libdirPath: "/ghc",
     workDir: "/work",
     wasiShim: "haskell/wasi-shim.js",
   }));
   writeAsset(fixture, "haskell/wasi-shim.js", "haskell wasi shim fixture");
-  writeAsset(fixture, "haskell/ghc.wasm.gz", "ghc wasm gzip fixture");
+  writeAsset(fixture, "haskell/ghc.wasm.gz.bin", "ghc wasm gzip-bin fixture");
   writeAsset(fixture, "haskell/ghc.wasm", "ghc wasm raw fixture");
-  writeAsset(fixture, "haskell/libdir.tar.gz", "libdir gzip fixture");
+  writeAsset(fixture, "haskell/libdir.tar.gz.bin", "libdir gzip-bin fixture");
   writeAsset(fixture, "haskell/libdir.tar", "libdir raw fixture");
   return fixture;
 }
@@ -343,6 +348,22 @@ test("worker identity resolves the platform binary from the effective esbuild pa
   }
 });
 
+test("Haskell worker identity uses gzip-bin candidates and excludes legacy gzip names", async () => {
+  const fixture = createFixture();
+  try {
+    const identity = await import(
+      pathToFileURL(path.join(root, "scripts", "lib", "worker-build-identity.mjs")).href,
+    ) as WorkerIdentityModule;
+    const names = identity.haskellRuntimeIdentityRecords(fixture).map((record) => record.name);
+
+    assert.ok(names.includes("public/haskell/ghc.wasm.gz.bin"));
+    assert.ok(names.includes("public/haskell/libdir.tar.gz.bin"));
+    assert.equal(names.some((name) => name.endsWith(".wasm.gz") || name.endsWith(".tar.gz")), false);
+  } finally {
+    await removeFixture(fixture);
+  }
+});
+
 test("worker identity binds exact build inputs without emitted-output self hashing", async () => {
   const fixture = createFixture();
   try {
@@ -444,19 +465,19 @@ test("worker identity binds exact build inputs without emitted-output self hashi
     assertOnlyChanged(firstIds, await builder.workerBuildIds({ root: fixture }), "rustPythonBuildId");
     writeFileSync(rustPythonWasmRaw, "rustpython wasm raw fixture");
 
-    const haskellGhc = path.join(fixture, "public", "haskell", "ghc.wasm.gz");
+    const haskellGhc = path.join(fixture, "public", "haskell", "ghc.wasm.gz.bin");
     appendFileSync(haskellGhc, "\nmutation");
     assertOnlyChanged(firstIds, await builder.workerBuildIds({ root: fixture }), "haskellBuildId");
-    writeFileSync(haskellGhc, "ghc wasm gzip fixture");
+    writeFileSync(haskellGhc, "ghc wasm gzip-bin fixture");
     const haskellGhcRaw = path.join(fixture, "public", "haskell", "ghc.wasm");
     appendFileSync(haskellGhcRaw, "\nmutation");
     assertOnlyChanged(firstIds, await builder.workerBuildIds({ root: fixture }), "haskellBuildId");
     writeFileSync(haskellGhcRaw, "ghc wasm raw fixture");
 
-    const haskellLibdir = path.join(fixture, "public", "haskell", "libdir.tar.gz");
+    const haskellLibdir = path.join(fixture, "public", "haskell", "libdir.tar.gz.bin");
     appendFileSync(haskellLibdir, "\nmutation");
     assertOnlyChanged(firstIds, await builder.workerBuildIds({ root: fixture }), "haskellBuildId");
-    writeFileSync(haskellLibdir, "libdir gzip fixture");
+    writeFileSync(haskellLibdir, "libdir gzip-bin fixture");
     const haskellLibdirRaw = path.join(fixture, "public", "haskell", "libdir.tar");
     appendFileSync(haskellLibdirRaw, "\nmutation");
     assertOnlyChanged(firstIds, await builder.workerBuildIds({ root: fixture }), "haskellBuildId");
@@ -467,19 +488,19 @@ test("worker identity binds exact build inputs without emitted-output self hashi
       protocol: "ghc-wasi-v1",
       executorMode: "ghci",
       testMode: "ghc-compile",
-      ghcWasm: "haskell/ghc.wasm.gz",
-      ghciWasm: "haskell/ghci.wasm.gz",
-      libdirTar: "haskell/libdir.tar.gz",
+      ghcWasm: "haskell/ghc.wasm.gz.bin",
+      ghciWasm: "haskell/ghci.wasm.gz.bin",
+      libdirTar: "haskell/libdir.tar.gz.bin",
       libdirPath: "/ghc",
       workDir: "/work",
       wasiShim: "haskell/wasi-shim.js",
     }));
-    writeAsset(fixture, "haskell/ghci.wasm.gz", "ghci wasm gzip fixture");
+    writeAsset(fixture, "haskell/ghci.wasm.gz.bin", "ghci wasm gzip-bin fixture");
     const ghciSelected = await builder.workerBuildIds({ root: fixture });
     assertOnlyChanged(firstIds, ghciSelected, "haskellBuildId");
-    appendFileSync(path.join(fixture, "public", "haskell", "ghci.wasm.gz"), "\nmutation");
+    appendFileSync(path.join(fixture, "public", "haskell", "ghci.wasm.gz.bin"), "\nmutation");
     assertOnlyChanged(ghciSelected, await builder.workerBuildIds({ root: fixture }), "haskellBuildId");
-    writeAsset(fixture, "haskell/ghci.wasm.gz", "ghci wasm gzip fixture");
+    writeAsset(fixture, "haskell/ghci.wasm.gz.bin", "ghci wasm gzip-bin fixture");
     writeAsset(fixture, "haskell/ghci.wasm", "ghci wasm raw fixture");
     const ghciBoth = await builder.workerBuildIds({ root: fixture });
     assertOnlyChanged(ghciSelected, ghciBoth, "haskellBuildId");

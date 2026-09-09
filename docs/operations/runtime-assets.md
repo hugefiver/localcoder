@@ -6,7 +6,7 @@
 
 Required runtime IDs are `javascript-worker`, `typescript-official`, and `python-pyodide`. Their assets must be present, non-empty, and match the generated manifest. A required asset or byte mismatch fails closed and blocks build or deployment readiness.
 
-Optional runtime IDs are `python-rustpython`, `racket-wasm`, and `haskell-ghc-wasi`. They are disabled unless current artifacts and a successful verification session establish support. `python-rustpython` is currently `LOADABLE_UNVERIFIED`: that is a disabled state, not a verification pass.
+Optional runtime IDs are `python-rustpython`, `racket-wasm`, and `haskell-ghc-wasi`. They are disabled unless the catalog permits packaging, current artifacts are complete, and a successful verification session establishes support. `python-rustpython` is currently `LOADABLE_UNVERIFIED`; `haskell-ghc-wasi` is explicitly `UNAVAILABLE`. Both are disabled states, not verification passes.
 
 ## Capability states
 
@@ -14,21 +14,33 @@ Optional runtime IDs are `python-rustpython`, `racket-wasm`, and `haskell-ghc-wa
 |---|---|---|
 | `VERIFIED` | Current assets have a matching receipt for every required browser check. | Runtime may be enabled. |
 | `LOADABLE_UNVERIFIED` | Assets are packaged, but a current complete receipt is absent. | Runtime remains disabled. |
-| `UNAVAILABLE` | Required optional asset group is absent. | Runtime remains disabled with the exact reason. |
+| `UNAVAILABLE` | A required optional asset group is absent, or the catalog explicitly disables the runtime. | Runtime remains disabled with the exact reason. |
 | `BROKEN` | Declared or packaged assets are missing, empty, inconsistent, or a required verification check failed. | Stop acceptance and repair the owning path. |
 
-Adding files can move an optional runtime from `UNAVAILABLE` to `LOADABLE_UNVERIFIED`. It does not create `VERIFIED` status and does not prove execution, judging, or product support.
+Adding missing files can move an asset-gated optional runtime from `UNAVAILABLE` to `LOADABLE_UNVERIFIED`. It cannot override an explicit catalog reason, does not create `VERIFIED` status, and does not prove execution, judging, or product support.
 
 ## Current asset reality
 
-The following optional asset groups remain missing. These are truthful disabled product states, not passing execution results.
+The following optional asset group remains missing. This is a truthful disabled
+product state, not a passing execution result.
 
 | Runtime ID | Missing group |
 |---|---|
 | `racket-wasm` | `racket/racket.js` and one of `racket/racket.wasm.gz` or `racket/racket.wasm` |
-| `haskell-ghc-wasi` | One of `haskell/ghc.wasm.gz` or `haskell/ghc.wasm`, one of `haskell/libdir.tar.gz` or `haskell/libdir.tar`, and `haskell/wasi-shim.js` |
 
 RustPython packages `rustpython/runner.wasm.gz.bin` and `rustpython/runner.wasm`. The `.gz.bin` name contains ordinary gzip bytes but prevents HTTP servers from assigning `Content-Encoding: gzip` and transparently decoding the response before the Worker can hash and explicitly decompress it. The raw file remains the host fallback. Release copies are tracked through Git LFS, and unresolved pointer text is a broken asset rather than a packaged runtime. Both variants are declared and hashed while present; a new complete browser receipt is still required before RustPython can become `VERIFIED`.
+
+Haskell retains the GHC WASI compiler as `haskell/ghc.wasm.gz.bin` with
+`haskell/ghc.wasm` as the raw fallback, plus
+`haskell/libdir.tar.gz.bin`. The Worker explicitly decompresses the `.gz.bin`
+assets; the suffix avoids HTTP content-encoding interference. The prepared modes
+are `ghc-e` and `ghc-compile`; GHCi is not supported. Its fixed libdir package
+set is `ghc`, `ghc-boot`, `base`, `array`, `bytestring`, `directory`, `process`,
+`filepath`, `containers`, `transformers`, and `unix`. Browser `ghc -e`
+evaluation is blocked by incompatible compiler runtime ways, and restoration is
+paused. The catalog therefore keeps `haskell-ghc-wasi` explicitly `UNAVAILABLE`
+with execute and judge capabilities disabled, even while the manifest preserves
+the real retained asset list for operational accounting.
 
 ## Worker identity v2
 

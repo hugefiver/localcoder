@@ -1,66 +1,32 @@
-# Haskell (GHC/GHCi) WASM Runtime
+# Haskell GHC WASI runtime input
 
-This runtime expects official **GHC/GHCi WebAssembly** binaries built with the GHC WASM backend.
-It also needs the **GHC libdir** contents to be available in the browser (packaged as a tar).
-
-## Required artifacts
-
-Place the following in `runtimes/haskell-ghc/dist/`:
+This directory retains the prepared input for the browser's **GHC WASI** runtime. Supply an
+official GHC WASM-backend compiler and its uncompressed GHC libdir tar in
+`dist/`:
 
 - `ghc.wasm`
-- `ghci.wasm` (optional but recommended)
-- `libdir.tar` (uncompressed tar of GHC libdir)
+- `libdir.tar`
 
-`build:runtimes` will also generate:
+`pnpm run build:runtimes` stages raw fallbacks plus HTTP-stable compressed
+assets under `public/haskell/` as `ghc.wasm.gz.bin` and
+`libdir.tar.gz.bin`. The compressed filenames contain ordinary gzip bytes; the
+Worker explicitly decompresses them, while the raw compiler asset remains the
+fallback.
 
-- `ghc.wasm.gz`
-- `ghci.wasm.gz`
-- `libdir.tar.gz`
+`runner.meta.json` selects `ghc-e` for executor mode and `ghc-compile` for
+judge mode. This prepared path does **not** support GHCi; do not select `ghci`
+or add a GHCi artifact for this milestone. The metadata schema retains its
+conditional GHCi field only for compatibility with existing validation.
 
-Alternatively, set environment variables:
+The runtime has a fixed package set from its packaged GHC libdir: `ghc`,
+`ghc-boot`, `base`, `array`, `bytestring`, `directory`, `process`, `filepath`,
+`containers`, `transformers`, and `unix`. It does not install, download, or
+resolve packages in the browser.
 
-```
-GHC_WASM=/absolute/path/to/ghc.wasm
-GHCI_WASM=/absolute/path/to/ghci.wasm
-GHC_LIBDIR_TAR=/absolute/path/to/libdir.tar
-```
-
-Then run:
-
-```
-pnpm run build:runtimes
-```
-
-This copies the wasm binaries and libdir tar into `public/haskell/` and writes
-`public/haskell/runner.meta.json`.
-
-## Protocols
-
-`runner.meta.json` controls execution strategy:
-
-- `executorMode`: `ghc-e` (default)
-- `testMode`: `ghc-compile` (default)
-
-Both run **entirely in the browser** using a WASI shim and a virtual filesystem.
-
-### ghc -e
-
-Uses `ghc -e` to evaluate expressions after loading the user's code file.
-For executor mode, users should define `main` or set `executorExpr` in `runner.meta.json`.
-
-### ghc compile-run
-
-Compiles the user's code to a wasm program, then runs it with stdin.
-For problem mode, the worker expects:
-
-```
-solution :: String -> String
-```
-
-Where the input is a JSON string, and the return value is a **JSON string**.
-
-## Notes
-
-- `libdir.tar` must be an **uncompressed tar** containing the libdir root.
-- The worker prefers `.gz` assets when available.
-- You can override paths via `runner.meta.json` (`libdirPath`, `workDir`).
+`build:runtimes` stages `public/haskell/runner.meta.json` from this source
+metadata and rebuilds the Worker and runtime manifest. The normal app build
+consumes already staged assets; external GHC tooling is not installed by this
+repository or CI. Browser `ghc -e` evaluation is blocked by incompatible
+compiler runtime ways, and restoration is paused. The catalog therefore reports
+Haskell as `UNAVAILABLE`; the retained files are technical preparation, not a
+delivered or verifiable runtime.

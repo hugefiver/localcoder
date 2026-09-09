@@ -25,9 +25,9 @@ export interface HaskellAssetScope {
   fetch(input: RequestInfo | URL): Promise<Response>;
 }
 
-const GHC_WASM = ["haskell/ghc.wasm.gz", "haskell/ghc.wasm"] as const;
-const GHCi_WASM = ["haskell/ghci.wasm.gz", "haskell/ghci.wasm"] as const;
-const LIBDIR_TAR = ["haskell/libdir.tar.gz", "haskell/libdir.tar"] as const;
+const GHC_WASM = ["haskell/ghc.wasm.gz.bin", "haskell/ghc.wasm"] as const;
+const GHCi_WASM = ["haskell/ghci.wasm.gz.bin", "haskell/ghci.wasm"] as const;
+const LIBDIR_TAR = ["haskell/libdir.tar.gz.bin", "haskell/libdir.tar"] as const;
 const metadataFields = [
   "protocol",
   "executorMode",
@@ -122,11 +122,11 @@ async function fetchCompressedOrRaw(
   configured: string,
   allowed: readonly [string, string],
 ): Promise<ArrayBuffer> {
-  const candidates = configured.endsWith(".gz") ? [configured, allowed[1]] : [allowed[0], configured];
+  const candidates = configured.endsWith(".gz.bin") ? [configured, allowed[1]] : [allowed[0], configured];
   for (const candidate of candidates) {
     try {
       const bytes = await (await fetchResponse(scope, candidate)).arrayBuffer();
-      return candidate.endsWith(".gz") ? await decompressGzip(bytes) : bytes;
+      return candidate.endsWith(".gz.bin") ? await decompressGzip(bytes) : bytes;
     } catch {
       // The alternate packaged representation is required to be tried next.
     }

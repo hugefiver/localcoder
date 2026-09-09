@@ -1,5 +1,6 @@
 /public/haskell/ghc.wasm filter=lfs diff=lfs merge=lfs -text
-/public/haskell/libdir.tar.gz filter=lfs diff=lfs merge=lfs -text
+/public/haskell/ghc.wasm.gz.bin filter=lfs diff=lfs merge=lfs -text
+/public/haskell/libdir.tar.gz.bin filter=lfs diff=lfs merge=lfs -text
 /runtimes/haskell-ghc/dist/ghc.wasm filter=lfs diff=lfs merge=lfs -text
 /public/rustpython/runner.wasm filter=lfs diff=lfs merge=lfs -text
 /public/rustpython/runner.wasm.gz.bin filter=lfs diff=lfs merge=lfs -text

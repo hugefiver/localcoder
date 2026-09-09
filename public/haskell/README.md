@@ -1,24 +1,27 @@
-# Haskell WASM runtime
+# Haskell GHC WASI runtime
 
-This directory is expected to contain the Haskell WebAssembly runtime used by `public/haskell-worker.js`.
+This directory retains assets prepared for `public/haskell-worker.js` to run a
+**GHC WASI** compiler through the local WASI shim. Browser `ghc -e` evaluation
+is blocked by incompatible compiler runtime ways, and restoration is paused.
+The generated manifest therefore reports this runtime as `UNAVAILABLE`; these
+files do not establish delivered execution or judging support. The prepared
+path does not support GHCi.
 
-## Required file
+## Packaged asset contract
 
-- `runner.wasm`
+- `ghc.wasm.gz.bin` is the preferred compiler asset; `ghc.wasm` is its raw
+  fallback.
+- `libdir.tar.gz.bin` is the preferred GHC libdir archive. Its `.gz.bin`
+  suffix preserves ordinary gzip bytes over HTTP so the Worker explicitly
+  decompresses them with `DecompressionStream`.
+- `runner.meta.json` is staged from `runtimes/haskell-ghc/runner.meta.json`.
+- `wasi-shim.js` is the generated local WASI shim.
 
-## Protocol (stdin/stdout)
+The runtime uses the fixed packages already present in the packaged GHC libdir:
+`ghc`, `ghc-boot`, `base`, `array`, `bytestring`, `directory`, `process`,
+`filepath`, `containers`, `transformers`, and `unix`. It does not fetch or
+resolve extra packages in the browser.
 
-The worker sends a single JSON document to stdin:
-
-- Executor mode: `{ "mode": "executor", "code": "..." }`
-- Test mode: `{ "mode": "test", "code": "...", "input": <any> }`
-
-The runtime should print exactly one JSON document to stdout:
-
-`{ "logs": "...", "result": <any> }`
-
-If stdout is not valid JSON, the worker will treat it as plain logs.
-
-## How to build runner.wasm
-
-See the repository README for suggested toolchains and an example runner contract.
+The manifest preserves these real asset paths and byte counts for operational
+accounting while setting `packaged` and both capabilities to `false`. Asset
+presence cannot override the explicit unavailable reason or begin verification.

@@ -298,9 +298,9 @@ function parseWorkerRequest(input) {
 }
 
 // src/workers/haskell/assets.ts
-var GHC_WASM = ["haskell/ghc.wasm.gz", "haskell/ghc.wasm"];
-var GHCi_WASM = ["haskell/ghci.wasm.gz", "haskell/ghci.wasm"];
-var LIBDIR_TAR = ["haskell/libdir.tar.gz", "haskell/libdir.tar"];
+var GHC_WASM = ["haskell/ghc.wasm.gz.bin", "haskell/ghc.wasm"];
+var GHCi_WASM = ["haskell/ghci.wasm.gz.bin", "haskell/ghci.wasm"];
+var LIBDIR_TAR = ["haskell/libdir.tar.gz.bin", "haskell/libdir.tar"];
 var metadataFields = [
   "protocol",
   "executorMode",
@@ -384,11 +384,11 @@ async function fetchText(scope, relativePath) {
   return response.text();
 }
 async function fetchCompressedOrRaw(scope, configured, allowed) {
-  const candidates = configured.endsWith(".gz") ? [configured, allowed[1]] : [allowed[0], configured];
+  const candidates = configured.endsWith(".gz.bin") ? [configured, allowed[1]] : [allowed[0], configured];
   for (const candidate of candidates) {
     try {
       const bytes = await (await fetchResponse(scope, candidate)).arrayBuffer();
-      return candidate.endsWith(".gz") ? await decompressGzip(bytes) : bytes;
+      return candidate.endsWith(".gz.bin") ? await decompressGzip(bytes) : bytes;
     } catch {
     }
   }
@@ -686,9 +686,13 @@ function parseHaskellLibdirTar(bytes) {
       longName = parseLongName(data);
     } else {
       if (name.length === 0) throw new TypeError("Haskell libdir tar entry has no path");
-      if (type === "0") entries.push({ kind: "file", path: safePath(name), data });
-      else if (type === "5") entries.push({ kind: "directory", path: safePath(name) });
-      else throw new TypeError(`Haskell libdir tar has unsupported entry type ${JSON.stringify(type)}`);
+      const entryPath = safePath(name);
+      if (type === "0") {
+        if (entryPath === void 0) throw new TypeError("Haskell libdir tar has an unsafe path");
+        entries.push({ kind: "file", path: entryPath, data });
+      } else if (type === "5") {
+        if (entryPath !== void 0) entries.push({ kind: "directory", path: entryPath });
+      } else throw new TypeError(`Haskell libdir tar has unsupported entry type ${JSON.stringify(type)}`);
       longName = void 0;
     }
     offset = nextOffset;
@@ -772,13 +776,18 @@ function tarPath(header) {
 }
 function parseLongName(bytes) {
   const value = decoder.decode(bytes).replace(/\0.*$/s, "").replace(/\n$/, "");
-  return safePath(value);
+  const path = safePath(value);
+  if (path === void 0) throw new TypeError("Haskell libdir tar has an unsafe path");
+  return path;
 }
 function safePath(path) {
   if (path.length === 0 || path.includes("\\") || path.startsWith("/") || path.includes("\0")) {
     throw new TypeError("Haskell libdir tar has an unsafe path");
   }
+  if (path === "./") return void 0;
   const parts = path.replace(/\/$/, "").split("/");
+  if (parts[0] === ".") parts.shift();
+  if (parts.length === 0) throw new TypeError("Haskell libdir tar has an unsafe path");
   if (parts.some((part) => part.length === 0 || part === "." || part === "..")) {
     throw new TypeError("Haskell libdir tar has an unsafe path");
   }
@@ -977,7 +986,7 @@ function isFile(value) {
   return value !== void 0 && "data" in value;
 }
 function injectedBuildId() {
-  return true ? "b639f78001e259a9" : "development";
+  return true ? "cb5ee067f9482da3" : "development";
 }
 
 // src/workers/shared/endpoint.ts
@@ -1079,7 +1088,7 @@ function installHaskellWorker(scope) {
   });
 }
 function injectedBuildId2() {
-  return true ? "b639f78001e259a9" : "development";
+  return true ? "cb5ee067f9482da3" : "development";
 }
 var workerScope = globalThis;
 if (isHaskellWorkerScope(workerScope)) installHaskellWorker(workerScope);

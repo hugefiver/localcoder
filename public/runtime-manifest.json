@@ -206,10 +206,10 @@
       "assets": [
         {
           "url": "haskell-worker.js",
-          "bytes": 43588
+          "bytes": 44053
         },
         {
-          "url": "haskell/ghc.wasm.gz",
+          "url": "haskell/ghc.wasm.gz.bin",
           "bytes": 21088671
         },
         {
@@ -217,7 +217,7 @@
           "bytes": 146482240
         },
         {
-          "url": "haskell/libdir.tar.gz",
+          "url": "haskell/libdir.tar.gz.bin",
           "bytes": 643211474
         },
         {
@@ -226,15 +226,16 @@
         },
         {
           "url": "haskell/runner.meta.json",
-          "bytes": 248
+          "bytes": 264
         }
       ],
       "required": false,
-      "packaged": true,
+      "packaged": false,
+      "unavailableReason": "Haskell runtime is temporarily unavailable: browser ghc -e evaluation is blocked by incompatible compiler runtime ways.",
       "reuse": "session",
       "capabilities": {
-        "execute": true,
-        "judge": true
+        "execute": false,
+        "judge": false
       },
       "timeouts": {
         "initializeMs": 120000,

@@ -48,8 +48,13 @@ export function parseHaskellLibdirTar(bytes: Uint8Array): readonly HaskellTarEnt
       longName = parseLongName(data);
     } else {
       if (name.length === 0) throw new TypeError("Haskell libdir tar entry has no path");
-      if (type === "0") entries.push({ kind: "file", path: safePath(name), data });
-      else if (type === "5") entries.push({ kind: "directory", path: safePath(name) });
+      const entryPath = safePath(name);
+      if (type === "0") {
+        if (entryPath === undefined) throw new TypeError("Haskell libdir tar has an unsafe path");
+        entries.push({ kind: "file", path: entryPath, data });
+      } else if (type === "5") {
+        if (entryPath !== undefined) entries.push({ kind: "directory", path: entryPath });
+      }
       else throw new TypeError(`Haskell libdir tar has unsupported entry type ${JSON.stringify(type)}`);
       longName = undefined;
     }
@@ -158,14 +163,19 @@ function tarPath(header: Uint8Array): string {
 
 function parseLongName(bytes: Uint8Array): string {
   const value = decoder.decode(bytes).replace(/\0.*$/s, "").replace(/\n$/, "");
-  return safePath(value);
+  const path = safePath(value);
+  if (path === undefined) throw new TypeError("Haskell libdir tar has an unsafe path");
+  return path;
 }
 
-function safePath(path: string): string {
+function safePath(path: string): string | undefined {
   if (path.length === 0 || path.includes("\\") || path.startsWith("/") || path.includes("\0")) {
     throw new TypeError("Haskell libdir tar has an unsafe path");
   }
+  if (path === "./") return undefined;
   const parts = path.replace(/\/$/, "").split("/");
+  if (parts[0] === ".") parts.shift();
+  if (parts.length === 0) throw new TypeError("Haskell libdir tar has an unsafe path");
   if (parts.some((part) => part.length === 0 || part === "." || part === "..")) {
     throw new TypeError("Haskell libdir tar has an unsafe path");
   }

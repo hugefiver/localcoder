@@ -164,20 +164,23 @@ async function main() {
       copyFile(hsArtifacts.libdirTar, path.join(publicHaskellDir, "libdir.tar"));
       if (ghciSelected && hsArtifacts.ghciWasm) copyFile(hsArtifacts.ghciWasm, path.join(publicHaskellDir, "ghci.wasm"));
       const metaOut = { ...meta };
-      if (await gzipIfExists(path.join(publicHaskellDir, "ghc.wasm"), path.join(publicHaskellDir, "ghc.wasm.gz"))) {
-        metaOut.ghcWasm = "haskell/ghc.wasm.gz";
+      if (await gzipIfExists(path.join(publicHaskellDir, "ghc.wasm"), path.join(publicHaskellDir, "ghc.wasm.gz.bin"))) {
+        metaOut.ghcWasm = "haskell/ghc.wasm.gz.bin";
       }
-      if (await gzipIfExists(path.join(publicHaskellDir, "libdir.tar"), path.join(publicHaskellDir, "libdir.tar.gz"))) {
-        metaOut.libdirTar = "haskell/libdir.tar.gz";
+      if (await gzipIfExists(path.join(publicHaskellDir, "libdir.tar"), path.join(publicHaskellDir, "libdir.tar.gz.bin"))) {
+        metaOut.libdirTar = "haskell/libdir.tar.gz.bin";
       }
-      if (ghciSelected && await gzipIfExists(path.join(publicHaskellDir, "ghci.wasm"), path.join(publicHaskellDir, "ghci.wasm.gz"))) {
-        metaOut.ghciWasm = "haskell/ghci.wasm.gz";
+      if (ghciSelected && await gzipIfExists(path.join(publicHaskellDir, "ghci.wasm"), path.join(publicHaskellDir, "ghci.wasm.gz.bin"))) {
+        metaOut.ghciWasm = "haskell/ghci.wasm.gz.bin";
+      }
+      for (const legacyAsset of ["ghc.wasm.gz", "libdir.tar.gz", "ghci.wasm.gz"]) {
+        fs.rmSync(path.join(publicHaskellDir, legacyAsset), { force: true });
       }
       fs.writeFileSync(path.join(publicHaskellDir, "runner.meta.json"), `${JSON.stringify(metaOut, null, 2)}\n`);
       buildWasiShim(path.join(publicHaskellDir, "wasi-shim.js"));
-      console.log("  ✓ public/haskell/ghc.wasm(.gz)");
-      console.log("  ✓ public/haskell/libdir.tar(.gz)");
-      if (ghciSelected) console.log("  ✓ public/haskell/ghci.wasm(.gz)");
+      console.log("  ✓ public/haskell/ghc.wasm(.gz.bin)");
+      console.log("  ✓ public/haskell/libdir.tar(.gz.bin)");
+      if (ghciSelected) console.log("  ✓ public/haskell/ghci.wasm(.gz.bin)");
       console.log("  ✓ public/haskell/wasi-shim.js");
     } catch (err) {
       const strict = process.env.HASKELL_WASM_STRICT === "1";

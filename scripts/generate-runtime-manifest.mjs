@@ -72,6 +72,7 @@ function resolveAssetGroups(publicRoot, assetGroups) {
 function buildRuntimeEntry(publicRoot, definition, typescriptVersion) {
   const { assets, missing } = resolveAssetGroups(publicRoot, definition.assetGroups);
   const present = missing.length === 0;
+  const packaged = present && definition.unavailableReason === undefined;
 
   return {
     runtimeId: definition.runtimeId,
@@ -81,10 +82,12 @@ function buildRuntimeEntry(publicRoot, definition, typescriptVersion) {
     worker: definition.worker,
     assets,
     required: definition.required,
-    packaged: present,
-    ...(present ? {} : { unavailableReason: `Missing asset groups: ${missing.join("; ")}` }),
+    packaged,
+    ...(packaged ? {} : {
+      unavailableReason: definition.unavailableReason ?? `Missing asset groups: ${missing.join("; ")}`,
+    }),
     reuse: definition.reuse,
-    capabilities: present
+    capabilities: packaged
       ? { ...definition.capabilityIntent }
       : { execute: false, judge: false },
     timeouts: { ...definition.timeouts },

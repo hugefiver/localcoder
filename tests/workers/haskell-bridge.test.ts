@@ -38,8 +38,8 @@ test("Haskell metadata rejects inconsistent GHCi declarations and keeps the sele
     protocol: "ghc-wasi-v1",
     executorMode: "ghc-e",
     testMode: "ghc-compile",
-    ghcWasm: "haskell/ghc.wasm.gz",
-    libdirTar: "haskell/libdir.tar.gz",
+    ghcWasm: "haskell/ghc.wasm.gz.bin",
+    libdirTar: "haskell/libdir.tar.gz.bin",
     libdirPath: "/ghc",
     workDir: "/work",
     wasiShim: "haskell/wasi-shim.js",
@@ -50,19 +50,21 @@ test("Haskell metadata rejects inconsistent GHCi declarations and keeps the sele
     /requires ghciWasm/i,
   );
   assert.throws(
-    () => parseHaskellRunnerMetadata({ ...metadata, ghciWasm: "haskell/ghci.wasm.gz" }),
+    () => parseHaskellRunnerMetadata({ ...metadata, ghciWasm: "haskell/ghci.wasm.gz.bin" }),
     /must not declare ghciWasm/i,
   );
 });
 
-test("the Haskell asset loader uses same-origin metadata with gzip-to-raw fallback and no unused GHCi", async () => {
+test("the Haskell asset loader explicitly decompresses HTTP-stable gzip-bin assets and skips unused GHCi", async () => {
   const requested: string[] = [];
+  const ghcWasm = minimalWasmBuffer();
+  const libdirTar = new Uint8Array(1024).buffer;
   const metadata = JSON.stringify({
     protocol: "ghc-wasi-v1",
     executorMode: "ghc-e",
     testMode: "ghc-compile",
-    ghcWasm: "haskell/ghc.wasm.gz",
-    libdirTar: "haskell/libdir.tar.gz",
+    ghcWasm: "haskell/ghc.wasm.gz.bin",
+    libdirTar: "haskell/libdir.tar.gz.bin",
     libdirPath: "/ghc",
     workDir: "/work",
     wasiShim: "haskell/wasi-shim.js",
@@ -73,7 +75,41 @@ test("the Haskell asset loader uses same-origin metadata with gzip-to-raw fallba
       const url = input instanceof URL ? input : new URL(String(input));
       requested.push(url.href);
       if (url.pathname.endsWith("runner.meta.json")) return new Response(metadata);
-      if (url.pathname.endsWith(".gz")) return new Response(null, { status: 404 });
+      if (url.pathname.endsWith("ghc.wasm.gz.bin")) return new Response(await gzip(ghcWasm));
+      if (url.pathname.endsWith("libdir.tar.gz.bin")) return new Response(await gzip(libdirTar));
+      return new Response(null, { status: 404 });
+    },
+  });
+
+  assert.deepEqual(new Uint8Array(assets.ghcWasm), new Uint8Array(ghcWasm));
+  assert.deepEqual(new Uint8Array(assets.libdirTar), new Uint8Array(libdirTar));
+  assert.equal(assets.wasiShimUrl, "https://local.test/app/haskell/wasi-shim.js");
+  assert.deepEqual(requested.map((url) => new URL(url).pathname), [
+    "/app/haskell/runner.meta.json",
+    "/app/haskell/ghc.wasm.gz.bin",
+    "/app/haskell/libdir.tar.gz.bin",
+  ]);
+});
+
+test("the Haskell asset loader falls back from gzip-bin to raw assets", async () => {
+  const requested: string[] = [];
+  const metadata = JSON.stringify({
+    protocol: "ghc-wasi-v1",
+    executorMode: "ghc-e",
+    testMode: "ghc-compile",
+    ghcWasm: "haskell/ghc.wasm.gz.bin",
+    libdirTar: "haskell/libdir.tar.gz.bin",
+    libdirPath: "/ghc",
+    workDir: "/work",
+    wasiShim: "haskell/wasi-shim.js",
+  });
+  const assets = await loadHaskellAssets({
+    location: { href: "https://local.test/app/haskell-worker.js" },
+    fetch: async (input) => {
+      const url = input instanceof URL ? input : new URL(String(input));
+      requested.push(url.href);
+      if (url.pathname.endsWith("runner.meta.json")) return new Response(metadata);
+      if (url.pathname.endsWith(".gz.bin")) return new Response(null, { status: 404 });
       if (url.pathname.endsWith("ghc.wasm")) return new Response(minimalWasmBuffer());
       if (url.pathname.endsWith("libdir.tar")) return new Response(new Uint8Array(1024));
       return new Response(null, { status: 404 });
@@ -85,8 +121,8 @@ test("the Haskell asset loader uses same-origin metadata with gzip-to-raw fallba
   assert.equal(assets.wasiShimUrl, "https://local.test/app/haskell/wasi-shim.js");
   assert.deepEqual(requested.map((url) => new URL(url).pathname), [
     "/app/haskell/runner.meta.json",
-    "/app/haskell/ghc.wasm.gz",
-    "/app/haskell/libdir.tar.gz",
+    "/app/haskell/ghc.wasm.gz.bin",
+    "/app/haskell/libdir.tar.gz.bin",
     "/app/haskell/ghc.wasm",
     "/app/haskell/libdir.tar",
   ]);
@@ -199,8 +235,8 @@ function createFakeHost(outputBytes?: number) {
         protocol: "ghc-wasi-v1",
         executorMode: "ghc-e",
         testMode: "ghc-compile",
-        ghcWasm: "haskell/ghc.wasm.gz",
-        libdirTar: "haskell/libdir.tar.gz",
+        ghcWasm: "haskell/ghc.wasm.gz.bin",
+        libdirTar: "haskell/libdir.tar.gz.bin",
         libdirPath: "/ghc",
         workDir: "/work",
         wasiShim: "haskell/wasi-shim.js",
@@ -288,6 +324,11 @@ const fakeShim = {
 
 function minimalWasmBuffer(): ArrayBuffer {
   return new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0]).buffer as ArrayBuffer;
+}
+
+async function gzip(bytes: ArrayBuffer): Promise<ArrayBuffer> {
+  const stream = new Blob([bytes]).stream().pipeThrough(new CompressionStream("gzip"));
+  return new Response(stream).arrayBuffer();
 }
 
 function bounded(text: string, truncated: boolean) {

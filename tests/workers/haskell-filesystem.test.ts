@@ -22,9 +22,29 @@ test("the Haskell libdir tar parser accepts regular files, directories, and GNU 
   ]);
 });
 
+test("the Haskell libdir tar parser normalizes only a producer's leading archive root", () => {
+  const longName = `${"nested/".repeat(20)}package.conf`;
+  const archive = tar([
+    { name: "./", type: "5" },
+    { name: "./ghc/", type: "5" },
+    { name: "./ghc/settings", data: "setting" },
+    { name: "././@LongLink", type: "L", data: `./${longName}\0` },
+    { name: "ignored-name", data: "long" },
+  ]);
+
+  assert.deepEqual(parseHaskellLibdirTar(archive), [
+    { kind: "directory", path: "ghc" },
+    { kind: "file", path: "ghc/settings", data: new TextEncoder().encode("setting") },
+    { kind: "file", path: longName, data: new TextEncoder().encode("long") },
+  ]);
+});
+
 test("the Haskell libdir tar parser rejects traversal, links, devices, and malformed archives", () => {
   for (const entry of [
     { name: "../escape", data: "bad" },
+    { name: "./../escape", data: "bad" },
+    { name: "./ghc/../escape", data: "bad" },
+    { name: "./ghc/./settings", data: "bad" },
     { name: "/absolute", data: "bad" },
     { name: "windows\\escape", data: "bad" },
     { name: "link", type: "2" },

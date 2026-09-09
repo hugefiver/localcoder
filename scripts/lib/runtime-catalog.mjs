@@ -24,6 +24,7 @@ function runtime(runtimeId, languageId, required, workerUrl, assetGroups, reuse,
     worker: Object.freeze({ url: workerUrl, type: options.workerType ?? "classic" }),
     assetGroups: Object.freeze(assetGroups),
     reuse,
+    ...(options.unavailableReason === undefined ? {} : { unavailableReason: options.unavailableReason }),
     capabilityIntent: Object.freeze({ execute: true, judge: true }),
     timeouts: Object.freeze({
       initializeMs: options.initializeMs ?? 10_000,
@@ -64,10 +65,15 @@ export const runtimeCatalog = Object.freeze([
   ], "session", { initializeMs: 90_000 }),
   runtime("haskell-ghc-wasi", "haskell", false, "haskell-worker.js", [
     file("haskell-worker.js"),
-    oneOf("haskell/ghc.wasm.gz", "haskell/ghc.wasm"),
-    oneOf("haskell/libdir.tar.gz", "haskell/libdir.tar"),
+    oneOf("haskell/ghc.wasm.gz.bin", "haskell/ghc.wasm"),
+    oneOf("haskell/libdir.tar.gz.bin", "haskell/libdir.tar"),
     file("haskell/wasi-shim.js"),
     file("haskell/runner.meta.json"),
-    conditionalOneOf("haskell-ghci", "haskell/ghci.wasm.gz", "haskell/ghci.wasm"),
-  ], "session", { workerType: "module", initializeMs: 120_000, executeMs: 120_000 }),
+    conditionalOneOf("haskell-ghci", "haskell/ghci.wasm.gz.bin", "haskell/ghci.wasm"),
+  ], "session", {
+    workerType: "module",
+    initializeMs: 120_000,
+    executeMs: 120_000,
+    unavailableReason: "Haskell runtime is temporarily unavailable: browser ghc -e evaluation is blocked by incompatible compiler runtime ways.",
+  }),
 ]);

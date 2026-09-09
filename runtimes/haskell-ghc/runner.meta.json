@@ -2,8 +2,8 @@
   "protocol": "ghc-wasi-v1",
   "executorMode": "ghc-e",
   "testMode": "ghc-compile",
-  "ghcWasm": "haskell/ghc.wasm.gz",
-  "libdirTar": "haskell/libdir.tar.gz",
+  "ghcWasm": "haskell/ghc.wasm.gz.bin",
+  "libdirTar": "haskell/libdir.tar.gz.bin",
   "libdirPath": "/ghc",
   "workDir": "/work",
   "wasiShim": "haskell/wasi-shim.js"

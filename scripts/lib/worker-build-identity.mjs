@@ -174,7 +174,7 @@ function haskellAssetCandidates(metadata, field, compressedPath, rawPath) {
     && !configuredValue.includes("..")
     ? `public/${configuredValue}`
     : undefined;
-  if (configured?.endsWith(".gz")) return [configured, rawPath];
+  if (configured?.endsWith(".gz.bin")) return [configured, rawPath];
   return [compressedPath, configured ?? rawPath];
 }
 
@@ -247,15 +247,15 @@ export function haskellRuntimeIdentityRecords(root) {
   const records = [
     ...optionalGroupRecords(root, "runtime-asset", "haskell/metadata", ["public/haskell/runner.meta.json"]),
     ...optionalGroupRecords(root, "runtime-asset", "haskell/wasi-shim", ["public/haskell/wasi-shim.js"]),
-    ...optionalGroupRecords(root, "runtime-asset", "haskell/ghc", haskellAssetCandidates(metadata, "ghcWasm", "public/haskell/ghc.wasm.gz", "public/haskell/ghc.wasm")),
-    ...optionalGroupRecords(root, "runtime-asset", "haskell/libdir", haskellAssetCandidates(metadata, "libdirTar", "public/haskell/libdir.tar.gz", "public/haskell/libdir.tar")),
+    ...optionalGroupRecords(root, "runtime-asset", "haskell/ghc", haskellAssetCandidates(metadata, "ghcWasm", "public/haskell/ghc.wasm.gz.bin", "public/haskell/ghc.wasm")),
+    ...optionalGroupRecords(root, "runtime-asset", "haskell/libdir", haskellAssetCandidates(metadata, "libdirTar", "public/haskell/libdir.tar.gz.bin", "public/haskell/libdir.tar")),
   ];
   if (metadata?.executorMode === "ghci" || metadata?.testMode === "ghci") {
     records.push(...optionalGroupRecords(
       root,
       "runtime-asset",
       "haskell/ghci",
-      haskellAssetCandidates(metadata, "ghciWasm", "public/haskell/ghci.wasm.gz", "public/haskell/ghci.wasm"),
+      haskellAssetCandidates(metadata, "ghciWasm", "public/haskell/ghci.wasm.gz.bin", "public/haskell/ghci.wasm"),
     ));
   }
   return records;

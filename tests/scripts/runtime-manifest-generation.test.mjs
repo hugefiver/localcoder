@@ -5,7 +5,10 @@ import path from "node:path";
 import test from "node:test";
 import { buildManifest, writeRuntimeManifest } from "../../scripts/generate-runtime-manifest.mjs";
 import { checkRuntimeAssets } from "../../scripts/check-runtime-assets.mjs";
+import { runtimeCatalog } from "../../scripts/lib/runtime-catalog.mjs";
 import { assertRequiredPyodideAssets } from "../../scripts/setup-pyodide.js";
+
+const HASKELL_UNAVAILABLE_REASON = "Haskell runtime is temporarily unavailable: browser ghc -e evaluation is blocked by incompatible compiler runtime ways.";
 
 function writeAsset(root, url, bytes) {
   const filePath = path.join(root, "public", url);
@@ -50,8 +53,22 @@ test("buildManifest derives availability and byte counts from disposable artifac
       { url: "pyodide/python_stdlib.zip", bytes: 43 },
       { url: "pyodide/pyodide-lock.json", bytes: 45 },
     ]);
+    for (const runtimeId of ["javascript-worker", "typescript-official", "python-pyodide"]) {
+      const required = byId(manifest, runtimeId);
+      assert.equal(required.packaged, true);
+      assert.deepEqual(required.capabilities, { execute: true, judge: true });
+    }
     assert.equal(byId(manifest, "python-rustpython").packaged, false);
     assert.match(byId(manifest, "python-rustpython").unavailableReason, /runner\.wasm/);
+    const haskell = byId(manifest, "haskell-ghc-wasi");
+    assert.equal(haskell.packaged, false);
+    assert.equal(haskell.unavailableReason, HASKELL_UNAVAILABLE_REASON);
+    assert.deepEqual(haskell.capabilities, { execute: false, judge: false });
+
+    const haskellDefinition = runtimeCatalog.find(({ runtimeId }) => runtimeId === "haskell-ghc-wasi");
+    assert.ok(haskellDefinition);
+    assert.ok(Object.isFrozen(haskellDefinition));
+    assert.equal(haskellDefinition.unavailableReason, HASKELL_UNAVAILABLE_REASON);
 
     const report = checkRuntimeAssets({ root: fixtureRoot, manifest, target: "public" });
     assert.equal(report.ready, true);
@@ -80,20 +97,20 @@ test("buildManifest declares every present optional fallback variant and readine
     writeAsset(fixtureRoot, "rustpython/runner.wasm.gz.bin", 71);
     writeAsset(fixtureRoot, "rustpython/runner.wasm", 73);
     writeAsset(fixtureRoot, "haskell-worker.js", 79);
-    writeAsset(fixtureRoot, "haskell/ghc.wasm.gz", 83);
+    writeAsset(fixtureRoot, "haskell/ghc.wasm.gz.bin", 83);
     writeAsset(fixtureRoot, "haskell/ghc.wasm", 89);
-    writeAsset(fixtureRoot, "haskell/libdir.tar.gz", 97);
+    writeAsset(fixtureRoot, "haskell/libdir.tar.gz.bin", 97);
     writeAsset(fixtureRoot, "haskell/libdir.tar", 101);
     writeAsset(fixtureRoot, "haskell/wasi-shim.js", 103);
-    writeAsset(fixtureRoot, "haskell/ghci.wasm.gz", 107);
+    writeAsset(fixtureRoot, "haskell/ghci.wasm.gz.bin", 107);
     writeAsset(fixtureRoot, "haskell/ghci.wasm", 109);
     const metadata = {
       protocol: "ghc-wasi-v1",
       executorMode: "ghci",
       testMode: "ghc-compile",
-      ghcWasm: "haskell/ghc.wasm.gz",
-      ghciWasm: "haskell/ghci.wasm.gz",
-      libdirTar: "haskell/libdir.tar.gz",
+      ghcWasm: "haskell/ghc.wasm.gz.bin",
+      ghciWasm: "haskell/ghci.wasm.gz.bin",
+      libdirTar: "haskell/libdir.tar.gz.bin",
       libdirPath: "/ghc",
       workDir: "/work",
       wasiShim: "haskell/wasi-shim.js",
@@ -113,17 +130,21 @@ test("buildManifest declares every present optional fallback variant and readine
       { url: "rustpython/runner.wasm.gz.bin", bytes: 71 },
       { url: "rustpython/runner.wasm", bytes: 73 },
     ]);
-    assert.deepEqual(byId(manifest, "haskell-ghc-wasi").assets, [
+    const haskell = byId(manifest, "haskell-ghc-wasi");
+    assert.deepEqual(haskell.assets, [
       { url: "haskell-worker.js", bytes: 79 },
-      { url: "haskell/ghc.wasm.gz", bytes: 83 },
+      { url: "haskell/ghc.wasm.gz.bin", bytes: 83 },
       { url: "haskell/ghc.wasm", bytes: 89 },
-      { url: "haskell/libdir.tar.gz", bytes: 97 },
+      { url: "haskell/libdir.tar.gz.bin", bytes: 97 },
       { url: "haskell/libdir.tar", bytes: 101 },
       { url: "haskell/wasi-shim.js", bytes: 103 },
       { url: "haskell/runner.meta.json", bytes: Buffer.byteLength(JSON.stringify(metadata)) },
-      { url: "haskell/ghci.wasm.gz", bytes: 107 },
+      { url: "haskell/ghci.wasm.gz.bin", bytes: 107 },
       { url: "haskell/ghci.wasm", bytes: 109 },
     ]);
+    assert.equal(haskell.packaged, false);
+    assert.equal(haskell.unavailableReason, HASKELL_UNAVAILABLE_REASON);
+    assert.deepEqual(haskell.capabilities, { execute: false, judge: false });
 
     fs.writeFileSync(path.join(fixtureRoot, "public", "racket", "racket.wasm"), Buffer.alloc(62, "x"));
     const report = checkRuntimeAssets({ root: fixtureRoot, manifest, target: "public" });
